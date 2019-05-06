@@ -1,0 +1,1024 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.net.sinodata.mapper.ProjectInfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.net.sinodata.model.ProjectInfo" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="projectName" property="projectname" jdbcType="VARCHAR" />
+    <result column="projectNum" property="projectnum" jdbcType="VARCHAR" />
+    <result column="recommendPerson" property="recommendperson" jdbcType="VARCHAR" />
+    <result column="busiType" property="busitype" jdbcType="VARCHAR" />
+    <result column="businessChannel" property="businesschannel" jdbcType="VARCHAR" />
+    <result column="is1STEva" property="is1steva" jdbcType="VARCHAR" />
+    <result column="isIpProject" property="isipproject" jdbcType="VARCHAR" />
+    <result column="isSureness" property="issureness" jdbcType="VARCHAR" />
+    <result column="underpinOrgName" property="underpinorgname" jdbcType="VARCHAR" />
+    <result column="visitorVolume" property="visitorvolume" jdbcType="VARCHAR" />
+    <result column="loanAmt" property="loanamt" jdbcType="VARCHAR" />
+    <result column="loanDeadline" property="loandeadline" jdbcType="VARCHAR" />
+    <result column="loanType" property="loantype" jdbcType="VARCHAR" />
+    <result column="hasLoanAmt" property="hasloanamt" jdbcType="VARCHAR" />
+    <result column="loanUse" property="loanuse" jdbcType="VARCHAR" />
+    <result column="inteProType" property="inteprotype" jdbcType="VARCHAR" />
+    <result column="rate" property="rate" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="isMinSill" property="isminsill" jdbcType="VARCHAR" />
+    <result column="inputerId" property="inputerid" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="comeFrom" property="comefrom" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="customerId" property="customerid" jdbcType="VARCHAR" />
+    <result column="PROPROGRESS" property="proprogress" jdbcType="VARCHAR" />
+    <result column="PROGRESSDESC" property="progressdesc" jdbcType="VARCHAR" />
+    <result column="PRIORITYLEVEL" property="prioritylevel" jdbcType="VARCHAR" />
+    <result column="CUSTYPE" property="custype" jdbcType="VARCHAR" />
+    <result column="SUBPROCESS" property="subprocess" jdbcType="VARCHAR" />
+    <result column="CONTRACTNO" property="contractno" jdbcType="VARCHAR" />
+    <result column="COUNTLENDBALANCE" property="countlendbalance" jdbcType="VARCHAR" />
+    <result column="GUARANTEESTATUS" property="guaranteestatus" jdbcType="VARCHAR" />
+    <result column="RISKRATING" property="riskrating" jdbcType="VARCHAR" />
+    <result column="FACTORINGSTATUS" property="factoringstatus" jdbcType="VARCHAR" />
+    <result column="FINANCINGNEEDS" property="financingneeds" jdbcType="VARCHAR" />
+    <result column="USEMONEYCOMPANY" property="usemoneycompany" jdbcType="VARCHAR" />
+    <result column="TOTAL_ASSETS" property="totalAssets" jdbcType="VARCHAR" />
+    <result column="TOTAL_LIABILITY" property="totalLiability" jdbcType="VARCHAR" />
+    <result column="LAST_YEAR_INCOME" property="lastYearIncome" jdbcType="VARCHAR" />
+    <result column="CURRENT_LOAN_SITUATION" property="currentLoanSituation" jdbcType="VARCHAR" />
+    <result column="LOAN_AMOUNT" property="loanAmount" jdbcType="VARCHAR" />
+    <result column="EQUITY_FINANCING_AMOUNT" property="equityFinancingAmount" jdbcType="VARCHAR" />
+    <result column="TO_BE_LISTED_FINANCING_TIME" property="toBeListedFinancingTime" jdbcType="TIMESTAMP" />
+    <result column="COMPANY_OVERVIEW" property="companyOverview" jdbcType="VARCHAR" />
+    <result column="MAIN_BUSINESS" property="mainBusiness" jdbcType="VARCHAR" />
+    <result column="PRODUCT_DESCRIPTION" property="productDescription" jdbcType="VARCHAR" />
+    <result column="SOURCE_OF_INCOME" property="sourceOfIncome" jdbcType="VARCHAR" />
+    <result column="FILE_PATH" property="filePath" jdbcType="VARCHAR" />
+    <result column="CORE_TECHNOLOGY" property="coreTechnology" jdbcType="VARCHAR" />
+    <result column="COMPETITROR_NAME" property="competitrorName" jdbcType="VARCHAR" />
+    <result column="PATENT" property="patent" jdbcType="VARCHAR" />
+    <result column="SOFT" property="soft" jdbcType="VARCHAR" />
+    <result column="TRADEMARK" property="trademark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, projectName, projectNum, recommendPerson, busiType, businessChannel, is1STEva, 
+    isIpProject, isSureness, underpinOrgName, visitorVolume, loanAmt, loanDeadline, loanType, 
+    hasLoanAmt, loanUse, inteProType, rate, remark, department, isMinSill, inputerId, 
+    createTime, comeFrom, status, customerId, PROPROGRESS, PROGRESSDESC, PRIORITYLEVEL, 
+    CUSTYPE, SUBPROCESS, CONTRACTNO, COUNTLENDBALANCE, GUARANTEESTATUS, RISKRATING, FACTORINGSTATUS, 
+    FINANCINGNEEDS, USEMONEYCOMPANY, TOTAL_ASSETS, TOTAL_LIABILITY, LAST_YEAR_INCOME, 
+    CURRENT_LOAN_SITUATION, LOAN_AMOUNT, EQUITY_FINANCING_AMOUNT, TO_BE_LISTED_FINANCING_TIME, 
+    COMPANY_OVERVIEW, MAIN_BUSINESS, PRODUCT_DESCRIPTION, SOURCE_OF_INCOME, FILE_PATH, 
+    CORE_TECHNOLOGY, COMPETITROR_NAME, PATENT, SOFT, TRADEMARK
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.net.sinodata.model.ProjectInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PROJECT_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from PROJECT_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from PROJECT_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.net.sinodata.model.ProjectInfoExample" >
+    delete from PROJECT_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.net.sinodata.model.ProjectInfo" >
+    insert into PROJECT_INFO (ID, projectName, projectNum, 
+      recommendPerson, busiType, businessChannel, 
+      is1STEva, isIpProject, isSureness, 
+      underpinOrgName, visitorVolume, loanAmt, 
+      loanDeadline, loanType, hasLoanAmt, 
+      loanUse, inteProType, rate, 
+      remark, department, isMinSill, 
+      inputerId, createTime, comeFrom, 
+      status, customerId, PROPROGRESS, 
+      PROGRESSDESC, PRIORITYLEVEL, CUSTYPE, 
+      SUBPROCESS, CONTRACTNO, COUNTLENDBALANCE, 
+      GUARANTEESTATUS, RISKRATING, FACTORINGSTATUS, 
+      FINANCINGNEEDS, USEMONEYCOMPANY, TOTAL_ASSETS, 
+      TOTAL_LIABILITY, LAST_YEAR_INCOME, CURRENT_LOAN_SITUATION, 
+      LOAN_AMOUNT, EQUITY_FINANCING_AMOUNT, TO_BE_LISTED_FINANCING_TIME, 
+      COMPANY_OVERVIEW, MAIN_BUSINESS, PRODUCT_DESCRIPTION, 
+      SOURCE_OF_INCOME, FILE_PATH, CORE_TECHNOLOGY, 
+      COMPETITROR_NAME, PATENT, SOFT, 
+      TRADEMARK)
+    values (#{id,jdbcType=VARCHAR}, #{projectname,jdbcType=VARCHAR}, #{projectnum,jdbcType=VARCHAR}, 
+      #{recommendperson,jdbcType=VARCHAR}, #{busitype,jdbcType=VARCHAR}, #{businesschannel,jdbcType=VARCHAR}, 
+      #{is1steva,jdbcType=VARCHAR}, #{isipproject,jdbcType=VARCHAR}, #{issureness,jdbcType=VARCHAR}, 
+      #{underpinorgname,jdbcType=VARCHAR}, #{visitorvolume,jdbcType=VARCHAR}, #{loanamt,jdbcType=VARCHAR}, 
+      #{loandeadline,jdbcType=VARCHAR}, #{loantype,jdbcType=VARCHAR}, #{hasloanamt,jdbcType=VARCHAR}, 
+      #{loanuse,jdbcType=VARCHAR}, #{inteprotype,jdbcType=VARCHAR}, #{rate,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{isminsill,jdbcType=VARCHAR}, 
+      #{inputerid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{comefrom,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{customerid,jdbcType=VARCHAR}, #{proprogress,jdbcType=VARCHAR}, 
+      #{progressdesc,jdbcType=VARCHAR}, #{prioritylevel,jdbcType=VARCHAR}, #{custype,jdbcType=VARCHAR}, 
+      #{subprocess,jdbcType=VARCHAR}, #{contractno,jdbcType=VARCHAR}, #{countlendbalance,jdbcType=VARCHAR}, 
+      #{guaranteestatus,jdbcType=VARCHAR}, #{riskrating,jdbcType=VARCHAR}, #{factoringstatus,jdbcType=VARCHAR}, 
+      #{financingneeds,jdbcType=VARCHAR}, #{usemoneycompany,jdbcType=VARCHAR}, #{totalAssets,jdbcType=VARCHAR}, 
+      #{totalLiability,jdbcType=VARCHAR}, #{lastYearIncome,jdbcType=VARCHAR}, #{currentLoanSituation,jdbcType=VARCHAR}, 
+      #{loanAmount,jdbcType=VARCHAR}, #{equityFinancingAmount,jdbcType=VARCHAR}, #{toBeListedFinancingTime,jdbcType=TIMESTAMP}, 
+      #{companyOverview,jdbcType=VARCHAR}, #{mainBusiness,jdbcType=VARCHAR}, #{productDescription,jdbcType=VARCHAR}, 
+      #{sourceOfIncome,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, #{coreTechnology,jdbcType=VARCHAR}, 
+      #{competitrorName,jdbcType=VARCHAR}, #{patent,jdbcType=VARCHAR}, #{soft,jdbcType=VARCHAR}, 
+      #{trademark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.net.sinodata.model.ProjectInfo" >
+    insert into PROJECT_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="projectname != null" >
+        projectName,
+      </if>
+      <if test="projectnum != null" >
+        projectNum,
+      </if>
+      <if test="recommendperson != null" >
+        recommendPerson,
+      </if>
+      <if test="busitype != null" >
+        busiType,
+      </if>
+      <if test="businesschannel != null" >
+        businessChannel,
+      </if>
+      <if test="is1steva != null" >
+        is1STEva,
+      </if>
+      <if test="isipproject != null" >
+        isIpProject,
+      </if>
+      <if test="issureness != null" >
+        isSureness,
+      </if>
+      <if test="underpinorgname != null" >
+        underpinOrgName,
+      </if>
+      <if test="visitorvolume != null" >
+        visitorVolume,
+      </if>
+      <if test="loanamt != null" >
+        loanAmt,
+      </if>
+      <if test="loandeadline != null" >
+        loanDeadline,
+      </if>
+      <if test="loantype != null" >
+        loanType,
+      </if>
+      <if test="hasloanamt != null" >
+        hasLoanAmt,
+      </if>
+      <if test="loanuse != null" >
+        loanUse,
+      </if>
+      <if test="inteprotype != null" >
+        inteProType,
+      </if>
+      <if test="rate != null" >
+        rate,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="isminsill != null" >
+        isMinSill,
+      </if>
+      <if test="inputerid != null" >
+        inputerId,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="comefrom != null" >
+        comeFrom,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="customerid != null" >
+        customerId,
+      </if>
+      <if test="proprogress != null" >
+        PROPROGRESS,
+      </if>
+      <if test="progressdesc != null" >
+        PROGRESSDESC,
+      </if>
+      <if test="prioritylevel != null" >
+        PRIORITYLEVEL,
+      </if>
+      <if test="custype != null" >
+        CUSTYPE,
+      </if>
+      <if test="subprocess != null" >
+        SUBPROCESS,
+      </if>
+      <if test="contractno != null" >
+        CONTRACTNO,
+      </if>
+      <if test="countlendbalance != null" >
+        COUNTLENDBALANCE,
+      </if>
+      <if test="guaranteestatus != null" >
+        GUARANTEESTATUS,
+      </if>
+      <if test="riskrating != null" >
+        RISKRATING,
+      </if>
+      <if test="factoringstatus != null" >
+        FACTORINGSTATUS,
+      </if>
+      <if test="financingneeds != null" >
+        FINANCINGNEEDS,
+      </if>
+      <if test="usemoneycompany != null" >
+        USEMONEYCOMPANY,
+      </if>
+      <if test="totalAssets != null" >
+        TOTAL_ASSETS,
+      </if>
+      <if test="totalLiability != null" >
+        TOTAL_LIABILITY,
+      </if>
+      <if test="lastYearIncome != null" >
+        LAST_YEAR_INCOME,
+      </if>
+      <if test="currentLoanSituation != null" >
+        CURRENT_LOAN_SITUATION,
+      </if>
+      <if test="loanAmount != null" >
+        LOAN_AMOUNT,
+      </if>
+      <if test="equityFinancingAmount != null" >
+        EQUITY_FINANCING_AMOUNT,
+      </if>
+      <if test="toBeListedFinancingTime != null" >
+        TO_BE_LISTED_FINANCING_TIME,
+      </if>
+      <if test="companyOverview != null" >
+        COMPANY_OVERVIEW,
+      </if>
+      <if test="mainBusiness != null" >
+        MAIN_BUSINESS,
+      </if>
+      <if test="productDescription != null" >
+        PRODUCT_DESCRIPTION,
+      </if>
+      <if test="sourceOfIncome != null" >
+        SOURCE_OF_INCOME,
+      </if>
+      <if test="filePath != null" >
+        FILE_PATH,
+      </if>
+      <if test="coreTechnology != null" >
+        CORE_TECHNOLOGY,
+      </if>
+      <if test="competitrorName != null" >
+        COMPETITROR_NAME,
+      </if>
+      <if test="patent != null" >
+        PATENT,
+      </if>
+      <if test="soft != null" >
+        SOFT,
+      </if>
+      <if test="trademark != null" >
+        TRADEMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="projectname != null" >
+        #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="projectnum != null" >
+        #{projectnum,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendperson != null" >
+        #{recommendperson,jdbcType=VARCHAR},
+      </if>
+      <if test="busitype != null" >
+        #{busitype,jdbcType=VARCHAR},
+      </if>
+      <if test="businesschannel != null" >
+        #{businesschannel,jdbcType=VARCHAR},
+      </if>
+      <if test="is1steva != null" >
+        #{is1steva,jdbcType=VARCHAR},
+      </if>
+      <if test="isipproject != null" >
+        #{isipproject,jdbcType=VARCHAR},
+      </if>
+      <if test="issureness != null" >
+        #{issureness,jdbcType=VARCHAR},
+      </if>
+      <if test="underpinorgname != null" >
+        #{underpinorgname,jdbcType=VARCHAR},
+      </if>
+      <if test="visitorvolume != null" >
+        #{visitorvolume,jdbcType=VARCHAR},
+      </if>
+      <if test="loanamt != null" >
+        #{loanamt,jdbcType=VARCHAR},
+      </if>
+      <if test="loandeadline != null" >
+        #{loandeadline,jdbcType=VARCHAR},
+      </if>
+      <if test="loantype != null" >
+        #{loantype,jdbcType=VARCHAR},
+      </if>
+      <if test="hasloanamt != null" >
+        #{hasloanamt,jdbcType=VARCHAR},
+      </if>
+      <if test="loanuse != null" >
+        #{loanuse,jdbcType=VARCHAR},
+      </if>
+      <if test="inteprotype != null" >
+        #{inteprotype,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null" >
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="isminsill != null" >
+        #{isminsill,jdbcType=VARCHAR},
+      </if>
+      <if test="inputerid != null" >
+        #{inputerid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comefrom != null" >
+        #{comefrom,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="customerid != null" >
+        #{customerid,jdbcType=VARCHAR},
+      </if>
+      <if test="proprogress != null" >
+        #{proprogress,jdbcType=VARCHAR},
+      </if>
+      <if test="progressdesc != null" >
+        #{progressdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="prioritylevel != null" >
+        #{prioritylevel,jdbcType=VARCHAR},
+      </if>
+      <if test="custype != null" >
+        #{custype,jdbcType=VARCHAR},
+      </if>
+      <if test="subprocess != null" >
+        #{subprocess,jdbcType=VARCHAR},
+      </if>
+      <if test="contractno != null" >
+        #{contractno,jdbcType=VARCHAR},
+      </if>
+      <if test="countlendbalance != null" >
+        #{countlendbalance,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteestatus != null" >
+        #{guaranteestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="riskrating != null" >
+        #{riskrating,jdbcType=VARCHAR},
+      </if>
+      <if test="factoringstatus != null" >
+        #{factoringstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="financingneeds != null" >
+        #{financingneeds,jdbcType=VARCHAR},
+      </if>
+      <if test="usemoneycompany != null" >
+        #{usemoneycompany,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAssets != null" >
+        #{totalAssets,jdbcType=VARCHAR},
+      </if>
+      <if test="totalLiability != null" >
+        #{totalLiability,jdbcType=VARCHAR},
+      </if>
+      <if test="lastYearIncome != null" >
+        #{lastYearIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="currentLoanSituation != null" >
+        #{currentLoanSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmount != null" >
+        #{loanAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="equityFinancingAmount != null" >
+        #{equityFinancingAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="toBeListedFinancingTime != null" >
+        #{toBeListedFinancingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="companyOverview != null" >
+        #{companyOverview,jdbcType=VARCHAR},
+      </if>
+      <if test="mainBusiness != null" >
+        #{mainBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="productDescription != null" >
+        #{productDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceOfIncome != null" >
+        #{sourceOfIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null" >
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="coreTechnology != null" >
+        #{coreTechnology,jdbcType=VARCHAR},
+      </if>
+      <if test="competitrorName != null" >
+        #{competitrorName,jdbcType=VARCHAR},
+      </if>
+      <if test="patent != null" >
+        #{patent,jdbcType=VARCHAR},
+      </if>
+      <if test="soft != null" >
+        #{soft,jdbcType=VARCHAR},
+      </if>
+      <if test="trademark != null" >
+        #{trademark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.net.sinodata.model.ProjectInfoExample" resultType="java.lang.Integer" >
+    select count(*) from PROJECT_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update PROJECT_INFO
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectname != null" >
+        projectName = #{record.projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectnum != null" >
+        projectNum = #{record.projectnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recommendperson != null" >
+        recommendPerson = #{record.recommendperson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busitype != null" >
+        busiType = #{record.busitype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businesschannel != null" >
+        businessChannel = #{record.businesschannel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.is1steva != null" >
+        is1STEva = #{record.is1steva,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isipproject != null" >
+        isIpProject = #{record.isipproject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issureness != null" >
+        isSureness = #{record.issureness,jdbcType=VARCHAR},
+      </if>
+      <if test="record.underpinorgname != null" >
+        underpinOrgName = #{record.underpinorgname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitorvolume != null" >
+        visitorVolume = #{record.visitorvolume,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanamt != null" >
+        loanAmt = #{record.loanamt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loandeadline != null" >
+        loanDeadline = #{record.loandeadline,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loantype != null" >
+        loanType = #{record.loantype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasloanamt != null" >
+        hasLoanAmt = #{record.hasloanamt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanuse != null" >
+        loanUse = #{record.loanuse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inteprotype != null" >
+        inteProType = #{record.inteprotype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rate != null" >
+        rate = #{record.rate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.department != null" >
+        department = #{record.department,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isminsill != null" >
+        isMinSill = #{record.isminsill,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inputerid != null" >
+        inputerId = #{record.inputerid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.comefrom != null" >
+        comeFrom = #{record.comefrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerid != null" >
+        customerId = #{record.customerid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proprogress != null" >
+        PROPROGRESS = #{record.proprogress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.progressdesc != null" >
+        PROGRESSDESC = #{record.progressdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prioritylevel != null" >
+        PRIORITYLEVEL = #{record.prioritylevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custype != null" >
+        CUSTYPE = #{record.custype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subprocess != null" >
+        SUBPROCESS = #{record.subprocess,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractno != null" >
+        CONTRACTNO = #{record.contractno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countlendbalance != null" >
+        COUNTLENDBALANCE = #{record.countlendbalance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guaranteestatus != null" >
+        GUARANTEESTATUS = #{record.guaranteestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.riskrating != null" >
+        RISKRATING = #{record.riskrating,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoringstatus != null" >
+        FACTORINGSTATUS = #{record.factoringstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financingneeds != null" >
+        FINANCINGNEEDS = #{record.financingneeds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usemoneycompany != null" >
+        USEMONEYCOMPANY = #{record.usemoneycompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalAssets != null" >
+        TOTAL_ASSETS = #{record.totalAssets,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalLiability != null" >
+        TOTAL_LIABILITY = #{record.totalLiability,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastYearIncome != null" >
+        LAST_YEAR_INCOME = #{record.lastYearIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currentLoanSituation != null" >
+        CURRENT_LOAN_SITUATION = #{record.currentLoanSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanAmount != null" >
+        LOAN_AMOUNT = #{record.loanAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.equityFinancingAmount != null" >
+        EQUITY_FINANCING_AMOUNT = #{record.equityFinancingAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toBeListedFinancingTime != null" >
+        TO_BE_LISTED_FINANCING_TIME = #{record.toBeListedFinancingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.companyOverview != null" >
+        COMPANY_OVERVIEW = #{record.companyOverview,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainBusiness != null" >
+        MAIN_BUSINESS = #{record.mainBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productDescription != null" >
+        PRODUCT_DESCRIPTION = #{record.productDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceOfIncome != null" >
+        SOURCE_OF_INCOME = #{record.sourceOfIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filePath != null" >
+        FILE_PATH = #{record.filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coreTechnology != null" >
+        CORE_TECHNOLOGY = #{record.coreTechnology,jdbcType=VARCHAR},
+      </if>
+      <if test="record.competitrorName != null" >
+        COMPETITROR_NAME = #{record.competitrorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patent != null" >
+        PATENT = #{record.patent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.soft != null" >
+        SOFT = #{record.soft,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trademark != null" >
+        TRADEMARK = #{record.trademark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update PROJECT_INFO
+    set ID = #{record.id,jdbcType=VARCHAR},
+      projectName = #{record.projectname,jdbcType=VARCHAR},
+      projectNum = #{record.projectnum,jdbcType=VARCHAR},
+      recommendPerson = #{record.recommendperson,jdbcType=VARCHAR},
+      busiType = #{record.busitype,jdbcType=VARCHAR},
+      businessChannel = #{record.businesschannel,jdbcType=VARCHAR},
+      is1STEva = #{record.is1steva,jdbcType=VARCHAR},
+      isIpProject = #{record.isipproject,jdbcType=VARCHAR},
+      isSureness = #{record.issureness,jdbcType=VARCHAR},
+      underpinOrgName = #{record.underpinorgname,jdbcType=VARCHAR},
+      visitorVolume = #{record.visitorvolume,jdbcType=VARCHAR},
+      loanAmt = #{record.loanamt,jdbcType=VARCHAR},
+      loanDeadline = #{record.loandeadline,jdbcType=VARCHAR},
+      loanType = #{record.loantype,jdbcType=VARCHAR},
+      hasLoanAmt = #{record.hasloanamt,jdbcType=VARCHAR},
+      loanUse = #{record.loanuse,jdbcType=VARCHAR},
+      inteProType = #{record.inteprotype,jdbcType=VARCHAR},
+      rate = #{record.rate,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      department = #{record.department,jdbcType=VARCHAR},
+      isMinSill = #{record.isminsill,jdbcType=VARCHAR},
+      inputerId = #{record.inputerid,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      comeFrom = #{record.comefrom,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      customerId = #{record.customerid,jdbcType=VARCHAR},
+      PROPROGRESS = #{record.proprogress,jdbcType=VARCHAR},
+      PROGRESSDESC = #{record.progressdesc,jdbcType=VARCHAR},
+      PRIORITYLEVEL = #{record.prioritylevel,jdbcType=VARCHAR},
+      CUSTYPE = #{record.custype,jdbcType=VARCHAR},
+      SUBPROCESS = #{record.subprocess,jdbcType=VARCHAR},
+      CONTRACTNO = #{record.contractno,jdbcType=VARCHAR},
+      COUNTLENDBALANCE = #{record.countlendbalance,jdbcType=VARCHAR},
+      GUARANTEESTATUS = #{record.guaranteestatus,jdbcType=VARCHAR},
+      RISKRATING = #{record.riskrating,jdbcType=VARCHAR},
+      FACTORINGSTATUS = #{record.factoringstatus,jdbcType=VARCHAR},
+      FINANCINGNEEDS = #{record.financingneeds,jdbcType=VARCHAR},
+      USEMONEYCOMPANY = #{record.usemoneycompany,jdbcType=VARCHAR},
+      TOTAL_ASSETS = #{record.totalAssets,jdbcType=VARCHAR},
+      TOTAL_LIABILITY = #{record.totalLiability,jdbcType=VARCHAR},
+      LAST_YEAR_INCOME = #{record.lastYearIncome,jdbcType=VARCHAR},
+      CURRENT_LOAN_SITUATION = #{record.currentLoanSituation,jdbcType=VARCHAR},
+      LOAN_AMOUNT = #{record.loanAmount,jdbcType=VARCHAR},
+      EQUITY_FINANCING_AMOUNT = #{record.equityFinancingAmount,jdbcType=VARCHAR},
+      TO_BE_LISTED_FINANCING_TIME = #{record.toBeListedFinancingTime,jdbcType=TIMESTAMP},
+      COMPANY_OVERVIEW = #{record.companyOverview,jdbcType=VARCHAR},
+      MAIN_BUSINESS = #{record.mainBusiness,jdbcType=VARCHAR},
+      PRODUCT_DESCRIPTION = #{record.productDescription,jdbcType=VARCHAR},
+      SOURCE_OF_INCOME = #{record.sourceOfIncome,jdbcType=VARCHAR},
+      FILE_PATH = #{record.filePath,jdbcType=VARCHAR},
+      CORE_TECHNOLOGY = #{record.coreTechnology,jdbcType=VARCHAR},
+      COMPETITROR_NAME = #{record.competitrorName,jdbcType=VARCHAR},
+      PATENT = #{record.patent,jdbcType=VARCHAR},
+      SOFT = #{record.soft,jdbcType=VARCHAR},
+      TRADEMARK = #{record.trademark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.net.sinodata.model.ProjectInfo" >
+    update PROJECT_INFO
+    <set >
+      <if test="projectname != null" >
+        projectName = #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="projectnum != null" >
+        projectNum = #{projectnum,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendperson != null" >
+        recommendPerson = #{recommendperson,jdbcType=VARCHAR},
+      </if>
+      <if test="busitype != null" >
+        busiType = #{busitype,jdbcType=VARCHAR},
+      </if>
+      <if test="businesschannel != null" >
+        businessChannel = #{businesschannel,jdbcType=VARCHAR},
+      </if>
+      <if test="is1steva != null" >
+        is1STEva = #{is1steva,jdbcType=VARCHAR},
+      </if>
+      <if test="isipproject != null" >
+        isIpProject = #{isipproject,jdbcType=VARCHAR},
+      </if>
+      <if test="issureness != null" >
+        isSureness = #{issureness,jdbcType=VARCHAR},
+      </if>
+      <if test="underpinorgname != null" >
+        underpinOrgName = #{underpinorgname,jdbcType=VARCHAR},
+      </if>
+      <if test="visitorvolume != null" >
+        visitorVolume = #{visitorvolume,jdbcType=VARCHAR},
+      </if>
+      <if test="loanamt != null" >
+        loanAmt = #{loanamt,jdbcType=VARCHAR},
+      </if>
+      <if test="loandeadline != null" >
+        loanDeadline = #{loandeadline,jdbcType=VARCHAR},
+      </if>
+      <if test="loantype != null" >
+        loanType = #{loantype,jdbcType=VARCHAR},
+      </if>
+      <if test="hasloanamt != null" >
+        hasLoanAmt = #{hasloanamt,jdbcType=VARCHAR},
+      </if>
+      <if test="loanuse != null" >
+        loanUse = #{loanuse,jdbcType=VARCHAR},
+      </if>
+      <if test="inteprotype != null" >
+        inteProType = #{inteprotype,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null" >
+        rate = #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="isminsill != null" >
+        isMinSill = #{isminsill,jdbcType=VARCHAR},
+      </if>
+      <if test="inputerid != null" >
+        inputerId = #{inputerid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comefrom != null" >
+        comeFrom = #{comefrom,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="customerid != null" >
+        customerId = #{customerid,jdbcType=VARCHAR},
+      </if>
+      <if test="proprogress != null" >
+        PROPROGRESS = #{proprogress,jdbcType=VARCHAR},
+      </if>
+      <if test="progressdesc != null" >
+        PROGRESSDESC = #{progressdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="prioritylevel != null" >
+        PRIORITYLEVEL = #{prioritylevel,jdbcType=VARCHAR},
+      </if>
+      <if test="custype != null" >
+        CUSTYPE = #{custype,jdbcType=VARCHAR},
+      </if>
+      <if test="subprocess != null" >
+        SUBPROCESS = #{subprocess,jdbcType=VARCHAR},
+      </if>
+      <if test="contractno != null" >
+        CONTRACTNO = #{contractno,jdbcType=VARCHAR},
+      </if>
+      <if test="countlendbalance != null" >
+        COUNTLENDBALANCE = #{countlendbalance,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteestatus != null" >
+        GUARANTEESTATUS = #{guaranteestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="riskrating != null" >
+        RISKRATING = #{riskrating,jdbcType=VARCHAR},
+      </if>
+      <if test="factoringstatus != null" >
+        FACTORINGSTATUS = #{factoringstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="financingneeds != null" >
+        FINANCINGNEEDS = #{financingneeds,jdbcType=VARCHAR},
+      </if>
+      <if test="usemoneycompany != null" >
+        USEMONEYCOMPANY = #{usemoneycompany,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAssets != null" >
+        TOTAL_ASSETS = #{totalAssets,jdbcType=VARCHAR},
+      </if>
+      <if test="totalLiability != null" >
+        TOTAL_LIABILITY = #{totalLiability,jdbcType=VARCHAR},
+      </if>
+      <if test="lastYearIncome != null" >
+        LAST_YEAR_INCOME = #{lastYearIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="currentLoanSituation != null" >
+        CURRENT_LOAN_SITUATION = #{currentLoanSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmount != null" >
+        LOAN_AMOUNT = #{loanAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="equityFinancingAmount != null" >
+        EQUITY_FINANCING_AMOUNT = #{equityFinancingAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="toBeListedFinancingTime != null" >
+        TO_BE_LISTED_FINANCING_TIME = #{toBeListedFinancingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="companyOverview != null" >
+        COMPANY_OVERVIEW = #{companyOverview,jdbcType=VARCHAR},
+      </if>
+      <if test="mainBusiness != null" >
+        MAIN_BUSINESS = #{mainBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="productDescription != null" >
+        PRODUCT_DESCRIPTION = #{productDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceOfIncome != null" >
+        SOURCE_OF_INCOME = #{sourceOfIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null" >
+        FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="coreTechnology != null" >
+        CORE_TECHNOLOGY = #{coreTechnology,jdbcType=VARCHAR},
+      </if>
+      <if test="competitrorName != null" >
+        COMPETITROR_NAME = #{competitrorName,jdbcType=VARCHAR},
+      </if>
+      <if test="patent != null" >
+        PATENT = #{patent,jdbcType=VARCHAR},
+      </if>
+      <if test="soft != null" >
+        SOFT = #{soft,jdbcType=VARCHAR},
+      </if>
+      <if test="trademark != null" >
+        TRADEMARK = #{trademark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.net.sinodata.model.ProjectInfo" >
+    update PROJECT_INFO
+    set projectName = #{projectname,jdbcType=VARCHAR},
+      projectNum = #{projectnum,jdbcType=VARCHAR},
+      recommendPerson = #{recommendperson,jdbcType=VARCHAR},
+      busiType = #{busitype,jdbcType=VARCHAR},
+      businessChannel = #{businesschannel,jdbcType=VARCHAR},
+      is1STEva = #{is1steva,jdbcType=VARCHAR},
+      isIpProject = #{isipproject,jdbcType=VARCHAR},
+      isSureness = #{issureness,jdbcType=VARCHAR},
+      underpinOrgName = #{underpinorgname,jdbcType=VARCHAR},
+      visitorVolume = #{visitorvolume,jdbcType=VARCHAR},
+      loanAmt = #{loanamt,jdbcType=VARCHAR},
+      loanDeadline = #{loandeadline,jdbcType=VARCHAR},
+      loanType = #{loantype,jdbcType=VARCHAR},
+      hasLoanAmt = #{hasloanamt,jdbcType=VARCHAR},
+      loanUse = #{loanuse,jdbcType=VARCHAR},
+      inteProType = #{inteprotype,jdbcType=VARCHAR},
+      rate = #{rate,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      isMinSill = #{isminsill,jdbcType=VARCHAR},
+      inputerId = #{inputerid,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      comeFrom = #{comefrom,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      customerId = #{customerid,jdbcType=VARCHAR},
+      PROPROGRESS = #{proprogress,jdbcType=VARCHAR},
+      PROGRESSDESC = #{progressdesc,jdbcType=VARCHAR},
+      PRIORITYLEVEL = #{prioritylevel,jdbcType=VARCHAR},
+      CUSTYPE = #{custype,jdbcType=VARCHAR},
+      SUBPROCESS = #{subprocess,jdbcType=VARCHAR},
+      CONTRACTNO = #{contractno,jdbcType=VARCHAR},
+      COUNTLENDBALANCE = #{countlendbalance,jdbcType=VARCHAR},
+      GUARANTEESTATUS = #{guaranteestatus,jdbcType=VARCHAR},
+      RISKRATING = #{riskrating,jdbcType=VARCHAR},
+      FACTORINGSTATUS = #{factoringstatus,jdbcType=VARCHAR},
+      FINANCINGNEEDS = #{financingneeds,jdbcType=VARCHAR},
+      USEMONEYCOMPANY = #{usemoneycompany,jdbcType=VARCHAR},
+      TOTAL_ASSETS = #{totalAssets,jdbcType=VARCHAR},
+      TOTAL_LIABILITY = #{totalLiability,jdbcType=VARCHAR},
+      LAST_YEAR_INCOME = #{lastYearIncome,jdbcType=VARCHAR},
+      CURRENT_LOAN_SITUATION = #{currentLoanSituation,jdbcType=VARCHAR},
+      LOAN_AMOUNT = #{loanAmount,jdbcType=VARCHAR},
+      EQUITY_FINANCING_AMOUNT = #{equityFinancingAmount,jdbcType=VARCHAR},
+      TO_BE_LISTED_FINANCING_TIME = #{toBeListedFinancingTime,jdbcType=TIMESTAMP},
+      COMPANY_OVERVIEW = #{companyOverview,jdbcType=VARCHAR},
+      MAIN_BUSINESS = #{mainBusiness,jdbcType=VARCHAR},
+      PRODUCT_DESCRIPTION = #{productDescription,jdbcType=VARCHAR},
+      SOURCE_OF_INCOME = #{sourceOfIncome,jdbcType=VARCHAR},
+      FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      CORE_TECHNOLOGY = #{coreTechnology,jdbcType=VARCHAR},
+      COMPETITROR_NAME = #{competitrorName,jdbcType=VARCHAR},
+      PATENT = #{patent,jdbcType=VARCHAR},
+      SOFT = #{soft,jdbcType=VARCHAR},
+      TRADEMARK = #{trademark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByProjectInfoExample" parameterType="cn.net.sinodata.model.ProjectInfo" resultMap="BaseResultMap">
+		select DISTINCT
+			p.ID ID, p.projectNum projectNum, p.projectName projectName, p.createTime createTime,
+			p.visitorVolume visitorVolume, p.inteProType inteProType
+		from project_info p  join t_users_roles t ON p.ID = t.PROJECTID
+		WHERE p.STATUS <![CDATA[ <> ]]> 4
+		
+		<if test="userId != 'admin'">
+			AND t.USERID = #{userId, jdbcType=VARCHAR}
+		</if>
+		
+	
+	</select>
+	
+   <!-- 获取某列最大值 xj -->
+   <select id="getMaxProjectNum" resultType="java.lang.String">
+    select MAX(projectNum) FROM PROJECT_INFO
+  </select>
+  
+</mapper>

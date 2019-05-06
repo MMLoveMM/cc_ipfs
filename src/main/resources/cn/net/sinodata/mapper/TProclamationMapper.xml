@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.net.sinodata.mapper.TProclamationMapper" >
+  <resultMap id="BaseResultMap" type="cn.net.sinodata.model.TProclamation" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="AUTHOR" property="author" jdbcType="VARCHAR" />
+    <result column="RELTIME" property="reltime" jdbcType="TIMESTAMP" />
+    <result column="KEYWORD" property="keyword" jdbcType="VARCHAR" />
+    <result column="SENDTYPE" property="sendtype" jdbcType="VARCHAR" />
+    <result column="SENDSCOPE" property="sendscope" jdbcType="VARCHAR" />
+    <result column="RELSTATUS" property="relstatus" jdbcType="VARCHAR" />
+    <result column="ADDRESSEE" property="addressee" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="CDATE" property="cdate" jdbcType="TIMESTAMP" />
+    <result column="UNAME" property="uname" jdbcType="VARCHAR" />
+    <result column="UDATE" property="udate" jdbcType="TIMESTAMP" />
+    <result column="NOTE" property="note" jdbcType="VARCHAR" />
+    <result column="RELNAME" property="relname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, TITLE, CONTENT, AUTHOR, RELTIME, KEYWORD, SENDTYPE, SENDSCOPE, RELSTATUS, ADDRESSEE, 
+    STATUS, CNAME, CDATE, UNAME, UDATE, NOTE, RELNAME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.net.sinodata.model.TProclamationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_PROCLAMATION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_PROCLAMATION
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_PROCLAMATION
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.net.sinodata.model.TProclamationExample" >
+    delete from T_PROCLAMATION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.net.sinodata.model.TProclamation" >
+    insert into T_PROCLAMATION (ID, TITLE, CONTENT, 
+      AUTHOR, RELTIME, KEYWORD, 
+      SENDTYPE, SENDSCOPE, RELSTATUS, 
+      ADDRESSEE, STATUS, CNAME, 
+      CDATE, UNAME, UDATE, 
+      NOTE, RELNAME)
+    values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{author,jdbcType=VARCHAR}, #{reltime,jdbcType=TIMESTAMP}, #{keyword,jdbcType=VARCHAR}, 
+      #{sendtype,jdbcType=VARCHAR}, #{sendscope,jdbcType=VARCHAR}, #{relstatus,jdbcType=VARCHAR}, 
+      #{addressee,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR}, 
+      #{cdate,jdbcType=TIMESTAMP}, #{uname,jdbcType=VARCHAR}, #{udate,jdbcType=TIMESTAMP}, 
+      #{note,jdbcType=VARCHAR}, #{relname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.net.sinodata.model.TProclamation" >
+    insert into T_PROCLAMATION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="author != null" >
+        AUTHOR,
+      </if>
+      <if test="reltime != null" >
+        RELTIME,
+      </if>
+      <if test="keyword != null" >
+        KEYWORD,
+      </if>
+      <if test="sendtype != null" >
+        SENDTYPE,
+      </if>
+      <if test="sendscope != null" >
+        SENDSCOPE,
+      </if>
+      <if test="relstatus != null" >
+        RELSTATUS,
+      </if>
+      <if test="addressee != null" >
+        ADDRESSEE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="cname != null" >
+        CNAME,
+      </if>
+      <if test="cdate != null" >
+        CDATE,
+      </if>
+      <if test="uname != null" >
+        UNAME,
+      </if>
+      <if test="udate != null" >
+        UDATE,
+      </if>
+      <if test="note != null" >
+        NOTE,
+      </if>
+      <if test="relname != null" >
+        RELNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="reltime != null" >
+        #{reltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtype != null" >
+        #{sendtype,jdbcType=VARCHAR},
+      </if>
+      <if test="sendscope != null" >
+        #{sendscope,jdbcType=VARCHAR},
+      </if>
+      <if test="relstatus != null" >
+        #{relstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="addressee != null" >
+        #{addressee,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null" >
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="cdate != null" >
+        #{cdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uname != null" >
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="udate != null" >
+        #{udate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="relname != null" >
+        #{relname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.net.sinodata.model.TProclamationExample" resultType="java.lang.Integer" >
+    select count(*) from T_PROCLAMATION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_PROCLAMATION
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null" >
+        TITLE = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        CONTENT = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.author != null" >
+        AUTHOR = #{record.author,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reltime != null" >
+        RELTIME = #{record.reltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.keyword != null" >
+        KEYWORD = #{record.keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendtype != null" >
+        SENDTYPE = #{record.sendtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendscope != null" >
+        SENDSCOPE = #{record.sendscope,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relstatus != null" >
+        RELSTATUS = #{record.relstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressee != null" >
+        ADDRESSEE = #{record.addressee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cname != null" >
+        CNAME = #{record.cname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cdate != null" >
+        CDATE = #{record.cdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.uname != null" >
+        UNAME = #{record.uname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.udate != null" >
+        UDATE = #{record.udate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.note != null" >
+        NOTE = #{record.note,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relname != null" >
+        RELNAME = #{record.relname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_PROCLAMATION
+    set ID = #{record.id,jdbcType=VARCHAR},
+      TITLE = #{record.title,jdbcType=VARCHAR},
+      CONTENT = #{record.content,jdbcType=VARCHAR},
+      AUTHOR = #{record.author,jdbcType=VARCHAR},
+      RELTIME = #{record.reltime,jdbcType=TIMESTAMP},
+      KEYWORD = #{record.keyword,jdbcType=VARCHAR},
+      SENDTYPE = #{record.sendtype,jdbcType=VARCHAR},
+      SENDSCOPE = #{record.sendscope,jdbcType=VARCHAR},
+      RELSTATUS = #{record.relstatus,jdbcType=VARCHAR},
+      ADDRESSEE = #{record.addressee,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CNAME = #{record.cname,jdbcType=VARCHAR},
+      CDATE = #{record.cdate,jdbcType=TIMESTAMP},
+      UNAME = #{record.uname,jdbcType=VARCHAR},
+      UDATE = #{record.udate,jdbcType=TIMESTAMP},
+      NOTE = #{record.note,jdbcType=VARCHAR},
+      RELNAME = #{record.relname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.net.sinodata.model.TProclamation" >
+    update T_PROCLAMATION
+    <set >
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        AUTHOR = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="reltime != null" >
+        RELTIME = #{reltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="keyword != null" >
+        KEYWORD = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtype != null" >
+        SENDTYPE = #{sendtype,jdbcType=VARCHAR},
+      </if>
+      <if test="sendscope != null" >
+        SENDSCOPE = #{sendscope,jdbcType=VARCHAR},
+      </if>
+      <if test="relstatus != null" >
+        RELSTATUS = #{relstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="addressee != null" >
+        ADDRESSEE = #{addressee,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null" >
+        CNAME = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="cdate != null" >
+        CDATE = #{cdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uname != null" >
+        UNAME = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="udate != null" >
+        UDATE = #{udate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null" >
+        NOTE = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="relname != null" >
+        RELNAME = #{relname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.net.sinodata.model.TProclamation" >
+    update T_PROCLAMATION
+    set TITLE = #{title,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      AUTHOR = #{author,jdbcType=VARCHAR},
+      RELTIME = #{reltime,jdbcType=TIMESTAMP},
+      KEYWORD = #{keyword,jdbcType=VARCHAR},
+      SENDTYPE = #{sendtype,jdbcType=VARCHAR},
+      SENDSCOPE = #{sendscope,jdbcType=VARCHAR},
+      RELSTATUS = #{relstatus,jdbcType=VARCHAR},
+      ADDRESSEE = #{addressee,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CNAME = #{cname,jdbcType=VARCHAR},
+      CDATE = #{cdate,jdbcType=TIMESTAMP},
+      UNAME = #{uname,jdbcType=VARCHAR},
+      UDATE = #{udate,jdbcType=TIMESTAMP},
+      NOTE = #{note,jdbcType=VARCHAR},
+      RELNAME = #{relname,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
