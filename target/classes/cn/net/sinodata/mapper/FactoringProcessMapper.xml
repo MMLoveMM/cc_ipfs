@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.net.sinodata.mapper.FactoringProcessMapper" >
+  <resultMap id="BaseResultMap" type="cn.net.sinodata.model.FactoringProcess" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PROJECTID" property="projectid" jdbcType="VARCHAR" />
+    <result column="ISREVIEW" property="isreview" jdbcType="VARCHAR" />
+    <result column="REVIEWINFO" property="reviewinfo" jdbcType="VARCHAR" />
+    <result column="ISEXAMINATION" property="isexamination" jdbcType="VARCHAR" />
+    <result column="EXAMINATIONINFO" property="examinationinfo" jdbcType="VARCHAR" />
+    <result column="ISAPPROVAL" property="isapproval" jdbcType="VARCHAR" />
+    <result column="APPROVALINFO" property="approvalinfo" jdbcType="VARCHAR" />
+    <result column="ISMGRAPPROVAL" property="ismgrapproval" jdbcType="VARCHAR" />
+    <result column="MGRAPPROVALINFO" property="mgrapprovalinfo" jdbcType="VARCHAR" />
+    <result column="ISCONSIDER" property="isconsider" jdbcType="VARCHAR" />
+    <result column="CONSIDERINFO" property="considerinfo" jdbcType="VARCHAR" />
+    <result column="ISLOANREVIEW" property="isloanreview" jdbcType="VARCHAR" />
+    <result column="LOANREIVEWINFO" property="loanreivewinfo" jdbcType="VARCHAR" />
+    <result column="ISLOANRISK" property="isloanrisk" jdbcType="VARCHAR" />
+    <result column="LOANRISKINFO" property="loanriskinfo" jdbcType="VARCHAR" />
+    <result column="ISLOANMGRCHK" property="isloanmgrchk" jdbcType="VARCHAR" />
+    <result column="LOANMGRCHKINFO" property="loanmgrchkinfo" jdbcType="VARCHAR" />
+    <result column="ISDRAWING" property="isdrawing" jdbcType="VARCHAR" />
+    <result column="DARWINGINFO" property="darwinginfo" jdbcType="VARCHAR" />
+    <result column="ARCHIVINGDT" property="archivingdt" jdbcType="VARCHAR" />
+    <result column="ARCHIVINGINFO" property="archivinginfo" jdbcType="VARCHAR" />
+    <result column="PAYMENTDT" property="paymentdt" jdbcType="VARCHAR" />
+    <result column="PAYMENTINFO" property="paymentinfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PROJECTID, ISREVIEW, REVIEWINFO, ISEXAMINATION, EXAMINATIONINFO, ISAPPROVAL, 
+    APPROVALINFO, ISMGRAPPROVAL, MGRAPPROVALINFO, ISCONSIDER, CONSIDERINFO, ISLOANREVIEW, 
+    LOANREIVEWINFO, ISLOANRISK, LOANRISKINFO, ISLOANMGRCHK, LOANMGRCHKINFO, ISDRAWING, 
+    DARWINGINFO, ARCHIVINGDT, ARCHIVINGINFO, PAYMENTDT, PAYMENTINFO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.net.sinodata.model.FactoringProcessExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from factoring_process
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from factoring_process
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from factoring_process
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.net.sinodata.model.FactoringProcessExample" >
+    delete from factoring_process
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.net.sinodata.model.FactoringProcess" >
+    insert into factoring_process (ID, PROJECTID, ISREVIEW, 
+      REVIEWINFO, ISEXAMINATION, EXAMINATIONINFO, 
+      ISAPPROVAL, APPROVALINFO, ISMGRAPPROVAL, 
+      MGRAPPROVALINFO, ISCONSIDER, CONSIDERINFO, 
+      ISLOANREVIEW, LOANREIVEWINFO, ISLOANRISK, 
+      LOANRISKINFO, ISLOANMGRCHK, LOANMGRCHKINFO, 
+      ISDRAWING, DARWINGINFO, ARCHIVINGDT, 
+      ARCHIVINGINFO, PAYMENTDT, PAYMENTINFO
+      )
+    values (#{id,jdbcType=VARCHAR}, #{projectid,jdbcType=VARCHAR}, #{isreview,jdbcType=VARCHAR}, 
+      #{reviewinfo,jdbcType=VARCHAR}, #{isexamination,jdbcType=VARCHAR}, #{examinationinfo,jdbcType=VARCHAR}, 
+      #{isapproval,jdbcType=VARCHAR}, #{approvalinfo,jdbcType=VARCHAR}, #{ismgrapproval,jdbcType=VARCHAR}, 
+      #{mgrapprovalinfo,jdbcType=VARCHAR}, #{isconsider,jdbcType=VARCHAR}, #{considerinfo,jdbcType=VARCHAR}, 
+      #{isloanreview,jdbcType=VARCHAR}, #{loanreivewinfo,jdbcType=VARCHAR}, #{isloanrisk,jdbcType=VARCHAR}, 
+      #{loanriskinfo,jdbcType=VARCHAR}, #{isloanmgrchk,jdbcType=VARCHAR}, #{loanmgrchkinfo,jdbcType=VARCHAR}, 
+      #{isdrawing,jdbcType=VARCHAR}, #{darwinginfo,jdbcType=VARCHAR}, #{archivingdt,jdbcType=VARCHAR}, 
+      #{archivinginfo,jdbcType=VARCHAR}, #{paymentdt,jdbcType=VARCHAR}, #{paymentinfo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.net.sinodata.model.FactoringProcess" >
+    insert into factoring_process
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="projectid != null" >
+        PROJECTID,
+      </if>
+      <if test="isreview != null" >
+        ISREVIEW,
+      </if>
+      <if test="reviewinfo != null" >
+        REVIEWINFO,
+      </if>
+      <if test="isexamination != null" >
+        ISEXAMINATION,
+      </if>
+      <if test="examinationinfo != null" >
+        EXAMINATIONINFO,
+      </if>
+      <if test="isapproval != null" >
+        ISAPPROVAL,
+      </if>
+      <if test="approvalinfo != null" >
+        APPROVALINFO,
+      </if>
+      <if test="ismgrapproval != null" >
+        ISMGRAPPROVAL,
+      </if>
+      <if test="mgrapprovalinfo != null" >
+        MGRAPPROVALINFO,
+      </if>
+      <if test="isconsider != null" >
+        ISCONSIDER,
+      </if>
+      <if test="considerinfo != null" >
+        CONSIDERINFO,
+      </if>
+      <if test="isloanreview != null" >
+        ISLOANREVIEW,
+      </if>
+      <if test="loanreivewinfo != null" >
+        LOANREIVEWINFO,
+      </if>
+      <if test="isloanrisk != null" >
+        ISLOANRISK,
+      </if>
+      <if test="loanriskinfo != null" >
+        LOANRISKINFO,
+      </if>
+      <if test="isloanmgrchk != null" >
+        ISLOANMGRCHK,
+      </if>
+      <if test="loanmgrchkinfo != null" >
+        LOANMGRCHKINFO,
+      </if>
+      <if test="isdrawing != null" >
+        ISDRAWING,
+      </if>
+      <if test="darwinginfo != null" >
+        DARWINGINFO,
+      </if>
+      <if test="archivingdt != null" >
+        ARCHIVINGDT,
+      </if>
+      <if test="archivinginfo != null" >
+        ARCHIVINGINFO,
+      </if>
+      <if test="paymentdt != null" >
+        PAYMENTDT,
+      </if>
+      <if test="paymentinfo != null" >
+        PAYMENTINFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="projectid != null" >
+        #{projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="isreview != null" >
+        #{isreview,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewinfo != null" >
+        #{reviewinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isexamination != null" >
+        #{isexamination,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationinfo != null" >
+        #{examinationinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isapproval != null" >
+        #{isapproval,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalinfo != null" >
+        #{approvalinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="ismgrapproval != null" >
+        #{ismgrapproval,jdbcType=VARCHAR},
+      </if>
+      <if test="mgrapprovalinfo != null" >
+        #{mgrapprovalinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isconsider != null" >
+        #{isconsider,jdbcType=VARCHAR},
+      </if>
+      <if test="considerinfo != null" >
+        #{considerinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isloanreview != null" >
+        #{isloanreview,jdbcType=VARCHAR},
+      </if>
+      <if test="loanreivewinfo != null" >
+        #{loanreivewinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isloanrisk != null" >
+        #{isloanrisk,jdbcType=VARCHAR},
+      </if>
+      <if test="loanriskinfo != null" >
+        #{loanriskinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isloanmgrchk != null" >
+        #{isloanmgrchk,jdbcType=VARCHAR},
+      </if>
+      <if test="loanmgrchkinfo != null" >
+        #{loanmgrchkinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isdrawing != null" >
+        #{isdrawing,jdbcType=VARCHAR},
+      </if>
+      <if test="darwinginfo != null" >
+        #{darwinginfo,jdbcType=VARCHAR},
+      </if>
+      <if test="archivingdt != null" >
+        #{archivingdt,jdbcType=VARCHAR},
+      </if>
+      <if test="archivinginfo != null" >
+        #{archivinginfo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentdt != null" >
+        #{paymentdt,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentinfo != null" >
+        #{paymentinfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.net.sinodata.model.FactoringProcessExample" resultType="java.lang.Integer" >
+    select count(*) from factoring_process
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update factoring_process
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectid != null" >
+        PROJECTID = #{record.projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isreview != null" >
+        ISREVIEW = #{record.isreview,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewinfo != null" >
+        REVIEWINFO = #{record.reviewinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isexamination != null" >
+        ISEXAMINATION = #{record.isexamination,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examinationinfo != null" >
+        EXAMINATIONINFO = #{record.examinationinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isapproval != null" >
+        ISAPPROVAL = #{record.isapproval,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approvalinfo != null" >
+        APPROVALINFO = #{record.approvalinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ismgrapproval != null" >
+        ISMGRAPPROVAL = #{record.ismgrapproval,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mgrapprovalinfo != null" >
+        MGRAPPROVALINFO = #{record.mgrapprovalinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isconsider != null" >
+        ISCONSIDER = #{record.isconsider,jdbcType=VARCHAR},
+      </if>
+      <if test="record.considerinfo != null" >
+        CONSIDERINFO = #{record.considerinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isloanreview != null" >
+        ISLOANREVIEW = #{record.isloanreview,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanreivewinfo != null" >
+        LOANREIVEWINFO = #{record.loanreivewinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isloanrisk != null" >
+        ISLOANRISK = #{record.isloanrisk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanriskinfo != null" >
+        LOANRISKINFO = #{record.loanriskinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isloanmgrchk != null" >
+        ISLOANMGRCHK = #{record.isloanmgrchk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanmgrchkinfo != null" >
+        LOANMGRCHKINFO = #{record.loanmgrchkinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isdrawing != null" >
+        ISDRAWING = #{record.isdrawing,jdbcType=VARCHAR},
+      </if>
+      <if test="record.darwinginfo != null" >
+        DARWINGINFO = #{record.darwinginfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.archivingdt != null" >
+        ARCHIVINGDT = #{record.archivingdt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.archivinginfo != null" >
+        ARCHIVINGINFO = #{record.archivinginfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentdt != null" >
+        PAYMENTDT = #{record.paymentdt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentinfo != null" >
+        PAYMENTINFO = #{record.paymentinfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update factoring_process
+    set ID = #{record.id,jdbcType=VARCHAR},
+      PROJECTID = #{record.projectid,jdbcType=VARCHAR},
+      ISREVIEW = #{record.isreview,jdbcType=VARCHAR},
+      REVIEWINFO = #{record.reviewinfo,jdbcType=VARCHAR},
+      ISEXAMINATION = #{record.isexamination,jdbcType=VARCHAR},
+      EXAMINATIONINFO = #{record.examinationinfo,jdbcType=VARCHAR},
+      ISAPPROVAL = #{record.isapproval,jdbcType=VARCHAR},
+      APPROVALINFO = #{record.approvalinfo,jdbcType=VARCHAR},
+      ISMGRAPPROVAL = #{record.ismgrapproval,jdbcType=VARCHAR},
+      MGRAPPROVALINFO = #{record.mgrapprovalinfo,jdbcType=VARCHAR},
+      ISCONSIDER = #{record.isconsider,jdbcType=VARCHAR},
+      CONSIDERINFO = #{record.considerinfo,jdbcType=VARCHAR},
+      ISLOANREVIEW = #{record.isloanreview,jdbcType=VARCHAR},
+      LOANREIVEWINFO = #{record.loanreivewinfo,jdbcType=VARCHAR},
+      ISLOANRISK = #{record.isloanrisk,jdbcType=VARCHAR},
+      LOANRISKINFO = #{record.loanriskinfo,jdbcType=VARCHAR},
+      ISLOANMGRCHK = #{record.isloanmgrchk,jdbcType=VARCHAR},
+      LOANMGRCHKINFO = #{record.loanmgrchkinfo,jdbcType=VARCHAR},
+      ISDRAWING = #{record.isdrawing,jdbcType=VARCHAR},
+      DARWINGINFO = #{record.darwinginfo,jdbcType=VARCHAR},
+      ARCHIVINGDT = #{record.archivingdt,jdbcType=VARCHAR},
+      ARCHIVINGINFO = #{record.archivinginfo,jdbcType=VARCHAR},
+      PAYMENTDT = #{record.paymentdt,jdbcType=VARCHAR},
+      PAYMENTINFO = #{record.paymentinfo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.net.sinodata.model.FactoringProcess" >
+    update factoring_process
+    <set >
+      <if test="projectid != null" >
+        PROJECTID = #{projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="isreview != null" >
+        ISREVIEW = #{isreview,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewinfo != null" >
+        REVIEWINFO = #{reviewinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isexamination != null" >
+        ISEXAMINATION = #{isexamination,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationinfo != null" >
+        EXAMINATIONINFO = #{examinationinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isapproval != null" >
+        ISAPPROVAL = #{isapproval,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalinfo != null" >
+        APPROVALINFO = #{approvalinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="ismgrapproval != null" >
+        ISMGRAPPROVAL = #{ismgrapproval,jdbcType=VARCHAR},
+      </if>
+      <if test="mgrapprovalinfo != null" >
+        MGRAPPROVALINFO = #{mgrapprovalinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isconsider != null" >
+        ISCONSIDER = #{isconsider,jdbcType=VARCHAR},
+      </if>
+      <if test="considerinfo != null" >
+        CONSIDERINFO = #{considerinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isloanreview != null" >
+        ISLOANREVIEW = #{isloanreview,jdbcType=VARCHAR},
+      </if>
+      <if test="loanreivewinfo != null" >
+        LOANREIVEWINFO = #{loanreivewinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isloanrisk != null" >
+        ISLOANRISK = #{isloanrisk,jdbcType=VARCHAR},
+      </if>
+      <if test="loanriskinfo != null" >
+        LOANRISKINFO = #{loanriskinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isloanmgrchk != null" >
+        ISLOANMGRCHK = #{isloanmgrchk,jdbcType=VARCHAR},
+      </if>
+      <if test="loanmgrchkinfo != null" >
+        LOANMGRCHKINFO = #{loanmgrchkinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isdrawing != null" >
+        ISDRAWING = #{isdrawing,jdbcType=VARCHAR},
+      </if>
+      <if test="darwinginfo != null" >
+        DARWINGINFO = #{darwinginfo,jdbcType=VARCHAR},
+      </if>
+      <if test="archivingdt != null" >
+        ARCHIVINGDT = #{archivingdt,jdbcType=VARCHAR},
+      </if>
+      <if test="archivinginfo != null" >
+        ARCHIVINGINFO = #{archivinginfo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentdt != null" >
+        PAYMENTDT = #{paymentdt,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentinfo != null" >
+        PAYMENTINFO = #{paymentinfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.net.sinodata.model.FactoringProcess" >
+    update factoring_process
+    set PROJECTID = #{projectid,jdbcType=VARCHAR},
+      ISREVIEW = #{isreview,jdbcType=VARCHAR},
+      REVIEWINFO = #{reviewinfo,jdbcType=VARCHAR},
+      ISEXAMINATION = #{isexamination,jdbcType=VARCHAR},
+      EXAMINATIONINFO = #{examinationinfo,jdbcType=VARCHAR},
+      ISAPPROVAL = #{isapproval,jdbcType=VARCHAR},
+      APPROVALINFO = #{approvalinfo,jdbcType=VARCHAR},
+      ISMGRAPPROVAL = #{ismgrapproval,jdbcType=VARCHAR},
+      MGRAPPROVALINFO = #{mgrapprovalinfo,jdbcType=VARCHAR},
+      ISCONSIDER = #{isconsider,jdbcType=VARCHAR},
+      CONSIDERINFO = #{considerinfo,jdbcType=VARCHAR},
+      ISLOANREVIEW = #{isloanreview,jdbcType=VARCHAR},
+      LOANREIVEWINFO = #{loanreivewinfo,jdbcType=VARCHAR},
+      ISLOANRISK = #{isloanrisk,jdbcType=VARCHAR},
+      LOANRISKINFO = #{loanriskinfo,jdbcType=VARCHAR},
+      ISLOANMGRCHK = #{isloanmgrchk,jdbcType=VARCHAR},
+      LOANMGRCHKINFO = #{loanmgrchkinfo,jdbcType=VARCHAR},
+      ISDRAWING = #{isdrawing,jdbcType=VARCHAR},
+      DARWINGINFO = #{darwinginfo,jdbcType=VARCHAR},
+      ARCHIVINGDT = #{archivingdt,jdbcType=VARCHAR},
+      ARCHIVINGINFO = #{archivinginfo,jdbcType=VARCHAR},
+      PAYMENTDT = #{paymentdt,jdbcType=VARCHAR},
+      PAYMENTINFO = #{paymentinfo,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
