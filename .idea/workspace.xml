@@ -2,45 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4eddb0ff-39c8-4e61-b36f-524cdfdcd55d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/pangpengjun.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_7_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/net/sinodata/controller/DemandController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/net/sinodata/controller/NewsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/net/sinodata/controller/SuccessController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/net/sinodata/mapper/NewsMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/net/sinodata/model/News.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/net/sinodata/service/Impl/NewsServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/net/sinodata/service/NewsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/net/sinodata/util/PageUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/cn/net/sinodata/mapper/NewsMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/demand/detail.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/demand/index.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/news/detail.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/news/index.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/news/news_list.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/success/detail.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/success/index.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/busi/demand/detail.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/busi/demand/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/busi/news/detail.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/busi/news/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/busi/news/news_list.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/busi/success/detail.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/busi/success/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/common/bootstrap_table_page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_1_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_13.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_16.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lovemm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/lovemm.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/net/sinodata/controller/SystemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/net/sinodata/controller/SystemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/base/new_header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/base/new_header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/base/taglibs.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/base/taglibs.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/net/sinodata/controller/SystemController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/net/sinodata/controller/SystemController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log4j.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -75,7 +37,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/static/busi/news/news_list.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
+            <state relative-caret-position="2628">
               <caret line="146" column="13" selection-start-line="146" selection-start-column="13" selection-end-line="146" selection-end-column="13" />
             </state>
           </provider>
@@ -85,7 +47,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/net/sinodata/controller/SystemController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="502">
-              <caret line="1472" column="24" lean-forward="true" selection-start-line="1472" selection-start-column="24" selection-end-line="1472" selection-end-column="24" />
+              <caret line="1472" column="24" selection-start-line="1472" selection-start-column="24" selection-end-line="1472" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -96,14 +58,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/static/busi/system/user_list.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="255" column="1" lean-forward="true" selection-start-line="191" selection-end-line="255" selection-end-column="1" />
-              <folding>
-                <element signature="e#84#90#0" expanded="true" />
-                <element signature="e#90#96#0" expanded="true" />
-                <element signature="e#65#71#0" expanded="true" />
-                <element signature="e#71#77#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="4590">
+              <caret line="255" column="1" selection-start-line="191" selection-end-line="255" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -111,7 +67,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/news/news_list.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
+            <state relative-caret-position="3078">
               <caret line="171" column="58" selection-start-line="171" selection-start-column="53" selection-end-line="171" selection-end-column="58" />
             </state>
           </provider>
@@ -120,7 +76,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/cn/net/sinodata/mapper/NewsMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
+            <state relative-caret-position="1026">
               <caret line="57" column="24" selection-start-line="57" selection-start-column="24" selection-end-line="57" selection-end-column="24" />
             </state>
           </provider>
@@ -129,7 +85,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/net/sinodata/model/News.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
+            <state relative-caret-position="72">
               <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -282,8 +238,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -539,6 +495,7 @@
       <workItem from="1557382735922" duration="15000" />
       <workItem from="1557388854143" duration="6193000" />
       <workItem from="1557405767271" duration="8052000" />
+      <workItem from="1557453005941" duration="1330000" />
     </task>
     <task id="LOCAL-00001" summary="idea first commit">
       <created>1557123567597</created>
@@ -547,16 +504,23 @@
       <option name="project" value="LOCAL" />
       <updated>1557123567597</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="更新除了录入企业信息表单外的功能，存在问题：&#10;1、前端js分页问题。">
+      <created>1557453325579</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1557453325584</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45053000" />
+    <option name="totallyTimeSpent" value="46383000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2716728" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2747253" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -578,8 +542,7 @@
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3291536" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="bottom" id="Version Control" order="14" />
-      <window_info anchor="right" id="Coverage" side_tool="true" weight="0.32967034" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="14" visible="true" weight="0.3291536" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -590,14 +553,42 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info anchor="right" id="Bean Validation" order="9" />
+      <window_info anchor="right" id="Coverage" order="10" side_tool="true" weight="0.32967034" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="idea first commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="idea first commit" />
+    <MESSAGE value="更新除了录入企业信息表单外的功能，存在问题：&#10;1、前端js分页问题。" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新除了录入企业信息表单外的功能，存在问题：&#10;1、前端js分页问题。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -857,28 +848,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j2.xml" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -956,22 +927,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/busi/news/news_list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2628">
+          <caret line="146" column="13" selection-start-line="146" selection-start-column="13" selection-end-line="146" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/busi/system/user_list.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="255" column="1" lean-forward="true" selection-start-line="191" selection-end-line="255" selection-end-column="1" />
-          <folding>
-            <element signature="e#84#90#0" expanded="true" />
-            <element signature="e#90#96#0" expanded="true" />
-            <element signature="e#65#71#0" expanded="true" />
-            <element signature="e#71#77#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="4590">
+          <caret line="255" column="1" selection-start-line="191" selection-end-line="255" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/news/news_list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3078">
+          <caret line="171" column="58" selection-start-line="171" selection-start-column="53" selection-end-line="171" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/net/sinodata/mapper/NewsMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1026">
+          <caret line="57" column="24" selection-start-line="57" selection-start-column="24" selection-end-line="57" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/net/sinodata/model/News.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
+        <state relative-caret-position="72">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1003,31 +989,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/net/sinodata/mapper/NewsMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="57" column="24" selection-start-line="57" selection-start-column="24" selection-end-line="57" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/news/news_list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="171" column="58" selection-start-line="171" selection-start-column="53" selection-end-line="171" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/busi/news/news_list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="146" column="13" selection-start-line="146" selection-start-column="13" selection-end-line="146" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/net/sinodata/controller/SystemController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="502">
-          <caret line="1472" column="24" lean-forward="true" selection-start-line="1472" selection-start-column="24" selection-end-line="1472" selection-end-column="24" />
+          <caret line="1472" column="24" selection-start-line="1472" selection-start-column="24" selection-end-line="1472" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
