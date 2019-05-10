@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.net.sinodata.mapper.NewsMapper" >
+  <resultMap id="BaseResultMap" type="cn.net.sinodata.model.News" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="CONTEXT" property="context" jdbcType="VARCHAR" />
+    <result column="SOURCE" property="source" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    ID, TITLE, CONTEXT, SOURCE, CREATE_DATE, UPDATE_DATE
+  </sql>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Base_Column_List" />
+        FROM news
+  </select>
+
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT
+        <include refid="Base_Column_List" />
+    FROM news
+    WHERE
+        ID = #{value}
+  </select>
+
+  <select id="findNews" parameterType="cn.net.sinodata.model.News" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Base_Column_List" />
+        FROM news
+  </select>
+
+    <insert id="addNews" parameterType="cn.net.sinodata.model.News">
+        INSERT INTO news
+            ( `id`, `title`, `context`, `source`, `create_date`, `update_date` )
+        VALUES
+	        ( #{id}, #{title}, #{context}, #{source}, #{createDate}, #{updateDate})
+    </insert>
+
+    <update id="modNews" parameterType="cn.net.sinodata.model.News">
+        UPDATE
+            news
+        SET
+            <if test="title != '' and title != null">
+                title = #{title},
+            </if>
+            <if test="context != '' and context != null">
+                context = #{context},
+            </if>
+            <if test="source != '' and source != null">
+                source = #{source},
+            </if>
+            update_date = #{updateDate}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delNews" parameterType="java.lang.String">
+        DELETE FROM news WHERE id = #{value};
+    </delete>
+</mapper>

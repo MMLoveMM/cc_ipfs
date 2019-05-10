@@ -14,6 +14,9 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import cn.net.sinodata.model.*;
+import cn.net.sinodata.service.*;
+import cn.net.sinodata.util.*;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,39 +32,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
 
-import cn.net.sinodata.model.TApplicationLog;
-import cn.net.sinodata.model.TApplicationLogExample;
-import cn.net.sinodata.model.TDataDict;
-import cn.net.sinodata.model.TDataDictExample;
-import cn.net.sinodata.model.TFunc;
-import cn.net.sinodata.model.TFuncExample;
-import cn.net.sinodata.model.TOrgans;
-import cn.net.sinodata.model.TOrgansExample;
-import cn.net.sinodata.model.TRoles;
-import cn.net.sinodata.model.TRolesExample;
-import cn.net.sinodata.model.TSystem;
-import cn.net.sinodata.model.TSystemExample;
-import cn.net.sinodata.model.TUsers;
-import cn.net.sinodata.model.TUsersExample;
-import cn.net.sinodata.model.tRoleFuncExample;
-import cn.net.sinodata.model.tRoleFuncKey;
-import cn.net.sinodata.model.tUserRoleExample;
-import cn.net.sinodata.model.tUserRoleKey;
-import cn.net.sinodata.service.TApplicationLogService;
-import cn.net.sinodata.service.TDataDictService;
-import cn.net.sinodata.service.TFuncService;
-import cn.net.sinodata.service.TOrgansService;
-import cn.net.sinodata.service.TRoleFuncService;
-import cn.net.sinodata.service.TRolesService;
-import cn.net.sinodata.service.TSystemService;
-import cn.net.sinodata.service.TUserRoleService;
-import cn.net.sinodata.service.TUsersService;
-import cn.net.sinodata.util.DateUtil;
-import cn.net.sinodata.util.ExcelUtil;
-import cn.net.sinodata.util.JsonUtil;
-import cn.net.sinodata.util.PwdUtil;
-import cn.net.sinodata.util.StringUtil;
-import cn.net.sinodata.util.UuidUtil;
 import cn.net.sinodata.vo.Constant;
 import cn.net.sinodata.vo.TApplicationLogVo;
 
@@ -72,33 +42,45 @@ public class SystemController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(SystemController.class);
 
-	@Autowired
 	private TFuncService  tFuncService;
 	
-	@Autowired
 	private TApplicationLogService tApplicationLogService;
 	
-	@Autowired
 	private TOrgansService tOrgansService;
 	
-	@Autowired
 	private TDataDictService tDataDictService;
 	
-	@Autowired
 	private TUsersService tUsersService;
 	
-	@Autowired
 	private TSystemService tSystemService;
 	
-	@Autowired
 	private TUserRoleService tUserRoleService;
 	
-	@Autowired
 	private TRoleFuncService tRoleFuncService;
 	
-	@Autowired
 	private TRolesService tRolesService;
-	
+
+	private NewsService newsService;
+
+	@Autowired
+	public SystemController(TOrgansService tOrgansService, TDataDictService
+			tDataDictService, TUsersService tUsersService,
+			TSystemService tSystemService, TUserRoleService tUserRoleService,
+			TRoleFuncService tRoleFuncService, TRolesService tRolesService,
+			TFuncService tFuncService, TApplicationLogService tApplicationLogService,
+			NewsService newsService) {
+		this.tOrgansService = tOrgansService;
+		this.tDataDictService = tDataDictService;
+		this.tUsersService = tUsersService;
+		this.tSystemService = tSystemService;
+		this.tUserRoleService = tUserRoleService;
+		this.tRoleFuncService = tRoleFuncService;
+		this.tRolesService = tRolesService;
+		this.tFuncService = tFuncService;
+		this.tApplicationLogService = tApplicationLogService;
+		this.newsService = newsService;
+	}
+
 	/**
 	 * 进入系统管理页面
 	 * 
@@ -1414,5 +1396,97 @@ public class SystemController {
 		return Constant.SUCCESS;
 		
 	}
-	
+
+	/**
+	 * 进入资讯列表页面
+	 *
+	 * @return 资讯列表页面地址
+	 */
+	@RequestMapping(value = "news/list")
+	public String toList() {
+		TUsers tUsers = (TUsers) SecurityUtils.getSubject().getPrincipal();
+		logger.info("用户 [{}] - 开始进入资讯列表页面", tUsers.getId());
+
+		logger.info("进入资讯列表页面成功");
+		return "news/news_list";
+	}
+
+	/**
+	 * 获取资讯列表分页数据
+	 *
+	 * @return  资讯列表分页数据
+	 */
+	@RequestMapping(value = "news/list/get")
+	@ResponseBody
+	public PageInfo<?> getListData(@RequestParam int page, @RequestParam int rows, News news) {
+		TUsers tUsers = (TUsers) SecurityUtils.getSubject().getPrincipal();
+		logger.info("用户 [{}] - 开始获取资讯列表分页数据", tUsers.getId());
+		page = PageUtil.getPage(page, rows);
+
+		PageInfo<?> pageInfo = newsService.getNewsPage(page, rows, news);
+
+		logger.info("获取资讯列表分页数据成功");
+		return pageInfo;
+	}
+
+	/**
+	 * 新增资讯
+	 *
+	 * @param news	新增资讯数据
+	 * @return	是否新增成功
+	 */
+	@RequestMapping(value = "news/add")
+	@ResponseBody
+	public String addNews(News news) {
+		TUsers user = (TUsers) SecurityUtils.getSubject().getPrincipal();
+		logger.info("用户 [{}] - 开始添加资讯数据", user.getUserid());
+
+		news.setId(UuidUtil.getUuid());
+		news.setCreateDate(new Date());
+		news.setUpdateDate(new Date());
+		newsService.addNews(news);
+
+		return Constant.SUCCESS;
+	}
+
+	/**
+	 * 修改资讯
+	 *
+	 * @param news	需要修改的资讯数据
+	 * @return	是否修改成功
+	 */
+	@RequestMapping(value = "news/mod")
+	@ResponseBody
+	public String modNews(News news) {
+		TUsers user = (TUsers) SecurityUtils.getSubject().getPrincipal();
+		logger.info("用户 [{}] - 开始修改资讯数据", user.getUserid());
+
+		news.setUpdateDate(new Date());
+		newsService.modNews(news);
+
+		logger.info("修改资讯数据成功");
+		return Constant.SUCCESS;
+	}
+
+	/**
+	 * 删除资讯
+	 * @param id	资讯id
+	 * @return	是否删除成功
+	 */
+	@RequestMapping(value = "news/del")
+	@ResponseBody
+	public String delNews(@RequestParam String id) {
+		TUsers user = (TUsers) SecurityUtils.getSubject().getPrincipal();
+		logger.info("用户 [{}] - 开始删除资讯数据", user.getUserid());
+
+		int delFlag = newsService.delNews(id);
+
+		if (delFlag != 1) {
+			logger.info("删除资讯数据失败");
+			return "删除资讯数据失败";
+		}
+
+		logger.info("删除资讯数据成功");
+		return Constant.SUCCESS;
+	}
 }
