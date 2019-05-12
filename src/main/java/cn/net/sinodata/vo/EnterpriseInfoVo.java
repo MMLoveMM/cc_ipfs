@@ -41,6 +41,10 @@ public class EnterpriseInfoVo implements Serializable {
     private String contactEmail;    //联系人邮箱
     private Date createDate;
     private Date updateDate;
+    private String financeId;  //财务状况id
+    private String personId;   //人员状况id
+    private String propertyId; //近三年知识产权id
+    private String pdfId;  //相关附件id
     private EnterpriseFinance enterpriseFinance = new EnterpriseFinance();    //企业财务情况
     private EnterprisePerson enterprisePerson = new EnterprisePerson();  //企业人员情况
     private EnterpriseIntellectualProperty enterpriseIntellectualProperty = new EnterpriseIntellectualProperty();  //企业近三年知识产权情况
@@ -292,5 +296,37 @@ public class EnterpriseInfoVo implements Serializable {
 
     public void setEnterpriseFilePdf(EnterpriseFilePdf enterpriseFilePdf) {
         this.enterpriseFilePdf = enterpriseFilePdf;
+    }
+
+    public String getFinanceId() {
+        return financeId;
+    }
+
+    public void setFinanceId(String financeId) {
+        this.financeId = financeId;
+    }
+
+    public String getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(String personId) {
+        this.personId = personId;
+    }
+
+    public String getPropertyId() {
+        return propertyId;
+    }
+
+    public void setPropertyId(String propertyId) {
+        this.propertyId = propertyId;
+    }
+
+    public String getPdfId() {
+        return pdfId;
+    }
+
+    public void setPdfId(String pdfId) {
+        this.pdfId = pdfId;
     }
 }

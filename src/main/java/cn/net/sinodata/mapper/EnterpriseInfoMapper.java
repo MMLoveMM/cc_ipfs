@@ -6,5 +6,5 @@ public interface EnterpriseInfoMapper {
     int insert(EnterpriseInfo enterpriseInfo);
     int update(EnterpriseInfo enterpriseInfo);
     int delete(String id);
-    EnterpriseInfo selectById(String enterpriseId);
+    EnterpriseInfo selectById(String id);
 }

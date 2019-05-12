@@ -1,9 +1,94 @@
-package cn.net.sinodata.mapper;
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.net.sinodata.mapper.EnterpriseIntellectualPropertyMapper" >
+    <resultMap id="BaseResultMap" type="cn.net.sinodata.model.EnterpriseIntellectualProperty" >
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+        <result column="ENTERPRISE_ID" property="enterpriseId" jdbcType="VARCHAR" />
+        <result column="PATENT" property="patent" jdbcType="VARCHAR" />
+        <result column="UTILITY_MODEL_PATENTS" property="utilityModelPatents" jdbcType="VARCHAR" />
+        <result column="DESIGN_PATENT" property="designPatent" jdbcType="VARCHAR" />
+        <result column="SOFTWARE_COPYRIGHT" property="softwareCopyright" jdbcType="VARCHAR" />
+        <result column="NATIONAL_NEW_DRUG" property="nationalNewDrug" jdbcType="VARCHAR" />
+        <result column="MEDICINE" property="medicine" jdbcType="VARCHAR" />
+        <result column="NEW_PLANT_VARIETY" property="newPlantVariety" jdbcType="VARCHAR" />
+        <result column="CROP_VARIETY" property="cropVariety" jdbcType="VARCHAR" />
+        <result column="INTEGRATED_CIRCUIT" property="integratedCircuit" jdbcType="VARCHAR" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
 
-import cn.net.sinodata.model.EnterpriseIntellectualProperty;
+    <insert id="insert" parameterType="cn.net.sinodata.model.EnterpriseIntellectualProperty">
+        INSERT INTO enterprise_intellectual_property
+            (
+                ID,
+                ENTERPRISE_ID,
+                PATENT,
+                UTILITY_MODEL_PATENTS,
+                DESIGN_PATENT,
+                SOFTWARE_COPYRIGHT,
+                NATIONAL_NEW_DRUG,
+                MEDICINE,
+                NEW_PLANT_VARIETY,
+                CROP_VARIETY,
+                INTEGRATED_CIRCUIT,
+                CREATE_DATE,
+                UPDATE_DATE
+            )
+        VALUES
+	        (
+	            #{id},
+	            #{enterpriseId},
+                #{patent},
+                #{utilityModelPatents},
+                #{designPatent},
+                #{softwareCopyright},
+                #{nationalNewDrug},
+                #{medicine},
+                #{newPlantVariety},
+                #{cropVariety},
+                #{integratedCircuit},
+                #{createDate},
+                #{updateDate}
+	        )
+    </insert>
 
-public interface EnterpriseIntellectualPropertyMapper {
-    int insert(EnterpriseIntellectualProperty enterpriseIntellectualProperty);
-    int update(EnterpriseIntellectualProperty enterpriseIntellectualProperty);
-    int delete(EnterpriseIntellectualProperty enterpriseIntellectualProperty);
-}
+    <update id="update" parameterType="cn.net.sinodata.model.EnterpriseIntellectualProperty">
+        UPDATE
+        enterprise_intellectual_property
+        SET
+            <if test="patent != '' and patent != null">
+                PATENT = #{patent},
+            </if>
+            <if test="patent != '' and patent != null">
+                UTILITY_MODEL_PATENTS = #{utilityModelPatents},
+            </if>
+            <if test="patent != '' and patent != null">
+                DESIGN_PATENT = #{designPatent},
+            </if>
+            <if test="patent != '' and patent != null">
+                SOFTWARE_COPYRIGHT = #{softwareCopyright},
+            </if>
+            <if test="patent != '' and patent != null">
+                NATIONAL_NEW_DRUG = #{nationalNewDrug},
+            </if>
+            <if test="patent != '' and patent != null">
+                MEDICINE = #{medicine},
+            </if>
+            <if test="patent != '' and patent != null">
+                NEW_PLANT_VARIETY = #{newPlantVariety},
+            </if>
+            <if test="patent != '' and patent != null">
+                CROP_VARIETY = #{cropVariety},
+            </if>
+            <if test="patent != '' and patent != null">
+                INTEGRATED_CIRCUIT = #{integratedCircuit},
+            </if>
+            CREATE_DATE = #{createDate},
+            UPDATE_DAT = #{updateDat}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteByEnterpriseId" parameterType="java.lang.String">
+        DELETE FROM enterprise_intellectual_property WHERE ENTERPRISE_ID = #{value};
+    </delete>
+</mapper>

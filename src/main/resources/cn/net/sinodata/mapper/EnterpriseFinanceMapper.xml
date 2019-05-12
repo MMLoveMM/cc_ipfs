@@ -1,9 +1,106 @@
-package cn.net.sinodata.mapper;
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.net.sinodata.mapper.EnterpriseFinanceMapper" >
+    <resultMap id="BaseResultMap" type="cn.net.sinodata.model.EnterpriseFinance" >
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+        <result column="ENTERPRISE_ID" property="enterpriseId" jdbcType="VARCHAR" />
+        <result column="OPERATING_INCOME" property="operatingIncome" jdbcType="VARCHAR" />
+        <result column="MAIN_BUSINESS_INCOME" property="mainBusinessIncome" jdbcType="VARCHAR" />
+        <result column="OPERATING_COST" property="operatingCost" jdbcType="VARCHAR" />
+        <result column="TOTAL_TAX" property="totalTax" jdbcType="VARCHAR" />
+        <result column="TOTAL_PROFIT" property="totalProfit" jdbcType="VARCHAR" />
+        <result column="TOTAL_ASSETS" property="totalAssets" jdbcType="VARCHAR" />
+        <result column="TOTAL_FIXED_ASSETS" property="totalFixedAssets" jdbcType="VARCHAR" />
+        <result column="TOTAL_LIABILITIES" property="totalLiabilities" jdbcType="VARCHAR" />
+        <result column="RESEARCH_COST" property="researchCost" jdbcType="VARCHAR" />
+        <result column="GOVERNMENT_FUNDING" property="governmentFunding" jdbcType="VARCHAR" />
+        <result column="PROPORTION" property="proportion" jdbcType="VARCHAR" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
 
-import cn.net.sinodata.model.EnterpriseFinance;
+    <insert id="insert" parameterType="cn.net.sinodata.model.EnterpriseFinance">
+        INSERT INTO enterprise_finance
+            (
+                ID,
+                ENTERPRISE_ID,
+                OPERATING_INCOME,
+                MAIN_BUSINESS_INCOME,
+                OPERATING_COST,
+                TOTAL_TAX,
+                TOTAL_PROFIT,
+                TOTAL_ASSETS,
+                TOTAL_FIXED_ASSETS,
+                TOTAL_LIABILITIES,
+                RESEARCH_COST,
+                GOVERNMENT_FUNDING,
+                PROPORTION,
+                CREATE_DATE,
+                UPDATE_DATE
+            )
+        VALUES
+	        (
+	            #{id},
+	            #{enterpriseId},
+                #{operatingIncome},
+                #{mainBusinessIncome},
+                #{operatingCost},
+                #{totalTax},
+                #{totalProfit},
+                #{totalAssets},
+                #{totalFixedAssets},
+                #{totalLiabilities},
+                #{researchCost},
+                #{governmentFunding},
+                #{proportion},
+                #{createDate},
+                #{updateDate}
+	        )
+    </insert>
 
-public interface EnterpriseFinanceMapper {
-    int insert(EnterpriseFinance enterpriseFinance);
-    int update(EnterpriseFinance enterpriseFinance);
-    int delete(EnterpriseFinance enterpriseFinance);
-}
+    <update id="update" parameterType="cn.net.sinodata.model.EnterpriseFinance">
+        UPDATE
+        enterprise_finance
+        SET
+            <if test="operatingIncome != '' and operatingIncome != null">
+                OPERATING_INCOME = #{operatingIncome},
+            </if>
+            <if test="operatingIncome != '' and operatingIncome != null">
+                MAIN_BUSINESS_INCOME = #{mainBusinessIncome},
+            </if>
+            <if test="operatingIncome != '' and operatingIncome != null">
+                OPERATING_COST = #{operatingCost},
+            </if>
+            <if test="operatingIncome != '' and operatingIncome != null">
+                TOTAL_TAX = #{totalTax},
+            </if>
+            <if test="operatingIncome != '' and operatingIncome != null">
+                TOTAL_PROFIT = #{totalProfit},
+            </if>
+            <if test="operatingIncome != '' and operatingIncome != null">
+                TOTAL_ASSETS = #{totalAssets},
+            </if>
+            <if test="operatingIncome != '' and operatingIncome != null">
+                TOTAL_FIXED_ASSETS = #{totalFixedAssets},
+            </if>
+            <if test="operatingIncome != '' and operatingIncome != null">
+                TOTAL_LIABILITIES = #{totalLiabilities},
+            </if>
+            <if test="operatingIncome != '' and operatingIncome != null">
+                RESEARCH_COST = #{researchCost},
+            </if>
+            <if test="operatingIncome != '' and operatingIncome != null">
+                GOVERNMENT_FUNDING = #{governmentFunding},
+            </if>
+            <if test="operatingIncome != '' and operatingIncome != null">
+                PROPORTION = #{proportion},
+            </if>
+            CREATE_DATE = #{createDate},
+            UPDATE_DAT = #{updateDat}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteByEnterpriseId" parameterType="java.lang.String">
+        DELETE FROM enterprise_finance WHERE ENTERPRISE_ID = #{value};
+    </delete>
+</mapper>

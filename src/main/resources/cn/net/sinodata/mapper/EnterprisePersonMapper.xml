@@ -1,9 +1,118 @@
-package cn.net.sinodata.mapper;
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.net.sinodata.mapper.EnterprisePersonMapper" >
+    <resultMap id="BaseResultMap" type="cn.net.sinodata.model.EnterprisePerson" >
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+        <result column="ENTERPRISE_ID" property="enterpriseId" jdbcType="VARCHAR" />
+        <result column="TOTAL_STAFF" property="totalStaff" jdbcType="VARCHAR" />
+        <result column="TECHNOLOGY_PERSON" property="technologyPerson" jdbcType="VARCHAR" />
+        <result column="PROPORTION" property="proportion" jdbcType="VARCHAR" />
+        <result column="IN_SERVICE" property="inService" jdbcType="VARCHAR" />
+        <result column="PART_TIME" property="partTime" jdbcType="VARCHAR" />
+        <result column="TEMPORARY" property="temporary" jdbcType="VARCHAR" />
+        <result column="DOCTOR" property="doctor" jdbcType="VARCHAR" />
+        <result column="MASTER_DEGREE" property="masterDegree" jdbcType="VARCHAR" />
+        <result column="BACHELOR" property="bachelor" jdbcType="VARCHAR" />
+        <result column="COLLEGE_AND_BELOW" property="collegeAndBelow" jdbcType="VARCHAR" />
+        <result column="SENIOR_TITLE" property="seniorTitle" jdbcType="VARCHAR" />
+        <result column="INTERMEDIATE_TITLE" property="intermediateTitle" jdbcType="VARCHAR" />
+        <result column="PRIMARY_TITLE" property="primaryTitle" jdbcType="VARCHAR" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
 
-import cn.net.sinodata.model.EnterprisePerson;
+    <insert id="insert" parameterType="cn.net.sinodata.model.EnterprisePerson">
+        INSERT INTO enterprise_person
+            (
+                ID,
+                ENTERPRISE_ID,
+                TOTAL_STAFF,
+                TECHNOLOGY_PERSON,
+                PROPORTION,
+                IN_SERVICE,
+                PART_TIME,
+                TEMPORARY,
+                DOCTOR,
+                MASTER_DEGREE,
+                BACHELOR,
+                COLLEGE_AND_BELOW,
+                SENIOR_TITLE,
+                INTERMEDIATE_TITLE,
+                PRIMARY_TITLE,
+                CREATE_DATE,
+                UPDATE_DATE
+            )
+        VALUES
+	        (
+	            #{id},
+	            #{enterpriseId},
+                #{totalStaff},
+                #{technologyPerson},
+                #{proportion},
+                #{inService},
+                #{partTime},
+                #{temporary},
+                #{doctor},
+                #{masterDegree},
+                #{bachelor},
+                #{collegeAndBelow},
+                #{seniorTitle},
+                #{intermediateTitle},
+                #{primaryTitle},
+                #{createDate},
+                #{updateDate}
+	        )
+    </insert>
 
-public interface EnterprisePersonMapper {
-    int insert(EnterprisePerson enterprisePerson);
-    int update(EnterprisePerson enterprisePerson);
-    int delete(EnterprisePerson enterprisePerson);
-}
+    <update id="update" parameterType="cn.net.sinodata.model.EnterprisePerson">
+        UPDATE
+            enterprise_person
+        SET
+            <if test="totalStaff != '' and totalStaff != null">
+                TOTAL_STAFF = #{totalStaff},
+            </if>
+            <if test="technologyPerson != '' and technologyPerson != null">
+                TECHNOLOGY_PERSON = #{technologyPerson},
+            </if>
+            <if test="proportion != '' and proportion != null">
+                PROPORTION = #{proportion},
+            </if>
+            <if test="inService != '' and inService != null">
+                IN_SERVICE = #{inService},
+            </if>
+            <if test="partTime != '' and partTime != null">
+                PART_TIME = #{partTime},
+            </if>
+            <if test="temporary != '' and temporary != null">
+                TEMPORARY = #{temporary},
+            </if>
+            <if test="doctor != '' and doctor != null">
+                DOCTOR = #{doctor},
+            </if>
+            <if test="masterDegree != '' and masterDegree != null">
+                MASTER_DEGREE = #{masterDegree},
+            </if>
+            <if test="bachelor != '' and bachelor != null">
+                BACHELOR = #{bachelor},
+            </if>
+            <if test="collegeAndBelow != '' and collegeAndBelow != null">
+                COLLEGE_AND_BELOW = #{collegeAndBelow},
+            </if>
+            <if test="seniorTitle != '' and seniorTitle != null">
+                SENIOR_TITLE = #{seniorTitle},
+            </if>
+            <if test="intermediateTitle != '' and intermediateTitle != null">
+                INTERMEDIATE_TITLE = #{intermediateTitle},
+            </if>
+            <if test="primaryTitle != '' and primaryTitle != null">
+                PRIMARY_TITLE = #{primaryTitle},
+            </if>
+            CREATE_DATE = #{createDate},
+            UPDATE_DAT = #{updateDat}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteByEnterpriseId" parameterType="java.lang.String">
+        DELETE FROM enterprise_person WHERE ENTERPRISE_ID = #{value};
+    </delete>
+</mapper>

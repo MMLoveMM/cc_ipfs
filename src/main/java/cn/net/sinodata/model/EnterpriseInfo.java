@@ -36,6 +36,11 @@ public class EnterpriseInfo implements Serializable {
     private String contactEmail;    //联系人邮箱
     private Date createDate;
     private Date updateDate;
+    private String financeId;  //财务状况id
+    private String personId;   //人员状况id
+    private String propertyId; //近三年知识产权id
+    private String pdfId;  //相关附件id
+
 
     public String getId() {
         return id;
@@ -251,5 +256,37 @@ public class EnterpriseInfo implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public String getFinanceId() {
+        return financeId;
+    }
+
+    public void setFinanceId(String financeId) {
+        this.financeId = financeId;
+    }
+
+    public String getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(String personId) {
+        this.personId = personId;
+    }
+
+    public String getPropertyId() {
+        return propertyId;
+    }
+
+    public void setPropertyId(String propertyId) {
+        this.propertyId = propertyId;
+    }
+
+    public String getPdfId() {
+        return pdfId;
+    }
+
+    public void setPdfId(String pdfId) {
+        this.pdfId = pdfId;
     }
 }

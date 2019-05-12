@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.net.sinodata.mapper.NewsMapper" >
+<mapper namespace="cn.net.sinodata.mapper.EnterpriseInfoMapper" >
     <resultMap id="BaseResultMap" type="cn.net.sinodata.model.EnterpriseInfo" >
         <id column="ID" property="id" jdbcType="VARCHAR" />
         <result column="NAME" property="name" jdbcType="VARCHAR" />
@@ -27,6 +27,10 @@
         <result column="CONTACT_NAME" property="contactName" jdbcType="VARCHAR" />
         <result column="CONTACT_PHONE" property="contactPhone" jdbcType="VARCHAR" />
         <result column="CONTACT_EMAIL" property="contactEmail" jdbcType="VARCHAR" />
+        <result column="FINANCE_ID" property="financeId" jdbcType="VARCHAR" />
+        <result column="PERSON_ID" property="personId" jdbcType="VARCHAR" />
+        <result column="PROPERTY_ID" property="propertyId" jdbcType="VARCHAR" />
+        <result column="PDF_ID" property="pdfId" jdbcType="VARCHAR" />
         <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
         <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
     </resultMap>
@@ -39,10 +43,86 @@
     </sql>
 
     <sql id="select_all_sql">
-        a.ID, a.NAME, a.CREDIT_CODE, a.ENTERPRISE_CREATE_DATE, a.TYPE, a.REGISTERED_ADDRESS, a.REGISTERED_CAPITAL, a.REGISTRATION_AUTHORITY,
-        a.LOCATION, a.IDENTIFICATION_SITUATION, a.INDUSTRY_TYPE, a.MAIN_PRODUCTS, a.WHETHER_LISTED, a.LISTED_TYPE, a.STOCK_CODE,
-        a.LISTED_DATE, a.LEGAL_NAME, a.CAR_TYPE, a.CAR_NUMBER, a.LEGAL_TELEPHONE, a.LEGAL_PHONE, a.LEGAL_EMAIL, a.CONTACT_NAME, a.CONTACT_PHONE,
-        a.CONTACT_EMAIL, a.CREATE_DATE, a.UPDATE_DATE
+        a.ID AS id,
+        a.NAME AS name,
+        a.CREDIT_CODE AS creditCode,
+        a.ENTERPRISE_CREATE_DATE AS enterpriseCreateDate,
+        a.TYPE AS type,
+        a.REGISTERED_ADDRESS AS registeredAddress,
+        a.REGISTERED_CAPITAL AS registeredCapital,
+        a.REGISTRATION_AUTHORITY AS registrationAuthority,
+        a.LOCATION AS location,
+        a.IDENTIFICATION_SITUATION AS identificationSituation,
+        a.INDUSTRY_TYPE AS industryType,
+        a.MAIN_PRODUCTS AS mainProducts,
+        a.WHETHER_LISTED AS whetherListed,
+        a.LISTED_TYPE AS listedType,
+        a.STOCK_CODE AS stockCode,
+        a.LISTED_DATE AS listedDate,
+        a.LEGAL_NAME AS legalName,
+        a.CAR_TYPE AS carType,
+        a.CAR_NUMBER AS carNumber,
+        a.LEGAL_TELEPHONE AS legalTelephone,
+        a.LEGAL_PHONE AS legalPhone,
+        a.LEGAL_EMAIL AS legalEmail,
+        a.CONTACT_NAME AS contactName,
+        a.CONTACT_PHONE AS contactPhone,
+        a.CONTACT_EMAIL AS contactEmail,
+        a.CREATE_DATE AS createDate,
+        a.UPDATE_DATE AS updateDate,
+        finance.ID AS enterpriseFinance.id,
+        finance.ENTERPRISE_ID AS enterpriseFinance.enterpriseId,
+        finance.OPERATING_INCOME AS enterpriseFinance.operatingIncome,
+        finance.MAIN_BUSINESS_INCOME AS enterpriseFinance.mainBusinessIncome,
+        finance.OPERATING_COST AS enterpriseFinance.operatingCost,
+        finance.TOTAL_TAX AS enterpriseFinance.totalTax,
+        finance.TOTAL_PROFIT AS enterpriseFinance.totalProfit,
+        finance.TOTAL_ASSETS AS enterpriseFinance.totalAssets,
+        finance.TOTAL_FIXED_ASSETS AS enterpriseFinance.totalFixedAssets,
+        finance.TOTAL_LIABILITIES AS enterpriseFinance.totalLiabilities,
+        finance.RESEARCH_COST AS enterpriseFinance.researchCost,
+        finance.GOVERNMENT_FUNDING AS enterpriseFinance.governmentFunding,
+        finance.PROPORTION AS enterpriseFinance.proportion,
+        finance.CREATE_DATE AS enterpriseFinance.createDate,
+        finance.UPDATE_DATE AS enterpriseFinance.update_date,
+        person.ID AS enterprisePerson.id,
+        person.ENTERPRISE_ID AS enterprisePerson.enterpriseId,
+        person.TOTAL_STAFF AS enterprisePerson.totalStaff,
+        person.TECHNOLOGY_PERSON AS enterprisePerson.technologyPerson,
+        person.PROPORTION AS enterprisePerson.proportion,
+        person.IN_SERVICE AS enterprisePerson.inService,
+        person.PART_TIME AS enterprisePerson.partTime,
+        person.TEMPORARY AS enterprisePerson.temporary,
+        person.DOCTOR AS enterprisePerson.doctor,
+        person.MASTER_DEGREE AS enterprisePerson.masterDegree,
+        person.BACHELOR AS enterprisePerson.bachelor,
+        person.COLLEGE_AND_BELOW AS enterprisePerson.collegeAndBelow,
+        person.SENIOR_TITLE AS enterprisePerson.seniorTitle,
+        person.INTERMEDIATE_TITLE AS enterprisePerson.intermediateTitle,
+        person.PRIMARY_TITLE AS enterprisePerson.primaryTitle,
+        person.CREATE_DATE AS enterprisePerson.createDate,
+        person.UPDATE_DATE AS enterprisePerson.updateDate,
+        property.ID AS enterpriseIntellectualProperty.id,
+        property.ENTERPRISE_ID AS enterpriseIntellectualProperty.enterpriseId,
+        property.PATENT AS enterpriseIntellectualProperty.patent,
+        property.UTILITY_MODEL_PATENTS AS enterpriseIntellectualProperty.utilityModelPatents,
+        property.DESIGN_PATENT AS enterpriseIntellectualProperty.designPatent,
+        property.SOFTWARE_COPYRIGHT AS enterpriseIntellectualProperty.softwareCpyright,
+        property.NATIONAL_NEW_DRUG AS enterpriseIntellectualProperty.nationalNewDrug,
+        property.MEDICINE AS enterpriseIntellectualProperty.medicine,
+        property.NEW_PLANT_VARIETY AS enterpriseIntellectualProperty.newPlantVariety,
+        property.CROP_VARIETY AS enterpriseIntellectualProperty.cropVariety,
+        property.INTEGRATED_CIRCUIT AS enterpriseIntellectualProperty.integratedCircuit,
+        property.CREATE_DATE AS enterpriseIntellectualProperty.createDate,
+        property.UPDATE_DATE AS enterpriseIntellectualProperty.updateDate,
+        pdf.ID AS enterpriseFilePdf.id,
+        pdf.ENTERPRISE_ID AS enterpriseFilePdf.enterpriseId,
+        pdf.BUSINESS_LICENSE_COPY AS enterpriseFilePdf.businessLicenseCopy,
+        pdf.INTELLECTUAL_PROPERTY AS enterpriseFilePdf.intellectualProperty,
+        pdf.FINANCIAL_AUDIT_REPORT AS enterpriseFilePdf.financialAuditReport,
+        pdf.INSTRUCTION_MANUAL AS enterpriseFilePdf.instructionManual,
+        pdf.CREATE_DATE AS enterpriseFilePdf.createDate,
+        pdf.UPDATE_DATE AS enterpriseFilePdf.updateDate
     </sql>
 
     <select id="selectAll" resultType="cn.net.sinodata.vo.EnterpriseInfoVo">
@@ -95,6 +175,10 @@
                 CONTACT_NAME,
                 CONTACT_PHONE,
                 CONTACT_EMAIL,
+                FINANCE_ID,
+                PERSON_ID,
+                PROPERTY_ID,
+                PDF_ID,
                 CREATE_DATE,
                 UPDATE_DATE
             )
@@ -125,6 +209,10 @@
                 #{contactName},
                 #{contactPhone},
                 #{contactEmail},
+                #{financeId},
+                #{personId},
+                #{propertyId},
+                #{pdfId},
                 #{createDate},
                 #{updateDate}
 	        )
@@ -135,79 +223,91 @@
             enterprise_info
         SET
             <if test="name != '' and name != null">
-                NAME = ${name},
+                NAME = #{name},
             </if>
             <if test="creditCode != '' and creditCode != null">
-                CREDIT_CODE = ${creditCode},
+                CREDIT_CODE = #{creditCode},
             </if>
             <if test="enterpriseCreateDate != '' and enterpriseCreateDate != null">
-                ENTERPRISE_CREATE_DATE = ${enterpriseCreateDate},
+                ENTERPRISE_CREATE_DATE = #{enterpriseCreateDate},
             </if>
             <if test="type != '' and type != null">
-                TYPE = ${type},
+                TYPE = #{type},
             </if>
             <if test="registeredAddress != '' and registeredAddress != null">
-                REGISTERED_ADDRESS = ${registeredAddress},
+                REGISTERED_ADDRESS = #{registeredAddress},
             </if>
             <if test="registeredCapital != '' and registeredCapital != null">
-                REGISTERED_CAPITAL = ${registeredCapital},
+                REGISTERED_CAPITAL = #{registeredCapital},
             </if>
             <if test="registrationAuthority != '' and registrationAuthority != null">
-                REGISTRATION_AUTHORITY = ${registrationAuthority},
+                REGISTRATION_AUTHORITY = #{registrationAuthority},
             </if>
             <if test="location != '' and location != null">
-                LOCATION = ${location},
+                LOCATION = #{location},
             </if>
             <if test="identificationSituation != '' and identificationSituation != null">
-                IDENTIFICATION_SITUATION = ${identificationSituation},
+                IDENTIFICATION_SITUATION = #{identificationSituation},
             </if>
             <if test="industryType != '' and industryType != null">
-                INDUSTRY_TYPE = ${industryType},
+                INDUSTRY_TYPE = #{industryType},
             </if>
             <if test="mainProducts != '' and mainProducts != null">
-                MAIN_PRODUCTS = ${mainProducts},
+                MAIN_PRODUCTS = #{mainProducts},
             </if>
             <if test="whetherListed != '' and whetherListed != null">
-                WHETHER_LISTED = ${whetherListed},
+                WHETHER_LISTED = #{whetherListed},
             </if>
             <if test="listedType != '' and listedType != null">
-                LISTED_TYPE = ${listedType},
+                LISTED_TYPE = #{listedType},
             </if>
             <if test="stockCode != '' and stockCode != null">
-                STOCK_CODE = ${stockCode},
+                STOCK_CODE = #{stockCode},
             </if>
             <if test="listedDate != '' and listedDate != null">
-                LISTED_DATE = ${listedDate},
+                LISTED_DATE = #{listedDate},
             </if>
             <if test="legalName != '' and legalName != null">
-                LEGAL_NAME = ${legalName},
+                LEGAL_NAME = #{legalName},
             </if>
             <if test="carType != '' and carType != null">
-                CAR_TYPE = ${carType},
+                CAR_TYPE = #{carType},
             </if>
             <if test="carNumber != '' and carNumber != null">
-                CAR_NUMBER = ${carNumber},
+                CAR_NUMBER = #{carNumber},
             </if>
             <if test="legalTelephone != '' and legalTelephone != null">
-                LEGAL_TELEPHONE = ${legalTelephone},
+                LEGAL_TELEPHONE = #{legalTelephone},
             </if>
             <if test="legalPhone != '' and legalPhone != null">
-                LEGAL_PHONE = ${legalPhone},
+                LEGAL_PHONE = #{legalPhone},
             </if>
             <if test="legalEmail != '' and legalEmail != null">
-                LEGAL_EMAIL = ${legalEmail},
+                LEGAL_EMAIL = #{legalEmail},
             </if>
             <if test="contactName != '' and contactName != null">
-                CONTACT_NAME = ${contactName},
+                CONTACT_NAME = #{contactName},
             </if>
             <if test="contactPhone != '' and contactPhone != null">
-                CONTACT_PHONE = ${contactPhone},
+                CONTACT_PHONE = #{contactPhone},
             </if>
             <if test="contactEmail != '' and contactEmail != null">
-                CONTACT_EMAIL = ${contactEmail},
+                CONTACT_EMAIL = #{contactEmail},
             </if>
-            CREATE_DATE = ${createDate},
-            UPDATE_DAT = ${updateDat}
+            <if test="financeId != '' and financeId != null">
+                FINANCE_ID = #{financeId}
+            </if>
+            <if test="personId != '' and personId != null">
+                PERSON_ID = #{personId}
+            </if>
+            <if test="propertyId != '' and propertyId != null">
+                PROPERTY_ID = #{propertyId}
+            </if>
+            <if test="pdfId != '' and pdfId != null">
+                PDF_ID = #{pdfId}
+            </if>
+            CREATE_DATE = #{createDate},
+            UPDATE_DAT = #{updateDat}
         WHERE id = #{id}
     </update>
 
