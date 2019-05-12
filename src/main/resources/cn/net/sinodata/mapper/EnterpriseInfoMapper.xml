@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.net.sinodata.mapper.NewsMapper" >
+    <resultMap id="BaseResultMap" type="cn.net.sinodata.model.EnterpriseInfo" >
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+        <result column="NAME" property="name" jdbcType="VARCHAR" />
+        <result column="CREDIT_CODE" property="creditCode" jdbcType="VARCHAR" />
+        <result column="ENTERPRISE_CREATE_DATE" property="enterpriseCreateDate" jdbcType="TIMESTAMP" />
+        <result column="TYPE" property="type" jdbcType="VARCHAR" />
+        <result column="REGISTERED_ADDRESS" property="registeredAddress" jdbcType="VARCHAR" />
+        <result column="REGISTERED_CAPITAL" property="registeredCapital" jdbcType="VARCHAR" />
+        <result column="REGISTRATION_AUTHORITY" property="registrationAuthority" jdbcType="VARCHAR" />
+        <result column="LOCATION" property="location" jdbcType="VARCHAR" />
+        <result column="IDENTIFICATION_SITUATION" property="identificationSituation" jdbcType="VARCHAR" />
+        <result column="INDUSTRY_TYPE" property="industryType" jdbcType="VARCHAR" />
+        <result column="MAIN_PRODUCTS" property="mainProducts" jdbcType="VARCHAR" />
+        <result column="WHETHER_LISTED" property="whetherListed" jdbcType="VARCHAR" />
+        <result column="LISTED_TYPE" property="listedType" jdbcType="VARCHAR" />
+        <result column="STOCK_CODE" property="stockCode" jdbcType="VARCHAR" />
+        <result column="LISTED_DATE" property="listedDate" jdbcType="TIMESTAMP" />
+        <result column="LEGAL_NAME" property="legalName" jdbcType="VARCHAR" />
+        <result column="CAR_TYPE" property="carType" jdbcType="VARCHAR" />
+        <result column="CAR_NUMBER" property="carNumber" jdbcType="VARCHAR" />
+        <result column="LEGAL_TELEPHONE" property="legalTelephone" jdbcType="VARCHAR" />
+        <result column="LEGAL_PHONE" property="legalPhone" jdbcType="VARCHAR" />
+        <result column="LEGAL_EMAIL" property="legalEmail" jdbcType="VARCHAR" />
+        <result column="CONTACT_NAME" property="contactName" jdbcType="VARCHAR" />
+        <result column="CONTACT_PHONE" property="contactPhone" jdbcType="VARCHAR" />
+        <result column="CONTACT_EMAIL" property="contactEmail" jdbcType="VARCHAR" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        ID, NAME, CREDIT_CODE, ENTERPRISE_CREATE_DATE, TYPE, REGISTERED_ADDRESS, REGISTERED_CAPITAL, REGISTRATION_AUTHORITY,
+        LOCATION, IDENTIFICATION_SITUATION, INDUSTRY_TYPE, MAIN_PRODUCTS, WHETHER_LISTED, LISTED_TYPE, STOCK_CODE,
+        LISTED_DATE, LEGAL_NAME, CAR_TYPE, CAR_NUMBER, LEGAL_TELEPHONE, LEGAL_PHONE, LEGAL_EMAIL, CONTACT_NAME, CONTACT_PHONE,
+        CONTACT_EMAIL, CREATE_DATE, UPDATE_DATE
+    </sql>
+
+    <sql id="select_all_sql">
+        a.ID, a.NAME, a.CREDIT_CODE, a.ENTERPRISE_CREATE_DATE, a.TYPE, a.REGISTERED_ADDRESS, a.REGISTERED_CAPITAL, a.REGISTRATION_AUTHORITY,
+        a.LOCATION, a.IDENTIFICATION_SITUATION, a.INDUSTRY_TYPE, a.MAIN_PRODUCTS, a.WHETHER_LISTED, a.LISTED_TYPE, a.STOCK_CODE,
+        a.LISTED_DATE, a.LEGAL_NAME, a.CAR_TYPE, a.CAR_NUMBER, a.LEGAL_TELEPHONE, a.LEGAL_PHONE, a.LEGAL_EMAIL, a.CONTACT_NAME, a.CONTACT_PHONE,
+        a.CONTACT_EMAIL, a.CREATE_DATE, a.UPDATE_DATE
+    </sql>
+
+    <select id="selectAll" resultType="cn.net.sinodata.vo.EnterpriseInfoVo">
+        SELECT
+            <include refid="select_all_sql" />
+        FROM enterprise_info a
+        JOIN enterprise_finance finance ON finance.enterprise_id = a.id
+        JOIN enterprise_person person ON person.enterprise_id = a.id
+        JOIN enterprise_intellectual_property property ON property.enterprise_id = a.id
+        JOIN enterprise_file_pdf pdf ON pdf.enterprise_id = a.id
+    </select>
+
+    <select id="selectById" parameterType="java.lang.String"  resultType="cn.net.sinodata.vo.EnterpriseInfoVo">
+        SELECT
+            <include refid="select_all_sql" />
+        FROM enterprise_info a
+        JOIN enterprise_finance finance ON finance.enterprise_id = a.id
+        JOIN enterprise_person person ON person.enterprise_id = a.id
+        JOIN enterprise_intellectual_property property ON property.enterprise_id = a.id
+        JOIN enterprise_file_pdf pdf ON pdf.enterprise_id = a.id
+        WHERE
+            a.ID = #{value}
+    </select>
+
+    <insert id="insert" parameterType="cn.net.sinodata.model.EnterpriseInfo">
+        INSERT INTO enterprise_info
+            (
+                ID,
+                NAME,
+                CREDIT_CODE,
+                ENTERPRISE_CREATE_DATE,
+                TYPE,
+                REGISTERED_ADDRESS,
+                REGISTERED_CAPITAL,
+                REGISTRATION_AUTHORITY,
+                LOCATION,
+                IDENTIFICATION_SITUATION,
+                INDUSTRY_TYPE,
+                MAIN_PRODUCTS,
+                WHETHER_LISTED,
+                LISTED_TYPE,
+                STOCK_CODE,
+                LISTED_DATE,
+                LEGAL_NAME,
+                CAR_TYPE,
+                CAR_NUMBER,
+                LEGAL_TELEPHONE,
+                LEGAL_PHONE,
+                LEGAL_EMAIL,
+                CONTACT_NAME,
+                CONTACT_PHONE,
+                CONTACT_EMAIL,
+                CREATE_DATE,
+                UPDATE_DATE
+            )
+        VALUES
+	        (
+	            #{id},
+	            #{name},
+	            #{creditCode},
+	            #{enterpriseCreateDate},
+                #{type},
+                #{registeredAddress},
+                #{registeredCapital},
+                #{registrationAuthority},
+                #{location},
+                #{identificationSituation},
+                #{industryType},
+                #{mainProducts},
+                #{whetherListed},
+                #{listedType},
+                #{stockCode},
+                #{listedDate},
+                #{legalName},
+                #{carType},
+                #{carNumber},
+                #{legalTelephone},
+                #{legalPhone},
+                #{legalEmail},
+                #{contactName},
+                #{contactPhone},
+                #{contactEmail},
+                #{createDate},
+                #{updateDate}
+	        )
+    </insert>
+
+    <update id="update" parameterType="cn.net.sinodata.model.EnterpriseInfo">
+        UPDATE
+            enterprise_info
+        SET
+            <if test="name != '' and name != null">
+                NAME = ${name},
+            </if>
+            <if test="creditCode != '' and creditCode != null">
+                CREDIT_CODE = ${creditCode},
+            </if>
+            <if test="enterpriseCreateDate != '' and enterpriseCreateDate != null">
+                ENTERPRISE_CREATE_DATE = ${enterpriseCreateDate},
+            </if>
+            <if test="type != '' and type != null">
+                TYPE = ${type},
+            </if>
+            <if test="registeredAddress != '' and registeredAddress != null">
+                REGISTERED_ADDRESS = ${registeredAddress},
+            </if>
+            <if test="registeredCapital != '' and registeredCapital != null">
+                REGISTERED_CAPITAL = ${registeredCapital},
+            </if>
+            <if test="registrationAuthority != '' and registrationAuthority != null">
+                REGISTRATION_AUTHORITY = ${registrationAuthority},
+            </if>
+            <if test="location != '' and location != null">
+                LOCATION = ${location},
+            </if>
+            <if test="identificationSituation != '' and identificationSituation != null">
+                IDENTIFICATION_SITUATION = ${identificationSituation},
+            </if>
+            <if test="industryType != '' and industryType != null">
+                INDUSTRY_TYPE = ${industryType},
+            </if>
+            <if test="mainProducts != '' and mainProducts != null">
+                MAIN_PRODUCTS = ${mainProducts},
+            </if>
+            <if test="whetherListed != '' and whetherListed != null">
+                WHETHER_LISTED = ${whetherListed},
+            </if>
+            <if test="listedType != '' and listedType != null">
+                LISTED_TYPE = ${listedType},
+            </if>
+            <if test="stockCode != '' and stockCode != null">
+                STOCK_CODE = ${stockCode},
+            </if>
+            <if test="listedDate != '' and listedDate != null">
+                LISTED_DATE = ${listedDate},
+            </if>
+            <if test="legalName != '' and legalName != null">
+                LEGAL_NAME = ${legalName},
+            </if>
+            <if test="carType != '' and carType != null">
+                CAR_TYPE = ${carType},
+            </if>
+            <if test="carNumber != '' and carNumber != null">
+                CAR_NUMBER = ${carNumber},
+            </if>
+            <if test="legalTelephone != '' and legalTelephone != null">
+                LEGAL_TELEPHONE = ${legalTelephone},
+            </if>
+            <if test="legalPhone != '' and legalPhone != null">
+                LEGAL_PHONE = ${legalPhone},
+            </if>
+            <if test="legalEmail != '' and legalEmail != null">
+                LEGAL_EMAIL = ${legalEmail},
+            </if>
+            <if test="contactName != '' and contactName != null">
+                CONTACT_NAME = ${contactName},
+            </if>
+            <if test="contactPhone != '' and contactPhone != null">
+                CONTACT_PHONE = ${contactPhone},
+            </if>
+            <if test="contactEmail != '' and contactEmail != null">
+                CONTACT_EMAIL = ${contactEmail},
+            </if>
+            CREATE_DATE = ${createDate},
+            UPDATE_DAT = ${updateDat}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.String">
+        DELETE FROM enterprise_info WHERE id = #{value};
+    </delete>
+</mapper>
