@@ -88,11 +88,9 @@
 								<!-- 企业信息 -->
 								<div class="layui-tab-item layui-show">
 									<div class="form-group">
-										<label class="col-xs-2 control-label"><span style="color: red;">*</span>企业名称</label>
+										<label class="col-xs-2 control-label">企业名称</label>
 										<div class="col-xs-4">
 											<input type="text" datatype="*" id="name" name="name" class="col-xs-7">
-											<div class="col-xs-offset-1"></div>
-											<label class="Validform_checktip" style="color: red;"></label>
 										</div>
 										
 										<label class="col-xs-2 control-label">统一社会信用代码</label>
@@ -120,20 +118,18 @@
 										<label class="col-xs-2 control-label">注册资本</label>
 										<div class="col-xs-4">
 											<input type="text" id="registeredCapital" name="registeredCapital" class="col-xs-7">
-											<label class="col-xs-1 control-label">（万元）</label>
+											<label class="col-xs-2 control-label">（万元）</label>
 										</div>
 									</div>
 										
 									<div class="form-group">
 										<label class="col-xs-2 control-label">登记机关</label>
-										<div class="col-xs-10">
+										<div class="col-xs-4">
 											<input type="text" id="registrationAuthority" name="registrationAuthority" class="col-xs-7">
 										</div>
-									</div>
-										
-									<div class="form-group">
+
 										<label class="col-xs-2 control-label">企业所在地</label>
-										<div class="col-xs-10">
+										<div class="col-xs-4">
 											<input type="text" id="location" name="location" class="col-xs-7">
 										</div>
 									</div>
@@ -240,13 +236,13 @@
 										<label class="col-xs-2 control-label">营业收入</label>
 										<div class="col-xs-4">
 											<input type="text" datatype="*" id="operatingIncome" name="operatingIncome" class="col-xs-7">
-											<label class="col-xs-1 control-label">（万元）</label>
+											<label class="col-xs-2 control-label">（万元）</label>
 										</div>
 
 										<label class="col-xs-2 control-label">主营业务收入</label>
 										<div class="col-xs-4">
 											<input type="text" id="mainBusinessIncome" name="mainBusinessIncome" class="col-xs-7">
-											<label class="col-xs-1 control-label">（万元）</label>
+											<label class="col-xs-2 control-label">（万元）</label>
 										</div>
 									</div>
 
@@ -254,12 +250,12 @@
 										<label class="col-xs-2 control-label">营业成本</label>
 										<div class="col-xs-4">
 											<input type="text" id="operatingCost" name="operatingCost" class="col-xs-7">
-											<label class="col-xs-1 control-label">（万元）</label>
+											<label class="col-xs-2 control-label">（万元）</label>
 										</div>
 										<label class="col-xs-2 control-label">税金总计</label>
 										<div class="col-xs-4">
 											<input type="text" id="totalTax" name="totalTax" class="col-xs-7">
-											<label class="col-xs-1 control-label">（万元）</label>
+											<label class="col-xs-2 control-label">（万元）</label>
 										</div>
 									</div>
 
@@ -272,7 +268,7 @@
 										<label class="col-xs-2 control-label">资产总计</label>
 										<div class="col-xs-4">
 											<input type="text" id="totalAssets" name="totalAssets" class="col-xs-7">
-											<label class="col-xs-1 control-label">（万元）</label>
+											<label class="col-xs-2 control-label">（万元）</label>
 										</div>
 									</div>
 
@@ -280,7 +276,7 @@
 										<label class="col-xs-2 control-label">固定资产合计</label>
 										<div class="col-xs-10">
 											<input type="text" id="totalFixedAssets" name="totalFixedAssets" class="col-xs-7">
-											<label class="col-xs-1 control-label">（万元）</label>
+											<label class="col-xs-2 control-label">（万元）</label>
 										</div>
 									</div>
 
@@ -288,7 +284,7 @@
 										<label class="col-xs-2 control-label">负债总计</label>
 										<div class="col-xs-10">
 											<input type="text" id="totalLiabilities" name="totalLiabilities" class="col-xs-7">
-											<label class="col-xs-1 control-label">（万元）</label>
+											<label class="col-xs-2 control-label">（万元）</label>
 										</div>
 									</div>
 
@@ -296,12 +292,12 @@
 										<label class="col-xs-2 control-label">研究开发费用</label>
 										<div class="col-xs-4">
 											<input type="text" id="researchCost" name="researchCost" class="col-xs-7">
-											<label class="col-xs-1 control-label">（万元）</label>
+											<label class="col-xs-2 control-label">（万元）</label>
 										</div>
 										<label class="col-xs-2 control-label">其中政府资助研发费用</label>
 										<div class="col-xs-4">
 											<input type="text" id="governmentFunding" name="governmentFunding" class="col-xs-7">
-											<label class="col-xs-1 control-label">（万元）</label>
+											<label class="col-xs-2 control-label">（万元）</label>
 										</div>
 									</div>
 
@@ -309,7 +305,7 @@
 										<label class="col-xs-2 control-label">研发费用占营业收入比</label>
 										<div class="col-xs-4">
 											<input type="text" id="proportion" name="proportion" class="col-xs-7">
-											<label class="col-xs-1 control-label">（%）</label>
+											<label class="col-xs-2 control-label">（%）</label>
 										</div>
 									</div>
 								</div>
@@ -319,13 +315,13 @@
 										<label class="col-xs-2 control-label">职工总数</label>
 										<div class="col-xs-4">
 											<input type="text" datatype="*" id="totalStaff" name="totalStaff" class="col-xs-7">
-											<label class="col-xs-1 control-label">（人）</label>
+											<label class="col-xs-2 control-label">（人）</label>
 										</div>
 
 										<label class="col-xs-2 control-label">科技人员</label>
 										<div class="col-xs-4">
 											<input type="text" id="technologyPerson" name="technologyPerson" class="col-xs-7">
-											<label class="col-xs-1 control-label">（人）</label>
+											<label class="col-xs-2 control-label">（人）</label>
 										</div>
 									</div>
 
@@ -333,12 +329,12 @@
 										<label class="col-xs-2 control-label">科技人员占职工总数比</label>
 										<div class="col-xs-4">
 											<input type="text" id="proportion2" name="proportion" class="col-xs-7">
-											<label class="col-xs-1 control-label">（%）</label>
+											<label class="col-xs-2 control-label">（%）</label>
 										</div>
 										<label class="col-xs-2 control-label">在职人员</label>
 										<div class="col-xs-4">
 											<input type="text" id="inService" name="inService" class="col-xs-7">
-											<label class="col-xs-1 control-label">（人）</label>
+											<label class="col-xs-2 control-label">（人）</label>
 										</div>
 									</div>
 
@@ -346,12 +342,12 @@
 										<label class="col-xs-2 control-label">兼职人员</label>
 										<div class="col-xs-4">
 											<input type="text" id="partTime" name="partTime" class="col-xs-7">
-											<label class="col-xs-1 control-label">（人）</label>
+											<label class="col-xs-2 control-label">（人）</label>
 										</div>
 										<label class="col-xs-2 control-label">临时聘用人员</label>
 										<div class="col-xs-4">
 											<input type="text" id="temporary" name="temporary" class="col-xs-7">
-											<label class="col-xs-1 control-label">（人）</label>
+											<label class="col-xs-2 control-label">（人）</label>
 										</div>
 									</div>
 
@@ -359,7 +355,7 @@
 										<label class="col-xs-2 control-label">博士</label>
 										<div class="col-xs-10">
 											<input type="text" id="doctor" name="doctor" class="col-xs-7">
-											<label class="col-xs-1 control-label">（人）</label>
+											<label class="col-xs-2 control-label">（人）</label>
 										</div>
 									</div>
 
@@ -367,7 +363,7 @@
 										<label class="col-xs-2 control-label">硕士</label>
 										<div class="col-xs-10">
 											<input type="text" id="masterDegree" name="masterDegree" class="col-xs-7">
-											<label class="col-xs-1 control-label">（人）</label>
+											<label class="col-xs-2 control-label">（人）</label>
 										</div>
 									</div>
 
@@ -375,12 +371,12 @@
 										<label class="col-xs-2 control-label">本科</label>
 										<div class="col-xs-4">
 											<input type="text" id="bachelor" name="bachelor" class="col-xs-7">
-											<label class="col-xs-1 control-label">（人）</label>
+											<label class="col-xs-2 control-label">（人）</label>
 										</div>
 										<label class="col-xs-2 control-label">大专及以下学历</label>
 										<div class="col-xs-4">
 											<input type="text" id="collegeAndBelow" name="collegeAndBelow" class="col-xs-7">
-											<label class="col-xs-1 control-label">（人）</label>
+											<label class="col-xs-2 control-label">（人）</label>
 										</div>
 									</div>
 
@@ -388,12 +384,12 @@
 										<label class="col-xs-2 control-label">高级职称</label>
 										<div class="col-xs-4">
 											<input type="text" id="seniorTitle" name="seniorTitle" class="col-xs-7">
-											<label class="col-xs-1 control-label">（人）</label>
+											<label class="col-xs-2 control-label">（人）</label>
 										</div>
 										<label class="col-xs-2 control-label">中级职称</label>
 										<div class="col-xs-4">
 											<input type="text" id="intermediateTitle" name="intermediateTitle" class="col-xs-7">
-											<label class="col-xs-1 control-label">（人）</label>
+											<label class="col-xs-2 control-label">（人）</label>
 										</div>
 									</div>
 
@@ -401,7 +397,7 @@
 										<label class="col-xs-2 control-label">初级职称</label>
 										<div class="col-xs-4">
 											<input type="text" id="primaryTitle" name="primaryTitle" class="col-xs-7">
-											<label class="col-xs-1 control-label">（人）</label>
+											<label class="col-xs-2 control-label">（人）</label>
 										</div>
 									</div>
 								</div>
@@ -411,13 +407,13 @@
 										<label class="col-xs-2 control-label">发明专利</label>
 										<div class="col-xs-4">
 											<input type="text" datatype="*" id="patent" name="patent" class="col-xs-7">
-											<label class="col-xs-1 control-label">（件）</label>
+											<label class="col-xs-2 control-label">（件）</label>
 										</div>
 
 										<label class="col-xs-2 control-label">实用新型专利</label>
 										<div class="col-xs-4">
 											<input type="text" id="utilityModelPatents" name="utilityModelPatents" class="col-xs-7">
-											<label class="col-xs-1 control-label">（件）</label>
+											<label class="col-xs-2 control-label">（件）</label>
 										</div>
 									</div>
 
@@ -425,12 +421,12 @@
 										<label class="col-xs-2 control-label">外观设计专利</label>
 										<div class="col-xs-4">
 											<input type="text" id="designPatent" name="designPatent" class="col-xs-7">
-											<label class="col-xs-1 control-label">（件）</label>
+											<label class="col-xs-2 control-label">（件）</label>
 										</div>
 										<label class="col-xs-2 control-label">软件著作权</label>
 										<div class="col-xs-4">
 											<input type="text" id="softwareCopyright" name="softwareCopyright" class="col-xs-7">
-											<label class="col-xs-1 control-label">（件）</label>
+											<label class="col-xs-2 control-label">（件）</label>
 										</div>
 									</div>
 
@@ -438,12 +434,12 @@
 										<label class="col-xs-2 control-label">国家新药</label>
 										<div class="col-xs-4">
 											<input type="text" id="nationalNewDrug" name="nationalNewDrug" class="col-xs-7">
-											<label class="col-xs-1 control-label">（件）</label>
+											<label class="col-xs-2 control-label">（件）</label>
 										</div>
 										<label class="col-xs-2 control-label">国家一级中药保护品种</label>
 										<div class="col-xs-4">
 											<input type="text" id="medicine" name="medicine" class="col-xs-7">
-											<label class="col-xs-1 control-label">（件）</label>
+											<label class="col-xs-2 control-label">（件）</label>
 										</div>
 									</div>
 
@@ -451,12 +447,12 @@
 										<label class="col-xs-2 control-label">植物新品种</label>
 										<div class="col-xs-10">
 											<input type="text" id="newPlantVariety" name="newPlantVariety" class="col-xs-7">
-											<label class="col-xs-1 control-label">（件）</label>
+											<label class="col-xs-2 control-label">（件）</label>
 										</div>
 										<label class="col-xs-2 control-label">国家级农作物品种</label>
 										<div class="col-xs-10">
 											<input type="text" id="cropVariety" name="cropVariety" class="col-xs-7">
-											<label class="col-xs-1 control-label">（件）</label>
+											<label class="col-xs-2 control-label">（件）</label>
 										</div>
 									</div>
 
@@ -464,7 +460,7 @@
 										<label class="col-xs-2 control-label">集成电路布图设计专有权</label>
 										<div class="col-xs-4">
 											<input type="text" id="integratedCircuit" name="integratedCircuit" class="col-xs-7">
-											<label class="col-xs-1 control-label">（件）</label>
+											<label class="col-xs-2 control-label">（件）</label>
 										</div>
 									</div>
 								</div>
@@ -473,7 +469,9 @@
 									<div class="form-group">
 										<label class="col-xs-2 control-label">营业执照副本</label>
 										<div class="col-xs-4">
-											<input type="text" id="businessLicenseCopy" name="businessLicenseCopy" class="col-xs-7">
+											<input type="text" id="attaName" class="form-control hasDatepicker">
+											<input type="file" id="file1" onchange="Customer.change()">
+											<input type="button" id="upload" value="上传" />
 										</div>
 										<label class="col-xs-2 control-label">知识产权相关证明材料</label>
 										<div class="col-xs-4">
