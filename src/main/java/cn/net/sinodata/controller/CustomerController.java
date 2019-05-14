@@ -16,6 +16,7 @@ import java.util.UUID;
 
 import javax.servlet.ServletException;
 
+import cn.net.sinodata.vo.EnterpriseInfoVo;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -28,6 +29,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -1377,5 +1379,21 @@ public class CustomerController {
 		logger.info("用户 [{}] - 开始前往添加企业信息页面", users.getId());
 
 		return "customer/enterprise_add";
+	}
+
+
+	/**
+	 * 开始添加企业信息
+	 *
+	 * @return 是否添加成功
+	 */
+	@RequestMapping(value = "enterprise/add", method = RequestMethod.POST)
+	@ResponseBody
+	public String addEnterprise(EnterpriseInfoVo enterpriseInfoVo) {
+		TUsers users = (TUsers) SecurityUtils.getSubject().getPrincipal();
+		logger.info("用户 [{}] - 开始添加企业信息", users.getId());
+
+		logger.info("添加企业信息成功");
+		return Constant.SUCCESS;
 	}
 }
