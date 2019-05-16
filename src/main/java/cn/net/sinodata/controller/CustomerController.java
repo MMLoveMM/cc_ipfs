@@ -16,6 +16,7 @@ import java.util.UUID;
 
 import javax.servlet.ServletException;
 
+import cn.net.sinodata.service.*;
 import cn.net.sinodata.vo.EnterpriseInfoVo;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
@@ -64,19 +65,6 @@ import cn.net.sinodata.model.TCustCertiExample;
 import cn.net.sinodata.model.TDataDict;
 import cn.net.sinodata.model.TDataDictExample;
 import cn.net.sinodata.model.TUsers;
-import cn.net.sinodata.service.AccessoryInfoService;
-import cn.net.sinodata.service.AnnexDocsService;
-import cn.net.sinodata.service.AssetInfosService;
-import cn.net.sinodata.service.AuxiliaryContactService;
-import cn.net.sinodata.service.CustomerInfoService;
-import cn.net.sinodata.service.FinacialParamsService;
-import cn.net.sinodata.service.FinacialValService;
-import cn.net.sinodata.service.LiabilitiesInfosService;
-import cn.net.sinodata.service.PerCustomerInfoService;
-import cn.net.sinodata.service.ProjectInfoService;
-import cn.net.sinodata.service.TCustAcctService;
-import cn.net.sinodata.service.TCustCertiService;
-import cn.net.sinodata.service.TDataDictService;
 import cn.net.sinodata.util.DateUtil;
 import cn.net.sinodata.util.ExcelUtil;
 import cn.net.sinodata.util.JsonUtil;
@@ -93,46 +81,57 @@ import cn.net.sinodata.vo.PerCustomerInfoVo;
 public class CustomerController {
 	private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 	
-	@Autowired
-	private TDataDictService tdatadictService;
+	private final TDataDictService tdatadictService;
 	
-	@Autowired
-	private CustomerInfoService customerInfoService;
+	private final CustomerInfoService customerInfoService;
 	
-	@Autowired
-	private AssetInfosService assetInfosService;
+	private final AssetInfosService assetInfosService;
 	
-	@Autowired
-	private FinacialParamsService finacialParamsService;
+	private final FinacialParamsService finacialParamsService;
 	
-	@Autowired
-	private FinacialValService finacialValService;
+	private final FinacialValService finacialValService;
 	
-	@Autowired
-	private LiabilitiesInfosService liabilitiesInfosService;
+	private final LiabilitiesInfosService liabilitiesInfosService;
 	
-	@Autowired
-	private ProjectInfoService projectInfoService;
+	private final ProjectInfoService projectInfoService;
 	
-	@Autowired
-	private AccessoryInfoService accessoryInfoService;
+	private final AccessoryInfoService accessoryInfoService;
 	
-	@Autowired
-	private PerCustomerInfoService perCustomerInfoService;
+	private final PerCustomerInfoService perCustomerInfoService;
 	
-	@Autowired
-	private AnnexDocsService annexDocsService;
+	private final AnnexDocsService annexDocsService;
 	
-	@Autowired
-	private AuxiliaryContactService auxiliaryContactService;
+	private final AuxiliaryContactService auxiliaryContactService;
 	
-	@Autowired
-	private TCustAcctService tCustAcctService;
+	private final TCustAcctService tCustAcctService;
 	
-	@Autowired
-	private TCustCertiService tCustCertiService;
-	
-	
+	private final TCustCertiService tCustCertiService;
+
+	private final EnterpriseInfoService enterpriseInfoService;
+
+	public CustomerController(FinacialParamsService finacialParamsService, TDataDictService tdatadictService,
+							  CustomerInfoService customerInfoService, AssetInfosService assetInfosService,
+							  FinacialValService finacialValService, LiabilitiesInfosService liabilitiesInfosService,
+							  ProjectInfoService projectInfoService, AccessoryInfoService accessoryInfoService,
+							  PerCustomerInfoService perCustomerInfoService, AnnexDocsService annexDocsService,
+							  TCustCertiService tCustCertiService, EnterpriseInfoService enterpriseInfoService,
+							  AuxiliaryContactService auxiliaryContactService, TCustAcctService tCustAcctService) {
+		this.finacialParamsService = finacialParamsService;
+		this.tdatadictService = tdatadictService;
+		this.customerInfoService = customerInfoService;
+		this.assetInfosService = assetInfosService;
+		this.finacialValService = finacialValService;
+		this.liabilitiesInfosService = liabilitiesInfosService;
+		this.projectInfoService = projectInfoService;
+		this.accessoryInfoService = accessoryInfoService;
+		this.perCustomerInfoService = perCustomerInfoService;
+		this.annexDocsService = annexDocsService;
+		this.tCustCertiService = tCustCertiService;
+		this.enterpriseInfoService = enterpriseInfoService;
+		this.auxiliaryContactService = auxiliaryContactService;
+		this.tCustAcctService = tCustAcctService;
+	}
+
 	@RequestMapping(value="/company/toAdd")
 	public String toCustomer(Model model){
 		TUsers user = (TUsers)SecurityUtils.getSubject().getPrincipal();
@@ -1392,6 +1391,8 @@ public class CustomerController {
 	public String addEnterprise(EnterpriseInfoVo enterpriseInfoVo) {
 		TUsers users = (TUsers) SecurityUtils.getSubject().getPrincipal();
 		logger.info("用户 [{}] - 开始添加企业信息", users.getId());
+
+		enterpriseInfoService.saveEnterprise(enterpriseInfoVo);
 
 		logger.info("添加企业信息成功");
 		return Constant.SUCCESS;

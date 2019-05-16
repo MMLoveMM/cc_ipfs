@@ -1,5 +1,7 @@
 package cn.net.sinodata.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,6 +14,7 @@ public class EnterpriseInfo implements Serializable {
     private String id;
     private String name;    //企业名称
     private String creditCode;  //统一社会信用代码
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date enterpriseCreateDate;  //企业成立日期
     private String type;    //  企业类别(法律责任形式)
     private String registeredAddress;   //注册地址
@@ -24,6 +27,7 @@ public class EnterpriseInfo implements Serializable {
     private String whetherListed;   //是否上市或挂牌
     private String listedType;  //上市类型
     private String stockCode;   //股票代码
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date listedDate;    //上市时间
     private String legalName;   //法人姓名
     private String carType; //证件类型

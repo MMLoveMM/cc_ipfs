@@ -86,34 +86,34 @@
 									<div class="form-group">
 										<label class="col-xs-2 control-label">企业名称</label>
 										<div class="col-xs-4">
-											<input type="text" datatype="*" id="name" name="name" class="col-xs-7">
+											<input type="text" datatype="*" id="name" name="enterpriseInfo.name" class="col-xs-7">
 										</div>
 										
 										<label class="col-xs-2 control-label">统一社会信用代码</label>
 										<div class="col-xs-4">
-												<input type="text" id="creditCode" name="creditCode" class="col-xs-7">
+												<input type="text" id="creditCode" name="enterpriseInfo.creditCode" class="col-xs-7">
 										</div>
 									</div>
 									
 									<div class="form-group">
 										<label class="col-xs-2 control-label">企业成立日期</label>
-<%--										<div class="col-xs-4">--%>
-<%--											<input type="text" id="enterpriseCreateDate" name="enterpriseCreateDate" class="col-xs-7" readonly>--%>
-<%--										</div>--%>
+										<div class="col-xs-4">
+											<input type="text" id="enterpriseCreateDate" name="enterpriseInfo.enterpriseCreateDate" class="col-xs-7" readonly>
+										</div>
 										<label class="col-xs-2 control-label">企业类别</label>
 										<div class="col-xs-4">
-											<input type="text" id="type" name="type" class="col-xs-7">
+											<input type="text" id="type" name="enterpriseInfo.type" class="col-xs-7">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="col-xs-2 control-label">注册地址</label>
 										<div class="col-xs-4">
-											<input type="text" id="registeredAddress" name="registeredAddress" class="col-xs-7">
+											<input type="text" id="registeredAddress" name="enterpriseInfo.registeredAddress" class="col-xs-7">
 										</div>
 										<label class="col-xs-2 control-label">注册资本</label>
 										<div class="col-xs-4">
-											<input type="text" id="registeredCapital" name="registeredCapital" class="col-xs-7">
+											<input type="text" id="registeredCapital" name="enterpriseInfo.registeredCapital" class="col-xs-7">
 											<label class="col-xs-3 control-label">（万元）</label>
 										</div>
 									</div>
@@ -121,12 +121,12 @@
 									<div class="form-group">
 										<label class="col-xs-2 control-label">登记机关</label>
 										<div class="col-xs-4">
-											<input type="text" id="registrationAuthority" name="registrationAuthority" class="col-xs-7">
+											<input type="text" id="registrationAuthority" name="enterpriseInfo.registrationAuthority" class="col-xs-7">
 										</div>
 
 										<label class="col-xs-2 control-label">企业所在地</label>
 										<div class="col-xs-4">
-											<select id="location" name="location" class="col-xs-7">
+											<select id="location" name="enterpriseInfo.location" class="col-xs-7">
 												<option value="">请选择</option>
 												<option value="吉林省">吉林省</option>
 												<option value="长春市">长春市</option>
@@ -138,7 +138,7 @@
 									<div class="form-group">
 										<label class="col-xs-2 control-label">认定情况</label>
 										<div class="col-xs-4">
-											<select id="identificationSituation" name="identificationSituation" class="col-xs-7">
+											<select id="identificationSituation" name="enterpriseInfo.identificationSituation" class="col-xs-7">
 												<option value="">请选择</option>
 												<option value="国家高新技术企业">国家高新技术企业</option>
 												<option value="吉林省科技型“小巨人”企业">吉林省科技型“小巨人”企业</option>
@@ -149,22 +149,22 @@
 										</div>
 										<label class="col-xs-2 control-label">行业类型</label>
 										<div class="col-xs-4">
-											<input type="text" id="industryType" name="industryType" class="col-xs-7">
+											<input type="text" id="industryType" name="enterpriseInfo.industryType" class="col-xs-7">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="col-xs-2 control-label">主要产品</label>
 										<div class="col-xs-4">
-											<input type="text" id="mainProducts" name="mainProducts" class="col-xs-7">
+											<input type="text" id="mainProducts" name="enterpriseInfo.mainProducts" class="col-xs-7">
 										</div>
 										<label class="col-xs-2 control-label">是否上市或挂牌</label>
 										<div class="col-xs-4">
 											<div class="col-xs-2 text-center">
-												<input type="radio" name="whetherListed" value="是" title="是"> 是
+												<input type="radio" name="enterpriseInfo.whetherListed" value="是" title="是"> 是
 											</div>
 											<div class="col-xs-2 text-center">
-												<input type="radio" name="whetherListed" value="否" title="否"> 否
+												<input type="radio" name="enterpriseInfo.whetherListed" value="否" title="否"> 否
 											</div>
 										</div>
 									</div>
@@ -172,66 +172,66 @@
 									<div class="form-group">
 										<label class="col-xs-2 control-label">上市类型</label>
 										<div class="col-xs-4">
-											<input type="text" id="listedType" name="listedType" class="col-xs-7" disabled>
+											<input type="text" id="listedType" name="enterpriseInfo.listedType" class="col-xs-7" disabled>
 										</div>
 										<label class="col-xs-2 control-label">股票代码</label>
 										<div class="col-xs-4">
-											<input type="text" id="stockCode" name="stockCode" class="col-xs-7" disabled>
+											<input type="text" id="stockCode" name="enterpriseInfo.stockCode" class="col-xs-7" disabled>
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="col-xs-2 control-label">上市时间</label>
 										<div class="col-xs-4">
-<%--											<input type="text" id="listedDate" name="listedDate" class="col-xs-7" readonly disabled>--%>
+											<input type="text" id="listedDate" name="enterpriseInfo.listedDate" class="col-xs-7" readonly disabled>
 										</div>
 										<label class="col-xs-2 control-label">法人姓名</label>
 										<div class="col-xs-4">
-											<input type="text" id="legalName" name="legalName" class="col-xs-7">
+											<input type="text" id="legalName" name="enterpriseInfo.legalName" class="col-xs-7">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="col-xs-2 control-label">证件类型</label>
 										<div class="col-xs-4">
-											<input type="text" id="carType" name="carType" class="col-xs-7">
+											<input type="text" id="carType" name="enterpriseInfo.carType" class="col-xs-7">
 										</div>
 										<label class="col-xs-2 control-label">证件号码</label>
 										<div class="col-xs-4">
-											<input type="text" id="carNumber" name="carNumber" class="col-xs-7">
+											<input type="text" id="carNumber" name="enterpriseInfo.carNumber" class="col-xs-7">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="col-xs-2 control-label">法人固定电话</label>
 										<div class="col-xs-4">
-											<input type="text" id="legalTelephone" name="legalTelephone" class="col-xs-7">
+											<input type="text" id="legalTelephone" name="enterpriseInfo.legalTelephone" class="col-xs-7">
 										</div>
 										<label class="col-xs-2 control-label">法人手机</label>
 										<div class="col-xs-4">
-											<input type="text" id="legalPhone" name="legalPhone" class="col-xs-7">
+											<input type="text" id="legalPhone" name="enterpriseInfo.legalPhone" class="col-xs-7">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="col-xs-2 control-label">法人邮箱</label>
 										<div class="col-xs-4">
-											<input type="text" id="legalEmail" name="legalEmail" class="col-xs-7">
+											<input type="text" id="legalEmail" name="enterpriseInfo.legalEmail" class="col-xs-7">
 										</div>
 										<label class="col-xs-2 control-label">联系人姓名</label>
 										<div class="col-xs-4">
-											<input type="text" id="contactName" name="contactName" class="col-xs-7">
+											<input type="text" id="contactName" name="enterpriseInfo.contactName" class="col-xs-7">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="col-xs-2 control-label">联系人手机</label>
 										<div class="col-xs-4">
-											<input type="text" datatype="*" id="contactPhone" name="contactPhone" class="col-xs-8">
+											<input type="text" datatype="*" id="contactPhone" name="enterpriseInfo.contactPhone" class="col-xs-8">
 										</div>
 										<label class="col-xs-2 control-label">联系人邮箱</label>
 										<div class="col-xs-4">
-											<input type="text" id="contactEmail" name="contactEmail" class="col-xs-8">
+											<input type="text" id="contactEmail" name="enterpriseInfo.contactEmail" class="col-xs-8">
 										</div>
 									</div>
 								</div>
