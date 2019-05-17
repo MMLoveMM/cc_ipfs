@@ -16,8 +16,11 @@ public class FinancingController
 {
   private final Logger logger = LoggerFactory.getLogger(FinancingController.class);
 
-  @Autowired
-  private TUsersService tUsersService;
+  private final TUsersService tUsersService;
+
+  public FinancingController(TUsersService tUsersService) {
+    this.tUsersService = tUsersService;
+  }
 
   @RequestMapping({"/toIWantFinancing"})
   public String toIWantFinancing(Model model)

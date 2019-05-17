@@ -125,7 +125,48 @@
         pdf.UPDATE_DATE AS enterpriseFilePdf.updateDate
     </sql>
 
-    <select id="selectAll" resultType="cn.net.sinodata.vo.EnterpriseInfoVo">
+    <sql id="select_all_sql2">
+        a.ID AS id,
+        a.NAME AS name,
+        a.CREDIT_CODE AS creditCode,
+        a.ENTERPRISE_CREATE_DATE AS enterpriseCreateDate,
+        a.TYPE AS type,
+        a.REGISTERED_ADDRESS AS registeredAddress,
+        a.REGISTERED_CAPITAL AS registeredCapital,
+        a.REGISTRATION_AUTHORITY AS registrationAuthority,
+        a.LOCATION AS location,
+        a.IDENTIFICATION_SITUATION AS identificationSituation,
+        a.INDUSTRY_TYPE AS industryType,
+        a.MAIN_PRODUCTS AS mainProducts,
+        a.WHETHER_LISTED AS whetherListed,
+        a.LISTED_TYPE AS listedType,
+        a.STOCK_CODE AS stockCode,
+        a.LISTED_DATE AS listedDate,
+        a.LEGAL_NAME AS legalName,
+        a.CAR_TYPE AS carType,
+        a.CAR_NUMBER AS carNumber,
+        a.LEGAL_TELEPHONE AS legalTelephone,
+        a.LEGAL_PHONE AS legalPhone,
+        a.LEGAL_EMAIL AS legalEmail,
+        a.CONTACT_NAME AS contactName,
+        a.CONTACT_PHONE AS contactPhone,
+        a.CONTACT_EMAIL AS contactEmail,
+        a.CREATE_DATE AS createDate,
+        a.UPDATE_DATE AS updateDate,
+        a.FINANCE_ID AS financeId,
+        a.PERSON_ID AS personId,
+        a.PROPERTY_ID AS propertyId,
+        a.PDF_ID AS pdfId
+
+    </sql>
+
+    <select id="selectAll" resultType="cn.net.sinodata.model.EnterpriseInfo">
+        SELECT
+            <include refid="select_all_sql2" />
+        FROM enterprise_info a
+    </select>
+
+    <select id="selectAll_del" resultType="cn.net.sinodata.vo.EnterpriseInfoVo">
         SELECT
             <include refid="select_all_sql" />
         FROM enterprise_info a
@@ -135,7 +176,15 @@
         JOIN enterprise_file_pdf pdf ON pdf.enterprise_id = a.id
     </select>
 
-    <select id="selectById" parameterType="java.lang.String"  resultType="cn.net.sinodata.vo.EnterpriseInfoVo">
+    <select id="selectById" parameterType="java.lang.String"  resultType="cn.net.sinodata.model.EnterpriseInfo">
+        SELECT
+        <include refid="select_all_sql2" />
+        FROM enterprise_info a
+        WHERE
+        a.ID = #{value}
+    </select>
+
+    <select id="selectById_del" parameterType="java.lang.String"  resultType="cn.net.sinodata.vo.EnterpriseInfoVo">
         SELECT
             <include refid="select_all_sql" />
         FROM enterprise_info a
@@ -228,7 +277,7 @@
             <if test="creditCode != '' and creditCode != null">
                 CREDIT_CODE = #{creditCode},
             </if>
-            <if test="enterpriseCreateDate != '' and enterpriseCreateDate != null">
+            <if test="enterpriseCreateDate != null">
                 ENTERPRISE_CREATE_DATE = #{enterpriseCreateDate},
             </if>
             <if test="type != '' and type != null">
@@ -264,7 +313,7 @@
             <if test="stockCode != '' and stockCode != null">
                 STOCK_CODE = #{stockCode},
             </if>
-            <if test="listedDate != '' and listedDate != null">
+            <if test="listedDate != null">
                 LISTED_DATE = #{listedDate},
             </if>
             <if test="legalName != '' and legalName != null">
@@ -306,8 +355,7 @@
             <if test="pdfId != '' and pdfId != null">
                 PDF_ID = #{pdfId}
             </if>
-            CREATE_DATE = #{createDate},
-            UPDATE_DAT = #{updateDat}
+            UPDATE_DATE = #{updateDate}
         WHERE id = #{id}
     </update>
 

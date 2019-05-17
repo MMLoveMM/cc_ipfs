@@ -26,9 +26,9 @@
 					<li>
 						<a href="${appCtx}/public/success/index">成功案例</a>
 					</li>
-					<li>
-						<a href="#">金融产品</a>
-					</li>
+<%--					<li>--%>
+<%--						<a href="#">金融产品</a>--%>
+<%--					</li>--%>
 					<li>
 						<a href="${appCtx}/public/news/index">新闻资讯</a>
 					</li>

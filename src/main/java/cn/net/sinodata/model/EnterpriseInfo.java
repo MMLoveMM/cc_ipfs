@@ -45,6 +45,8 @@ public class EnterpriseInfo implements Serializable {
     private String propertyId; //近三年知识产权id
     private String pdfId;  //相关附件id
 
+    private String enterpriseCreateDateStr;
+    private String listedDateStr;
 
     public String getId() {
         return id;
@@ -292,5 +294,21 @@ public class EnterpriseInfo implements Serializable {
 
     public void setPdfId(String pdfId) {
         this.pdfId = pdfId;
+    }
+
+    public String getEnterpriseCreateDateStr() {
+        return enterpriseCreateDateStr;
+    }
+
+    public void setEnterpriseCreateDateStr(String enterpriseCreateDateStr) {
+        this.enterpriseCreateDateStr = enterpriseCreateDateStr;
+    }
+
+    public String getListedDateStr() {
+        return listedDateStr;
+    }
+
+    public void setListedDateStr(String listedDateStr) {
+        this.listedDateStr = listedDateStr;
     }
 }

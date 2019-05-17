@@ -14,6 +14,11 @@ public class EnterprisePersonServiceImpl implements EnterprisePersonService {
 
 
     @Override
+    public EnterprisePerson selectByEnterpriseId(String enterpriseId) {
+        return enterprisePersonMapper.selectByEnterpriseId(enterpriseId);
+    }
+
+    @Override
     public int insert(EnterprisePerson enterprisePerson) {
         return enterprisePersonMapper.insert(enterprisePerson);
     }

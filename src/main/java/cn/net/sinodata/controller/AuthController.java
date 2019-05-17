@@ -137,7 +137,7 @@ public class AuthController {
 	        if (StringUtil.isEmpty(verificationCode)) {
 	          return "redirect:/index";
 	        }
-	        return "redirect:/userIndex";
+	        return "redirect:/auth/toUserIndex";
 	      }
 	    }
 	    catch (UnknownAccountException uae) {
@@ -169,7 +169,7 @@ public class AuthController {
 	    logger.debug("用户登录失败");
 
 	    if (SecurityUtils.getSubject().isAuthenticated()) {
-	      return "redirect:/userIndex";
+	      return "redirect:/auth/toUserIndex";
 	    }
 
 	    return "user_jsp/user_system/log_in";

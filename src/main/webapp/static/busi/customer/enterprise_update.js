@@ -127,7 +127,7 @@ $(function () {
                 return ;
             }
             $.ajax({
-                url: Global.appCtx + '/customer/enterprise/add',
+                url: Global.appCtx + '/customer/enterprise/update',
                 type: 'post',
                 data: $("#searchForm").serialize(),
                 dataType: 'json',
@@ -135,13 +135,13 @@ $(function () {
                     if (data != 0) {
                         bootbox.alert(data);
                     }else{
-                        bootbox.alert("企业客户录入成功", function () {
+                        bootbox.alert("企业客户更新成功", function () {
                             location.reload();
                         });
                     }
                 },
                 error : function () {
-                    bootbox.alert("企业客户录入异常");
+                    bootbox.alert("企业客户更新异常");
                 }
             });
         });

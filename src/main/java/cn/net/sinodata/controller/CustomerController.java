@@ -16,8 +16,10 @@ import java.util.UUID;
 
 import javax.servlet.ServletException;
 
+import cn.net.sinodata.model.*;
 import cn.net.sinodata.service.*;
-import cn.net.sinodata.vo.EnterpriseInfoVo;
+import cn.net.sinodata.util.*;
+import cn.net.sinodata.vo.*;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -37,43 +39,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.github.pagehelper.PageInfo;
 
-import cn.net.sinodata.model.AccessoryInfo;
-import cn.net.sinodata.model.AccessoryInfoExample;
-import cn.net.sinodata.model.AnnexDocs;
-import cn.net.sinodata.model.AnnexDocsExample;
-import cn.net.sinodata.model.AssetInfos;
-import cn.net.sinodata.model.AssetInfosExample;
-import cn.net.sinodata.model.AuxiliaryContact;
-import cn.net.sinodata.model.AuxiliaryContactExample;
-import cn.net.sinodata.model.CustomerInfo;
-import cn.net.sinodata.model.CustomerInfoExample;
-import cn.net.sinodata.model.FinacialParams;
-import cn.net.sinodata.model.FinacialParamsExample;
-import cn.net.sinodata.model.FinacialVal;
-import cn.net.sinodata.model.FinacialValExample;
 import cn.net.sinodata.model.FinacialValExample.Criteria;
-import cn.net.sinodata.model.LiabilitiesInfos;
-import cn.net.sinodata.model.LiabilitiesInfosExample;
-import cn.net.sinodata.model.PerCustomerInfo;
-import cn.net.sinodata.model.PerCustomerInfoExample;
-import cn.net.sinodata.model.ProjectInfo;
-import cn.net.sinodata.model.ProjectInfoExample;
-import cn.net.sinodata.model.TCustAcct;
-import cn.net.sinodata.model.TCustAcctExample;
-import cn.net.sinodata.model.TCustCerti;
-import cn.net.sinodata.model.TCustCertiExample;
-import cn.net.sinodata.model.TDataDict;
-import cn.net.sinodata.model.TDataDictExample;
-import cn.net.sinodata.model.TUsers;
-import cn.net.sinodata.util.DateUtil;
-import cn.net.sinodata.util.ExcelUtil;
-import cn.net.sinodata.util.JsonUtil;
-import cn.net.sinodata.util.StringUtil;
-import cn.net.sinodata.util.UploadFileUtil;
-import cn.net.sinodata.util.UuidUtil;
-import cn.net.sinodata.vo.Constant;
-import cn.net.sinodata.vo.CustomerInfoVo;
-import cn.net.sinodata.vo.PerCustomerInfoVo;
 
 
 @Controller
@@ -109,13 +75,27 @@ public class CustomerController {
 
 	private final EnterpriseInfoService enterpriseInfoService;
 
+	private final EnterpriseFinanceService enterpriseFinanceService;
+
+	private final EnterprisePersonService enterprisePersonService;
+
+	private final EnterpriseIntellectualPropertyService enterpriseIntellectualPropertyService;
+
+	private final EnterpriseFilePdfService enterpriseFilePdfService;
+
+
+
 	public CustomerController(FinacialParamsService finacialParamsService, TDataDictService tdatadictService,
 							  CustomerInfoService customerInfoService, AssetInfosService assetInfosService,
 							  FinacialValService finacialValService, LiabilitiesInfosService liabilitiesInfosService,
 							  ProjectInfoService projectInfoService, AccessoryInfoService accessoryInfoService,
 							  PerCustomerInfoService perCustomerInfoService, AnnexDocsService annexDocsService,
 							  TCustCertiService tCustCertiService, EnterpriseInfoService enterpriseInfoService,
-							  AuxiliaryContactService auxiliaryContactService, TCustAcctService tCustAcctService) {
+							  AuxiliaryContactService auxiliaryContactService, TCustAcctService tCustAcctService,
+							  EnterpriseFinanceService enterpriseFinanceService,
+							  EnterprisePersonService enterprisePersonService,
+							  EnterpriseIntellectualPropertyService enterpriseIntellectualPropertyService,
+							  EnterpriseFilePdfService enterpriseFilePdfService) {
 		this.finacialParamsService = finacialParamsService;
 		this.tdatadictService = tdatadictService;
 		this.customerInfoService = customerInfoService;
@@ -130,6 +110,10 @@ public class CustomerController {
 		this.enterpriseInfoService = enterpriseInfoService;
 		this.auxiliaryContactService = auxiliaryContactService;
 		this.tCustAcctService = tCustAcctService;
+		this.enterpriseFinanceService = enterpriseFinanceService;
+		this.enterprisePersonService = enterprisePersonService;
+		this.enterpriseIntellectualPropertyService = enterpriseIntellectualPropertyService;
+		this.enterpriseFilePdfService = enterpriseFilePdfService;
 	}
 
 	@RequestMapping(value="/company/toAdd")
@@ -270,44 +254,73 @@ public class CustomerController {
 		logger.info("删除审计数据成功");
 		return Constant.SUCCESS;
 	}
+//	/**
+//	 * 企业客户列表
+//	 * @author licc 2017年11月1日10:11:19
+//	 */
+//	@RequestMapping(value="/companys/list")
+//	public String toCompany(Model model){
+//		TUsers user = (TUsers) SecurityUtils.getSubject().getPrincipal();
+//		logger.info("用户[{}] - 进入企业客户列表页面" , user.getUserid());
+//
+//		TDataDictExample example = new TDataDictExample();
+//		List<TDataDict> tdataDict = tdatadictService.selectByExample(example);
+//
+//		model.addAttribute("countyList", JsonUtil.toJson(tdataDict));
+//		return "customer/customer_list";
+//	}
+
 	/**
 	 * 企业客户列表
-	 * @author licc 2017年11月1日10:11:19
+	 *
+	 * @author pangpj
 	 */
 	@RequestMapping(value="/companys/list")
 	public String toCompany(Model model){
 		TUsers user = (TUsers) SecurityUtils.getSubject().getPrincipal();
 		logger.info("用户[{}] - 进入企业客户列表页面" , user.getUserid());
-		
-		TDataDictExample example = new TDataDictExample();
-		List<TDataDict> tdataDict = tdatadictService.selectByExample(example);
-		
-		model.addAttribute("countyList", JsonUtil.toJson(tdataDict));
-		return "customer/customer_list";
+
+		return "customer/enterprise_list";
 	}
 	
+//	/**
+//	 * 获取企业客户信息
+//	 * @author licc
+//	 */
+//	@RequestMapping(value="/companys/list/get")
+//	@ResponseBody
+//	public PageInfo<?> getCompanysList(@RequestParam(value="rows", required=false) int rows,
+//			@RequestParam(value = "page", required=false) int page, String companyname, String contacts, String userid) throws ParseException {
+//		TUsers user = (TUsers) SecurityUtils.getSubject().getPrincipal();
+//		logger.info("用户[{}] - 开始获取企业客户数据", user.getUserid());
+//		CustomerInfoExample example = new CustomerInfoExample();
+//		if(StringUtil.isNotEmpty(companyname) && StringUtil.isNotEmpty(contacts) && StringUtil.isNotEmpty(userid)){
+//			CustomerInfoExample.Criteria criteria = example.createCriteria();
+//			criteria.andCompanynameEqualTo(companyname);
+//			criteria.andContactsEqualTo(contacts);
+//			criteria.andUseridEqualTo(userid);
+//		}
+//		PageInfo<?> pageInfo = customerInfoService.getCustomerList(page, rows, example);
+//
+//		return pageInfo;
+//	}
+
 	/**
 	 * 获取企业客户信息
 	 * @author licc
 	 */
 	@RequestMapping(value="/companys/list/get")
 	@ResponseBody
-	public PageInfo<?> getCompanysList(@RequestParam(value="rows", required=false) int rows, 
-			@RequestParam(value = "page", required=false) int page, String companyname, String contacts, String userid) throws ParseException {
+	public PageInfo<?> getCompanysList(@RequestParam(value="rows", required=false) int rows,
+									   @RequestParam(value = "page", required=false) int page, String companyname, String contacts, String userid) throws ParseException {
 		TUsers user = (TUsers) SecurityUtils.getSubject().getPrincipal();
 		logger.info("用户[{}] - 开始获取企业客户数据", user.getUserid());
-		CustomerInfoExample example = new CustomerInfoExample();
-		if(StringUtil.isNotEmpty(companyname) && StringUtil.isNotEmpty(contacts) && StringUtil.isNotEmpty(userid)){
-			CustomerInfoExample.Criteria criteria = example.createCriteria();
-			criteria.andCompanynameEqualTo(companyname);
-			criteria.andContactsEqualTo(contacts);
-			criteria.andUseridEqualTo(userid);
-		}
-		PageInfo<?> pageInfo = customerInfoService.getCustomerList(page, rows, example);
-		
+
+		PageInfo<?> pageInfo = enterpriseInfoService.getPageEnterprise(page, rows);
+
 		return pageInfo;
 	}
-	
+
 	/**
 	 * 更改推荐状态
 	 * @author licc
@@ -345,110 +358,208 @@ public class CustomerController {
 		return Constant.SUCCESS;
 	}
 	
+//	/**
+//	 * 删除客户信息
+//	 * @author licc
+//	 */
+//	@RequestMapping(value = "/companys/delCustomer")
+//	@ResponseBody
+//	public String delCustomer(String id){
+//		int flag = 1 ;
+//		@SuppressWarnings("unused")
+//		String name ;
+//		if(StringUtil.isEmpty(id)){
+//			logger.info("获取删除客户id为空");
+//			return "获取删除id为空，删除失败";
+//		}
+//		if(projectInfoService.selectByPrimaryKey(id) == null){
+//			if(perCustomerInfoService.selectByPrimaryKey(id) == null){
+//				flag = customerInfoService.deleteByPrimaryKey(id);
+//				TCustAcctExample example = new TCustAcctExample();
+//				TCustAcctExample.Criteria criteria = example.createCriteria();
+//				criteria.andCustomeridEqualTo(id);
+//				if(!tCustAcctService.selectByExample(example).isEmpty()){
+//					flag = tCustAcctService.deleteByExample(example);
+//				}
+//				TCustCertiExample example2 = new TCustCertiExample();
+//				TCustCertiExample.Criteria criteria2 = example2.createCriteria();
+//				criteria2.andCustomeridEqualTo(id);
+//				if(!tCustCertiService.selectByExample(example2).isEmpty()){
+//					flag = tCustCertiService.deleteByExample(example2);
+//				}
+//				AccessoryInfoExample example3 = new AccessoryInfoExample();
+//				AccessoryInfoExample.Criteria criteria3 = example3.createCriteria();
+//				criteria3.andTableidEqualTo(id);
+//				if(!accessoryInfoService.selectByExample(example3).isEmpty()){
+//					flag = accessoryInfoService.deleteByExample(example3);
+//				}
+//				FinacialValExample example4 = new FinacialValExample();
+//				FinacialValExample.Criteria criteria4 = example4.createCriteria();
+//				criteria4.andCustomidEqualTo(id);
+//				if(!finacialValService.selectByExample(example4).isEmpty()){
+//					flag = finacialValService.deleteByExample(example4);
+//				}
+//			}else{
+//				flag = 0;
+//				CustomerInfo customerInfo = customerInfoService.selectByPrimaryKey(id);
+//				name = customerInfo.getCompanyname();
+//			}
+//		}else{
+//			flag = 0;
+//			CustomerInfo customerInfo = customerInfoService.selectByPrimaryKey(id);
+//			name = customerInfo.getCompanyname();
+//		}
+//		if(flag < 1){
+//			logger.info("删除客户信息失败");
+//			return "删除客户信息失败";
+//		}
+//		logger.info("删除客户信息成功");
+//		return Constant.SUCCESS;
+//	}
+	
+//	/**
+//	 * 查看详情
+//	 * @author licc
+//	 */
+//	@RequestMapping(value = "/companys/viewCustomer")
+//	public String ViewCustomer(String id,Model model){
+//		TUsers user = (TUsers) SecurityUtils.getSubject().getPrincipal();
+//		logger.info("用户[{}] - 进入企业客户信息详情页面" , user.getUserid());
+//		CustomerInfo customerInfo = customerInfoService.selectByPrimaryKey(id);
+//		model.addAttribute("customerInfo", customerInfo);
+//		TCustAcctExample example = new TCustAcctExample();
+//		TCustAcctExample.Criteria criteria = example.createCriteria();
+//		criteria.andCustomeridEqualTo(id);
+//		List<TCustAcct> tCustAcct = tCustAcctService.selectByExample(example);
+//		if(!tCustAcct.isEmpty()){
+//			model.addAttribute("tCustAcct", tCustAcct);
+//		}
+//		TCustCertiExample example2 = new TCustCertiExample();
+//		TCustCertiExample.Criteria criteria2 = example2.createCriteria();
+//		criteria2.andCustomeridEqualTo(id);
+//		List<TCustCerti> tCustCerti = tCustCertiService.selectByExample(example2);
+//		if(!tCustCerti.isEmpty()){
+//			model.addAttribute("tCustCerti", tCustCerti);
+//		}
+//		AccessoryInfoExample example3 = new AccessoryInfoExample();
+//		AccessoryInfoExample.Criteria criteria3 = example3.createCriteria();
+//		criteria3.andTableidEqualTo(id);
+//		List<AccessoryInfo> accessoryInfos = accessoryInfoService.selectByExample(example3);
+//		if(!accessoryInfos.isEmpty()){
+//			model.addAttribute("accessoryInfos", accessoryInfos);
+//		}
+//		FinacialValExample example4 = new FinacialValExample();
+//		FinacialValExample.Criteria criteria4 = example4.createCriteria();
+//		criteria4.andCustomidEqualTo(id);
+//		if(!finacialValService.selectByExample(example4).isEmpty()){
+//			model.addAttribute("finacialVals", finacialValService.selectByExample(example4));
+//		}
+//
+//		TDataDictExample example5 = new TDataDictExample();
+//		List<TDataDict> tdataDict = tdatadictService.selectByExample(example5);
+//
+//		model.addAttribute("tdata", JsonUtil.toJson(tdataDict));
+//		return "customer/customer_viewss";
+//	}
+
 	/**
 	 * 删除客户信息
-	 * @author licc
+	 * @author pangpj
 	 */
 	@RequestMapping(value = "/companys/delCustomer")
 	@ResponseBody
 	public String delCustomer(String id){
-		int flag = 1 ;
-		@SuppressWarnings("unused")
-		String name ;
-		if(StringUtil.isEmpty(id)){
-			logger.info("获取删除客户id为空");
-			return "获取删除id为空，删除失败";
-		}
-		if(projectInfoService.selectByPrimaryKey(id) == null){
-			if(perCustomerInfoService.selectByPrimaryKey(id) == null){
-				flag = customerInfoService.deleteByPrimaryKey(id);
-				TCustAcctExample example = new TCustAcctExample();
-				TCustAcctExample.Criteria criteria = example.createCriteria();
-				criteria.andCustomeridEqualTo(id);
-				if(!tCustAcctService.selectByExample(example).isEmpty()){
-					flag = tCustAcctService.deleteByExample(example);
-				}
-				TCustCertiExample example2 = new TCustCertiExample();
-				TCustCertiExample.Criteria criteria2 = example2.createCriteria();
-				criteria2.andCustomeridEqualTo(id);
-				if(!tCustCertiService.selectByExample(example2).isEmpty()){
-					flag = tCustCertiService.deleteByExample(example2);
-				}
-				AccessoryInfoExample example3 = new AccessoryInfoExample();
-				AccessoryInfoExample.Criteria criteria3 = example3.createCriteria();
-				criteria3.andTableidEqualTo(id);
-				if(!accessoryInfoService.selectByExample(example3).isEmpty()){
-					flag = accessoryInfoService.deleteByExample(example3);
-				}
-				FinacialValExample example4 = new FinacialValExample();
-				FinacialValExample.Criteria criteria4 = example4.createCriteria();
-				criteria4.andCustomidEqualTo(id);
-				if(!finacialValService.selectByExample(example4).isEmpty()){
-					flag = finacialValService.deleteByExample(example4);
-				}
-			}else{
-				flag = 0;
-				CustomerInfo customerInfo = customerInfoService.selectByPrimaryKey(id);
-				name = customerInfo.getCompanyname();
-			}
-		}else{
-			flag = 0;
-			CustomerInfo customerInfo = customerInfoService.selectByPrimaryKey(id);
-			name = customerInfo.getCompanyname();
-		}
-		if(flag < 1){
-			logger.info("删除客户信息失败");
-			return "删除客户信息失败";
-		}
+		TUsers users = (TUsers) SecurityUtils.getSubject().getPrincipal();
+		logger.info("用户 {} - 开始删除客户信息", users.getId());
+
+		enterpriseInfoService.delete(id);
+
+		enterpriseFinanceService.deleteByEnterpriseId(id);
+
+		enterprisePersonService.deleteByEnterpriseId(id);
+
+		enterpriseIntellectualPropertyService.deleteByEnterpriseId(id);
+
+		enterpriseFilePdfService.deleteByEnterpriseId(id);
+
 		logger.info("删除客户信息成功");
 		return Constant.SUCCESS;
 	}
-	
+
 	/**
 	 * 查看详情
-	 * @author licc
+	 * @author pangpj
 	 */
 	@RequestMapping(value = "/companys/viewCustomer")
 	public String ViewCustomer(String id,Model model){
 		TUsers user = (TUsers) SecurityUtils.getSubject().getPrincipal();
 		logger.info("用户[{}] - 进入企业客户信息详情页面" , user.getUserid());
-		CustomerInfo customerInfo = customerInfoService.selectByPrimaryKey(id);
-		model.addAttribute("customerInfo", customerInfo);
-		TCustAcctExample example = new TCustAcctExample();
-		TCustAcctExample.Criteria criteria = example.createCriteria();
-		criteria.andCustomeridEqualTo(id);
-		List<TCustAcct> tCustAcct = tCustAcctService.selectByExample(example);
-		if(!tCustAcct.isEmpty()){
-			model.addAttribute("tCustAcct", tCustAcct);
-		}
-		TCustCertiExample example2 = new TCustCertiExample();
-		TCustCertiExample.Criteria criteria2 = example2.createCriteria();
-		criteria2.andCustomeridEqualTo(id);
-		List<TCustCerti> tCustCerti = tCustCertiService.selectByExample(example2);
-		if(!tCustCerti.isEmpty()){
-			model.addAttribute("tCustCerti", tCustCerti);
-		}
-		AccessoryInfoExample example3 = new AccessoryInfoExample();
-		AccessoryInfoExample.Criteria criteria3 = example3.createCriteria();
-		criteria3.andTableidEqualTo(id);
-		List<AccessoryInfo> accessoryInfos = accessoryInfoService.selectByExample(example3);
-		if(!accessoryInfos.isEmpty()){
-			model.addAttribute("accessoryInfos", accessoryInfos);
-		}
-		FinacialValExample example4 = new FinacialValExample();
-		FinacialValExample.Criteria criteria4 = example4.createCriteria();
-		criteria4.andCustomidEqualTo(id);
-		if(!finacialValService.selectByExample(example4).isEmpty()){
-			model.addAttribute("finacialVals", finacialValService.selectByExample(example4));
-		}
-		
-		TDataDictExample example5 = new TDataDictExample();
-		List<TDataDict> tdataDict = tdatadictService.selectByExample(example5);
-		
-		model.addAttribute("tdata", JsonUtil.toJson(tdataDict));
-		return "customer/customer_viewss";
+
+		EnterpriseInfo enterpriseInfo = enterpriseInfoService.selectById(id);
+		enterpriseInfo.setEnterpriseCreateDateStr(DateUtil.formatDate(enterpriseInfo.getEnterpriseCreateDate(), "yyyy-MM-dd"));
+		enterpriseInfo.setListedDateStr(DateUtil.formatDate(enterpriseInfo.getListedDate(), "yyyy-MM-dd"));
+
+		EnterpriseFinance enterpriseFinance = enterpriseFinanceService.selectByEnterpriseId(enterpriseInfo.getId());
+
+		EnterprisePerson enterprisePerson = enterprisePersonService.selectByEnterpriseId(enterpriseInfo.getId());
+
+		EnterpriseIntellectualProperty enterpriseIntellectualProperty =
+				enterpriseIntellectualPropertyService.selectByEnterpriseId(enterpriseInfo.getId());
+
+		EnterpriseFilePdf enterpriseFilePdf = enterpriseFilePdfService.selectByEnterpriseId(enterpriseInfo.getId());
+
+		model.addAttribute("enterpriseInfo", enterpriseInfo);
+		model.addAttribute("enterpriseFinance", enterpriseFinance);
+		model.addAttribute("enterprisePerson", enterprisePerson);
+		model.addAttribute("enterpriseIntellectualProperty", enterpriseIntellectualProperty);
+		model.addAttribute("enterpriseFilePdf", enterpriseFilePdf);
+
+		return "customer/enterprise_viewss";
 	}
-	
+
+//	/**
+//	 * 获取企业用户数据,返回更新页面
+//	 * @author licc
+//	 */
+//	@RequestMapping(value = "/companys/customerUpdate")
+//	public String getcustomerInfo(String id , Model model){
+//		TUsers user = (TUsers) SecurityUtils.getSubject().getPrincipal();
+//		logger.info("用户[{}] - 进入企业客户信息修改页面" , user.getUserid());
+//
+//		model.addAttribute("tDatas", tdatadictService.selectByExample(new TDataDictExample()));
+//
+//		CustomerInfo customerInfo = customerInfoService.selectByPrimaryKey(id);
+//		model.addAttribute("customerInfo", customerInfo);
+//		TCustAcctExample example = new TCustAcctExample();
+//		TCustAcctExample.Criteria criteria = example.createCriteria();
+//		criteria.andCustomeridEqualTo(id);
+//		List<TCustAcct> tCustAcct = tCustAcctService.selectByExample(example);
+//		if(!tCustAcct.isEmpty()){
+//			model.addAttribute("tCustAcct", tCustAcct);
+//		}
+//		TCustCertiExample example2 = new TCustCertiExample();
+//		TCustCertiExample.Criteria criteria2 = example2.createCriteria();
+//		criteria2.andCustomeridEqualTo(id);
+//		List<TCustCerti> tCustCerti = tCustCertiService.selectByExample(example2);
+//		if(!tCustCerti.isEmpty()){
+//			model.addAttribute("tCustCerti", tCustCerti);
+//		}
+//		AccessoryInfoExample example3 = new AccessoryInfoExample();
+//		AccessoryInfoExample.Criteria criteria3 = example3.createCriteria();
+//		criteria3.andTableidEqualTo(id);
+//		List<AccessoryInfo> accessoryInfos = accessoryInfoService.selectByExample(example3);
+//		if(!accessoryInfos.isEmpty()){
+//			model.addAttribute("accessoryInfos", accessoryInfos);
+//		}
+//		FinacialValExample example4 = new FinacialValExample();
+//		FinacialValExample.Criteria criteria4 = example4.createCriteria();
+//		criteria4.andCustomidEqualTo(id);
+//		if(!finacialValService.selectByExample(example4).isEmpty()){
+//			model.addAttribute("finacialVals", finacialValService.selectByExample(example4));
+//		}
+//		return "customer/customer_update";
+//	}
+
 	/**
 	 * 获取企业用户数据,返回更新页面
 	 * @author licc
@@ -457,41 +568,29 @@ public class CustomerController {
 	public String getcustomerInfo(String id , Model model){
 		TUsers user = (TUsers) SecurityUtils.getSubject().getPrincipal();
 		logger.info("用户[{}] - 进入企业客户信息修改页面" , user.getUserid());
-		
-		model.addAttribute("tDatas", tdatadictService.selectByExample(new TDataDictExample()));
-		
-		CustomerInfo customerInfo = customerInfoService.selectByPrimaryKey(id);
-		model.addAttribute("customerInfo", customerInfo);
-		TCustAcctExample example = new TCustAcctExample();
-		TCustAcctExample.Criteria criteria = example.createCriteria();
-		criteria.andCustomeridEqualTo(id);
-		List<TCustAcct> tCustAcct = tCustAcctService.selectByExample(example);
-		if(!tCustAcct.isEmpty()){
-			model.addAttribute("tCustAcct", tCustAcct);
-		}
-		TCustCertiExample example2 = new TCustCertiExample();
-		TCustCertiExample.Criteria criteria2 = example2.createCriteria();
-		criteria2.andCustomeridEqualTo(id);
-		List<TCustCerti> tCustCerti = tCustCertiService.selectByExample(example2);
-		if(!tCustCerti.isEmpty()){
-			model.addAttribute("tCustCerti", tCustCerti);
-		}
-		AccessoryInfoExample example3 = new AccessoryInfoExample();
-		AccessoryInfoExample.Criteria criteria3 = example3.createCriteria();
-		criteria3.andTableidEqualTo(id);
-		List<AccessoryInfo> accessoryInfos = accessoryInfoService.selectByExample(example3);
-		if(!accessoryInfos.isEmpty()){
-			model.addAttribute("accessoryInfos", accessoryInfos);
-		}
-		FinacialValExample example4 = new FinacialValExample();
-		FinacialValExample.Criteria criteria4 = example4.createCriteria();
-		criteria4.andCustomidEqualTo(id);
-		if(!finacialValService.selectByExample(example4).isEmpty()){
-			model.addAttribute("finacialVals", finacialValService.selectByExample(example4));
-		}
-		return "customer/customer_update";
+
+		EnterpriseInfo enterpriseInfo = enterpriseInfoService.selectById(id);
+		enterpriseInfo.setEnterpriseCreateDateStr(DateUtil.formatDate(enterpriseInfo.getEnterpriseCreateDate(), "yyyy-MM-dd"));
+		enterpriseInfo.setListedDateStr(DateUtil.formatDate(enterpriseInfo.getListedDate(), "yyyy-MM-dd"));
+
+		EnterpriseFinance enterpriseFinance = enterpriseFinanceService.selectByEnterpriseId(enterpriseInfo.getId());
+
+		EnterprisePerson enterprisePerson = enterprisePersonService.selectByEnterpriseId(enterpriseInfo.getId());
+
+		EnterpriseIntellectualProperty enterpriseIntellectualProperty =
+				enterpriseIntellectualPropertyService.selectByEnterpriseId(enterpriseInfo.getId());
+
+		EnterpriseFilePdf enterpriseFilePdf = enterpriseFilePdfService.selectByEnterpriseId(enterpriseInfo.getId());
+
+		model.addAttribute("enterpriseInfo", enterpriseInfo);
+		model.addAttribute("enterpriseFinance", enterpriseFinance);
+		model.addAttribute("enterprisePerson", enterprisePerson);
+		model.addAttribute("enterpriseIntellectualProperty", enterpriseIntellectualProperty);
+		model.addAttribute("enterpriseFilePdf", enterpriseFilePdf);
+
+		return "customer/enterprise_update";
 	}
-	
+
 	/**
 	 * 读取附件信息
 	 * 
@@ -1395,6 +1494,46 @@ public class CustomerController {
 		enterpriseInfoService.saveEnterprise(enterpriseInfoVo);
 
 		logger.info("添加企业信息成功");
+		return Constant.SUCCESS;
+	}
+
+	/**
+	 * 保存附件
+	 *
+	 * @author pangpengj
+	 */
+	@RequestMapping(value="/enterprise/uploadFile")
+	@ResponseBody
+	public Result<String> uploadFile(MultipartFile myfile, HttpServletRequest request, String customerId) throws IOException, ServletException{
+		TUsers user = (TUsers) SecurityUtils.getSubject().getPrincipal();
+		logger.info("用户 {} - 开始保存附件", user.getId());
+		Result<String> result = new Result<>();
+
+		UploadFileVo uploadFileVo = UploadFileUtil.newUploadFile(myfile, request);
+
+		if (uploadFileVo == null) {
+			logger.info("保存附件失败");
+			return result.error("保存附件失败");
+		}
+
+		logger.info("保存附件成功");
+		return result.success(uploadFileVo.getFilePath());
+	}
+
+	/**
+	 * 开始更新企业信息
+	 *
+	 * @return 是否更新成功
+	 */
+	@RequestMapping(value = "enterprise/update", method = RequestMethod.POST)
+	@ResponseBody
+	public String updateEnterprise(EnterpriseInfoVo enterpriseInfoVo) {
+		TUsers users = (TUsers) SecurityUtils.getSubject().getPrincipal();
+		logger.info("用户 [{}] - 开始更新企业信息", users.getId());
+
+		enterpriseInfoService.updateEnterprise(enterpriseInfoVo);
+
+		logger.info("更新企业信息成功");
 		return Constant.SUCCESS;
 	}
 }

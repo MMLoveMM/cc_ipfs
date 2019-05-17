@@ -14,6 +14,11 @@ public class EnterpriseFilePdfServiceImpl implements EnterpriseFilePdfService {
 
 
     @Override
+    public EnterpriseFilePdf selectByEnterpriseId(String enterpriseId) {
+        return enterpriseFilePdfMapper.selectByEnterpriseId(enterpriseId);
+    }
+
+    @Override
     public int insert(EnterpriseFilePdf enterpriseFilePdf) {
         return enterpriseFilePdfMapper.insert(enterpriseFilePdf);
     }

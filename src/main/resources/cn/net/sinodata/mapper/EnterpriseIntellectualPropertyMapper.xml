@@ -17,6 +17,30 @@
         <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
     </resultMap>
 
+    <sql id="selectSql">
+        ID,
+        ENTERPRISE_ID,
+        PATENT,
+        UTILITY_MODEL_PATENTS,
+        DESIGN_PATENT,
+        SOFTWARE_COPYRIGHT,
+        NATIONAL_NEW_DRUG,
+        MEDICINE,
+        NEW_PLANT_VARIETY,
+        CROP_VARIETY,
+        INTEGRATED_CIRCUIT,
+        CREATE_DATE,
+        UPDATE_DATE
+    </sql>
+
+    <select id="selectByEnterpriseId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="selectSql" />
+        FROM enterprise_intellectual_property
+        WHERE
+        ENTERPRISE_ID = #{value}
+    </select>
+
     <insert id="insert" parameterType="cn.net.sinodata.model.EnterpriseIntellectualProperty">
         INSERT INTO enterprise_intellectual_property
             (
@@ -83,8 +107,7 @@
             <if test="patent != '' and patent != null">
                 INTEGRATED_CIRCUIT = #{integratedCircuit},
             </if>
-            CREATE_DATE = #{createDate},
-            UPDATE_DAT = #{updateDat}
+            UPDATE_DATE = #{updateDate}
         WHERE id = #{id}
     </update>
 

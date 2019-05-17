@@ -12,6 +12,25 @@
         <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
     </resultMap>
 
+    <sql id="selectSql">
+        ID,
+        ENTERPRISE_ID,
+        BUSINESS_LICENSE_COPY,
+        INTELLECTUAL_PROPERTY,
+        FINANCIAL_AUDIT_REPORT,
+        INSTRUCTION_MANUAL,
+        CREATE_DATE,
+        UPDATE_DATE
+    </sql>
+
+    <select id="selectByEnterpriseId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="selectSql" />
+        FROM enterprise_file_pdf
+        WHERE
+        ENTERPRISE_ID = #{value}
+    </select>
+
     <insert id="insert" parameterType="cn.net.sinodata.model.EnterpriseFilePdf">
         INSERT INTO enterprise_file_pdf
             (
@@ -22,7 +41,7 @@
                 FINANCIAL_AUDIT_REPORT,
                 INSTRUCTION_MANUAL,
                 CREATE_DATE,
-                UPDATE_DATE,
+                UPDATE_DATE
             )
         VALUES
 	        (
@@ -53,8 +72,7 @@
             <if test="instructionManual != '' and instructionManual != null">
                 INSTRUCTION_MANUAL = #{instructionManual},
             </if>
-            CREATE_DATE = #{createDate},
-            UPDATE_DAT = #{updateDat}
+            UPDATE_DATE = #{updateDate}
         WHERE id = #{id}
     </update>
 

@@ -19,6 +19,32 @@
         <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
     </resultMap>
 
+    <sql id="selectSql">
+        ID AS id,
+        ENTERPRISE_ID AS enterpriseId,
+        OPERATING_INCOME AS operatingIncome,
+        MAIN_BUSINESS_INCOME AS mainBusinessIncome,
+        OPERATING_COST AS operatingCost,
+        TOTAL_TAX AS totalTax,
+        TOTAL_PROFIT AS totalProfit,
+        TOTAL_ASSETS AS totalAssets,
+        TOTAL_FIXED_ASSETS AS totalFixedAssets,
+        TOTAL_LIABILITIES AS totalLiabilities,
+        RESEARCH_COST AS researchCost,
+        GOVERNMENT_FUNDING AS governmentFunding,
+        PROPORTION AS proportion,
+        CREATE_DATE AS createDate,
+        UPDATE_DATE AS updateDate
+    </sql>
+
+    <select id="selectByEnterpriseId" resultType="cn.net.sinodata.model.EnterpriseFinance">
+        SELECT
+            <include refid="selectSql" />
+        FROM enterprise_finance
+        WHERE
+            ENTERPRISE_ID = #{value}
+    </select>
+
     <insert id="insert" parameterType="cn.net.sinodata.model.EnterpriseFinance">
         INSERT INTO enterprise_finance
             (
@@ -95,8 +121,7 @@
             <if test="operatingIncome != '' and operatingIncome != null">
                 PROPORTION = #{proportion},
             </if>
-            CREATE_DATE = #{createDate},
-            UPDATE_DAT = #{updateDat}
+            UPDATE_DATE = #{updateDate}
         WHERE id = #{id}
     </update>
 

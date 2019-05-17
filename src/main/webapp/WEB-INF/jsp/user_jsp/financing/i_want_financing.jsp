@@ -63,7 +63,7 @@
 								</a>
 							</c:if>
 							<c:if test="${empty customerInfoId}">
-								<a href="${appCtx}/customer/company/toAdd">
+								<a href="${appCtx}/customer/enterprise/toAdd">
 									<img src="${appCtx}/static/img/step_01.png"/>
 								</a>
 							</c:if>
@@ -75,7 +75,7 @@
 								</a>
 							</c:if>
 							<c:if test="${empty customerInfoId}">
-								<a href="${appCtx}/customer/company/toAdd">
+								<a href="${appCtx}/customer/enterprise/toAdd">
 									<img src="${appCtx}/static/img/step_02.png"/>
 								</a>
 							</c:if>
@@ -94,7 +94,7 @@
 								<a href="${appCtx}/customer/companys/customerUpdate?id=${customerInfoId}">修改企业信息</a>
 							</c:if>
 							<c:if test="${empty customerInfoId}">
-								<a href="${appCtx}/customer/company/toAdd">添加企业信息</a>
+								<a href="${appCtx}/customer/enterprise/toAdd">添加企业信息</a>
 							</c:if>
 						</div>
 						<div class="col-xs-4" style="margin-top: 5px;">
@@ -102,7 +102,7 @@
 								<a href="${appCtx}/project/toAdd">填写融资信息</a>
 							</c:if>
 							<c:if test="${empty customerInfoId}">
-								<a href="${appCtx}/customer/company/toAdd">填写融资信息</a>
+								<a href="${appCtx}/customer/enterprise/toAdd">填写融资信息</a>
 							</c:if>
 						</div>
 						<div class="col-xs-4" style="margin-top: 5px;">

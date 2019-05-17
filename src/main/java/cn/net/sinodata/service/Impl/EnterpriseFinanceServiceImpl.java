@@ -13,6 +13,11 @@ public class EnterpriseFinanceServiceImpl implements EnterpriseFinanceService {
     private EnterpriseFinanceMapper enterpriseFinanceMapper;
 
     @Override
+    public EnterpriseFinance selectByEnterpriseId(String enterpriseId) {
+        return enterpriseFinanceMapper.selectByEnterpriseId(enterpriseId);
+    }
+
+    @Override
     public int insert(EnterpriseFinance enterpriseFinance) {
         return enterpriseFinanceMapper.insert(enterpriseFinance);
     }

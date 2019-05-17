@@ -21,6 +21,34 @@
         <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
     </resultMap>
 
+    <sql id="selectSql">
+        ID,
+        ENTERPRISE_ID,
+        TOTAL_STAFF,
+        TECHNOLOGY_PERSON,
+        PROPORTION,
+        IN_SERVICE,
+        PART_TIME,
+        TEMPORARY,
+        DOCTOR,
+        MASTER_DEGREE,
+        BACHELOR,
+        COLLEGE_AND_BELOW,
+        SENIOR_TITLE,
+        INTERMEDIATE_TITLE,
+        PRIMARY_TITLE,
+        CREATE_DATE,
+        UPDATE_DATE
+    </sql>
+
+    <select id="selectByEnterpriseId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="selectSql" />
+        FROM enterprise_person
+        WHERE
+        ENTERPRISE_ID = #{value}
+    </select>
+
     <insert id="insert" parameterType="cn.net.sinodata.model.EnterprisePerson">
         INSERT INTO enterprise_person
             (
@@ -107,8 +135,7 @@
             <if test="primaryTitle != '' and primaryTitle != null">
                 PRIMARY_TITLE = #{primaryTitle},
             </if>
-            CREATE_DATE = #{createDate},
-            UPDATE_DAT = #{updateDat}
+            UPDATE_DATE = #{updateDate}
         WHERE id = #{id}
     </update>
 

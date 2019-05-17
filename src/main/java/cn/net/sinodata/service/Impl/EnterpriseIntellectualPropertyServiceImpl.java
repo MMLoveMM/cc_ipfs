@@ -14,6 +14,11 @@ public class EnterpriseIntellectualPropertyServiceImpl implements EnterpriseInte
 
 
     @Override
+    public EnterpriseIntellectualProperty selectByEnterpriseId(String enterpriseId) {
+        return enterpriseIntellectualPropertyMapper.selectByEnterpriseId(enterpriseId);
+    }
+
+    @Override
     public int insert(EnterpriseIntellectualProperty enterpriseIntellectualProperty) {
         return enterpriseIntellectualPropertyMapper.insert(enterpriseIntellectualProperty);
     }
