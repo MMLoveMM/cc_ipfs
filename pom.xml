@@ -6,7 +6,7 @@
 	<groupId>cn.lovemm</groupId>
 	<artifactId>lovemm</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>lovemm</name>
 	<description>Demo project for Spring Boot</description>
