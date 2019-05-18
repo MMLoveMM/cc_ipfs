@@ -102,10 +102,15 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
 		return projectInfoMapper.updateByPrimaryKey(record);
 	}
 
-	public PageInfo<?> getProjectList(int page, int rows, ProjectInfoExample example) {
+	public PageInfo<ProjectInfo> getProjectList(int page, int rows, ProjectInfoExample example) {
+		if (page > 1) {
+			page = (page - 1) * rows;
+		}else {
+			page = 0;
+		}
 		PageHelper.startPage(page, rows);
 		
-		return new PageInfo<>(projectInfoMapper.selectByExample(example));
+		return new PageInfo<ProjectInfo>(projectInfoMapper.selectByExample(example));
 	}
 
 	/**
@@ -236,8 +241,8 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
 			TUsersExample.Criteria criteria = TusersExample.createCriteria();
 			
 			criteria.andOrgansidEqualTo(organsId);
-			
-			if(tUsersService.selectByExample(TusersExample).get(0) != null ){
+			List<TUsers> users = tUsersService.selectByExample(TusersExample);
+			if(users != null && !users.isEmpty() && users.get(0) != null ){
 				userId = tUsersService.selectByExample(TusersExample).get(0).getUserid();
 			}else{
 				userId = "";
@@ -262,7 +267,11 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
 	public String getMaxProjectNum() {
 		return projectInfoService.getMaxProjectNum();
 	}
-	
-	
+
+	@Override
+	public String getAmtCont() {
+		return projectInfoMapper.getAmtCont();
+	}
+
 
 }

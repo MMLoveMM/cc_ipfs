@@ -27,7 +27,7 @@ function setTableData(data, element, tableHeader, total, skipUrl) {
     tableStr += '</tbody>' +
         '</table>';
 
-    tableStr += getFooter(total);
+    // tableStr += getFooter(total);
 
     $("#" + element).html(tableStr);
 }

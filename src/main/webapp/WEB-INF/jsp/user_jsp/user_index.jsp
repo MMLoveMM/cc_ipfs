@@ -76,19 +76,10 @@
             	描述：金融数据统计模块
             -->
 			<div class="row text-center" style="padding-top: 15px; padding-bottom: 15px;">
-				<div class="col-xs-3">
+
+				<div class="col-xs-3 col-xs-offset-1">
 					<div class="row">
-						<label class="number-font">9,870,000</label>
-						<label class="number-text-font">用户量</label>
-					</div>
-					<div class="row">
-						<label class="number-text-font-bottom">金融产品</label>
-					</div>
-				</div>
-				
-				<div class="col-xs-3">
-					<div class="row">
-						<label class="number-font">9,870,000</label>
+						<label id="amt" class="number-font"></label>
 						<label class="number-text-font">万元</label>
 					</div>
 					<div class="row">
@@ -98,7 +89,7 @@
 				
 				<div class="col-xs-3">
 					<div class="row">
-						<label class="number-font">9,870,000</label>
+						<label id="org" class="number-font"></label>
 						<label class="number-text-font">家</label>
 					</div>
 					<div class="row">
@@ -108,7 +99,7 @@
 				
 				<div class="col-xs-3">
 					<div class="row">
-						<label class="number-font">9,870,000</label>
+						<label id="company" class="number-font"></label>
 						<label class="number-text-font">家</label>
 					</div>
 					<div class="row">
@@ -144,7 +135,7 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<label class="rz-text-font">专业的专利检索功能，用更快的方式，获得有价值的情报专业的专利检索功能，用更快的方式，获得有价值的情报</label>
+									<label class="rz-text-font">为科技型企业提供技术和知识产权价值评估以及企业投资价值判断。与本地银行、高新技术企业建立紧密合作关系。</label>
 								</div>
 							</div>
 						</div>
@@ -157,7 +148,7 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<label class="rz-text-font">专业的专利检索功能，用更快的方式，获得有价值的情报专业的专利检索功能，用更快的方式，获得有价值的情报</label>
+									<label class="rz-text-font">通过济南市政策性融资担保公司等本地担保机构为科技型企业融资提供强有力的担保增信。同时可以享受济南市相关的科技金融补贴政策。</label>
 								</div>
 							</div>
 						</div>
@@ -170,7 +161,7 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<label class="rz-text-font">专业的专利检索功能，用更快的方式，获得有价值的情报专业的专利检索功能，用更快的方式，获得有价值的情报</label>
+									<label class="rz-text-font">以银行为核心，以小贷、保理、P2P、信托、融资租赁为补充，构建更快，更多，更便宜，更安全，更丰富的贷款通道，丰富企业融资选择。</label>
 								</div>
 							</div>
 						</div>
@@ -183,7 +174,7 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<label class="rz-text-font">专业的专利检索功能，用更快的方式，获得有价值的情报专业的专利检索功能，用更快的方式，获得有价值的情报</label>
+									<label class="rz-text-font">搭建债股结合的投资联盟，为科技型企业引入全方位的投融资机会。帮助优质的科技型企业获得直接的股权投资，未来通过并购、重组、IPO等形式实现退出。</label>
 								</div>
 							</div>
 						</div>
@@ -196,7 +187,7 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<label class="rz-text-font">专业的专利检索功能，用更快的方式，获得有价值的情报专业的专利检索功能，用更快的方式，获得有价值的情报</label>
+									<label class="rz-text-font">股权基金与联盟投资机构一方面可以承接债权基金转让的权益，另一方面可拥有对正常还贷企业的优先投资权，获得优先投资机会。</label>
 								</div>
 							</div>
 						</div>
@@ -243,7 +234,7 @@
 				            							<label style="font-size: 0.88rem; color: #000000;">融资需求</label>
 				            						</div>
 				            						<div class="col-xs-5 text-right">
-				            							<a href="#" class="text-right" style="font-size: 0.75rem; color: #0055C5; text-align: right;">更多</a>
+				            							<a href="${appCtx}/public/demand/index" class="text-right" style="font-size: 0.75rem; color: #0055C5; text-align: right;">更多</a>
 				            						</div>
 		            							</div>
 		            							<div class="row">
@@ -255,45 +246,9 @@
 		            					</div>
 		            					
 		            					<div class="row">
-		            						<div class="col-xs-9 text-center">
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-		            							</div>
+		            						<div id="demandTitle" class="col-xs-9 text-center">
 		            						</div>
-		            						<div class="col-xs-3 text-center">
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">2017-07-19</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">2017-07-19</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">2017-07-19</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">2017-07-19</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">2017-07-19</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">2017-07-19</label>
-		            							</div>
+		            						<div id="demandDate" class="col-xs-3 text-center">
 		            						</div>
 		            					</div>
 			            				
@@ -310,7 +265,7 @@
 				            							<label style="font-size: 0.88rem; color: #000000;">成功案例</label>
 				            						</div>
 				            						<div class="col-xs-5 text-right">
-				            							<a href="#" class="text-right" style="font-size: 0.75rem; color: #0055C5; text-align: right;">更多</a>
+				            							<a href="${appCtx}/public/success/index" class="text-right" style="font-size: 0.75rem; color: #0055C5; text-align: right;">更多</a>
 				            						</div>
 		            							</div>
 		            							<div class="row">
@@ -322,45 +277,9 @@
 		            					</div>
 		            					
 		            					<div class="row">
-		            						<div class="col-xs-9 text-center">
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-		            							</div>
+		            						<div id="successTitle" class="col-xs-9 text-center">
 		            						</div>
-		            						<div class="col-xs-3 text-center">
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">2017-07-19</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">2017-07-19</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">2017-07-19</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">2017-07-19</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">2017-07-19</label>
-		            							</div>
-		            							<div class="row">
-		            								<label style="font-size: 0.88rem;">2017-07-19</label>
-		            							</div>
+		            						<div id="successDate" class="col-xs-3 text-center">
 		            						</div>
 		            					</div>
 		            				</div>
@@ -389,9 +308,9 @@
             		<div id="scroll_div"  class="scroll_div col-xs-8">
 	            		<div id="scroll_begin">
 							<ul>
-								<li>
-									<a href="http://jinan.ctex.cn/article/yzfwjg/fwfw/201710/20171000046049.shtml" target="_blank"><img src="${appCtx}/static/img/fwgs/dai/dai_ql.png"/></a>
-								</li>
+<%--								<li>--%>
+<%--									<a href="http://jinan.ctex.cn/article/yzfwjg/fwfw/201710/20171000046049.shtml" target="_blank"><img src="${appCtx}/static/img/fwgs/dai/dai_ql.png"/></a>--%>
+<%--								</li>--%>
 								<li>
 									<a href="http://jinan.ctex.cn/article/yzfwjg/fwfw/201710/20171000046050.shtml" target="_blank"><img src="${appCtx}/static/img/fwgs/dai/dai_bjyh.png"/></a>
 								</li>
@@ -404,15 +323,15 @@
 								<li>
 									<a href="#" target="_blank"><img src="${appCtx}/static/img/fwgs/dai/dai_pf.png"/></a>
 								</li>
-								<li>
-									<a href="http://jinan.ctex.cn/article/yzfwjg/fwfw/201710/20171000046051.shtml" target="_blank"><img src="${appCtx}/static/img/fwgs/dai/dai_qd.png"/></a>
-								</li>
-								<li>
-									<a href="http://jinan.ctex.cn/article/yzfwjg/fwfw/201710/20171000046056.shtml" target="_blank"><img src="${appCtx}/static/img/fwgs/dai/dai_qsyh.png"/></a>
-								</li>
-								<li>
-									<a href="http://jinan.ctex.cn/article/yzfwjg/fwfw/201710/20171000046055.shtml" target="_blank"><img src="${appCtx}/static/img/fwgs/dai/dai_tayh.png"/></a>
-								</li>
+<%--								<li>--%>
+<%--									<a href="http://jinan.ctex.cn/article/yzfwjg/fwfw/201710/20171000046051.shtml" target="_blank"><img src="${appCtx}/static/img/fwgs/dai/dai_qd.png"/></a>--%>
+<%--								</li>--%>
+<%--								<li>--%>
+<%--									<a href="http://jinan.ctex.cn/article/yzfwjg/fwfw/201710/20171000046056.shtml" target="_blank"><img src="${appCtx}/static/img/fwgs/dai/dai_qsyh.png"/></a>--%>
+<%--								</li>--%>
+<%--								<li>--%>
+<%--									<a href="http://jinan.ctex.cn/article/yzfwjg/fwfw/201710/20171000046055.shtml" target="_blank"><img src="${appCtx}/static/img/fwgs/dai/dai_tayh.png"/></a>--%>
+<%--								</li>--%>
 								<li>
 									<a href="http://jinan.ctex.cn/article/yzfwjg/fwfw/201710/20171000046054.shtml" target="_blank"><img src="${appCtx}/static/img/fwgs/dai/dai_zgnyyh.png"/></a>
 								</li>
@@ -428,79 +347,7 @@
             	描述：金融产品和新闻资讯模块
             -->
             <div class="row" style="margin-top: 15px;">
-           		<div class="col-xs-6 col-xs-offset-1">
-           			<div class="row">
-           				<div class="col-xs-12" style="width: 99%;">
-           					<div class="row">
-	            				<div class="col-xs-2 text-center" style="background-color: #4990E2; height: 2.13rem;">
-	            					<label style="font-size: 0.88rem; margin-top: 0.44rem; color: white;">金融产品</label>
-	            				</div>
-	            				<div class="col-xs-10 text-right" style="border-bottom: 1px solid #4990E2; height: 2.13rem;">
-	            					<a href="#" style="font-size: 0.88rem; margin-top: 0.44rem;">更多</a>
-	            				</div>
-	            			</div>
-	            			
-	            			<div class="row" style="margin-top: 8px;">
-	            				<div class="col-xs-3 text-center">
-	            					<img src="${appCtx}/static/img/new_img.png" width="140"/>
-	            				</div>
-	            				<div class="col-xs-3 text-center">
-	            					<img src="${appCtx}/static/img/new_img.png" width="140"/>
-	            				</div>
-	            				<div class="col-xs-3 text-center">
-	            					<img src="${appCtx}/static/img/new_img.png" width="140"/>
-	            				</div>
-	            				<div class="col-xs-3 text-center">
-	            					<img src="${appCtx}/static/img/new_img.png" width="140"/>
-	            				</div>
-	            			</div>
-	            			<div class="row">
-	            				<div class="col-xs-3 text-center">
-	            					<label style="font-size: 0.88rem;">泰安银行"快易贷"系列</label>
-	            				</div>
-	            				<div class="col-xs-3 text-center">
-	            					<label style="font-size: 0.88rem;">泰安银行"快易贷"系列</label>
-	            				</div>
-	            				<div class="col-xs-3 text-center">
-	            					<label style="font-size: 0.88rem;">泰安银行"快易贷"系列</label>
-	            				</div>
-	            				<div class="col-xs-3 text-center">
-	            					<label style="font-size: 0.88rem;">泰安银行"快易贷"系列</label>
-	            				</div>
-	            			</div>
-	            			
-	            			<div class="row text-center" style="margin-top: 8px;">
-	            				<div class="col-xs-3">
-	            					<img src="${appCtx}/static/img/new_img.png" width="140"/>
-	            				</div>
-	            				<div class="col-xs-3">
-	            					<img src="${appCtx}/static/img/new_img.png" width="140"/>
-	            				</div>
-	            				<div class="col-xs-3">
-	            					<img src="${appCtx}/static/img/new_img.png" width="140"/>
-	            				</div>
-	            				<div class="col-xs-3">
-	            					<img src="${appCtx}/static/img/new_img.png" width="140"/>
-	            				</div>
-	            			</div>
-	            			<div class="row text-center">
-	            				<div class="col-xs-3">
-	            					<label style="font-size: 0.88rem;">泰安银行"快易贷"系列</label>
-	            				</div>
-	            				<div class="col-xs-3">
-	            					<label style="font-size: 0.88rem;">泰安银行"快易贷"系列</label>
-	            				</div>
-	            				<div class="col-xs-3">
-	            					<label style="font-size: 0.88rem;">泰安银行"快易贷"系列</label>
-	            				</div>
-	            				<div class="col-xs-3">
-	            					<label style="font-size: 0.88rem;">泰安银行"快易贷"系列</label>
-	            				</div>
-	            			</div>
-           				</div>
-           			</div>
-           		</div>
-           		<div class="col-xs-4">
+           		<div class="col-xs-5 col-xs-offset-1">
            			<div class="row">
            				<div class="col-xs-12" style="width: 99%; float: right;">
            					<div class="row">
@@ -508,68 +355,14 @@
 	            					<label style="font-size: 0.88rem; margin-top: 0.44rem; color: white;">新闻资讯</label>
 	            				</div>
 	            				<div class="col-xs-9 text-right" style="border-bottom: 1px solid #4990E2; height: 2.13rem;">
-	            					<a href="#" style="font-size: 0.88rem; margin-top: 0.44rem;">更多</a>
+	            					<a href="${appCtx}/public/news/index" style="font-size: 0.88rem; margin-top: 0.44rem;">更多</a>
 	            				</div>
 	            			</div>
-	            			
+
 	            			<div class="row" style="margin-top: 8px;">
-	            				<div class="col-xs-9">
-	            					<div class="row">
-	            						<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-	            					</div>
-	            					<div class="row">
-	            						<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-	            					</div>
-	            					<div class="row">
-	            						<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-	            					</div>
-	            					<div class="row">
-	            						<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-	            					</div>
-	            					<div class="row">
-	            						<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-	            					</div>
-	            					<div class="row">
-	            						<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-	            					</div>
-	            					<div class="row">
-	            						<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-	            					</div>
-	            					<div class="row">
-	            						<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-	            					</div>
-	            					<div class="row">
-	            						<label style="font-size: 0.88rem;">一种五类线接入式光纤上网装置一种五类线接入式光纤上网装置...</label>
-	            					</div>
+	            				<div class="col-xs-9  text-center" id="newsTitle">
 	            				</div>
-	            				<div class="col-xs-3">
-	            					<div class="row">
-	            						<label style="font-size: 0.88rem;">2017-07-19</label>
-	            					</div>
-	            					<div class="row">
-	            						<label style="font-size: 0.88rem;">2017-07-19</label>
-	            					</div>
-	            					<div class="row">
-	            						<label style="font-size: 0.88rem;">2017-07-19</label>
-	            					</div>
-	            					<div class="row">
-	            						<label style="font-size: 0.88rem;">2017-07-19</label>
-	            					</div>
-	            					<div class="row">
-	            						<label style="font-size: 0.88rem;">2017-07-19</label>
-	            					</div>
-	            					<div class="row">
-	            						<label style="font-size: 0.88rem;">2017-07-19</label>
-	            					</div>
-	            					<div class="row">
-	            						<label style="font-size: 0.88rem;">2017-07-19</label>
-	            					</div>
-	            					<div class="row">
-	            						<label style="font-size: 0.88rem;">2017-07-19</label>
-	            					</div>
-	            					<div class="row">
-	            						<label style="font-size: 0.88rem;">2017-07-19</label>
-	            					</div>
+	            				<div id="newsDate" class="col-xs-3  text-center">
 	            				</div>
 	            			</div>
            				</div>

@@ -6,7 +6,9 @@ import cn.net.sinodata.service.ServiceCompanyInfoService;
 import cn.net.sinodata.service.TOrgansService;
 import cn.net.sinodata.util.DateUtil;
 import cn.net.sinodata.util.JsonUtil;
+import cn.net.sinodata.util.Result;
 import cn.net.sinodata.util.StringUtil;
+import com.github.pagehelper.PageInfo;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,14 +33,17 @@ import java.util.Map;
 public class SuccessController {
     private static final Logger logger = LoggerFactory.getLogger(SuccessController.class);
 
-    @Autowired
-    private ProjectInfoService projectInfoService;
+    private final ProjectInfoService projectInfoService;
 
-    @Autowired
-    private ServiceCompanyInfoService serviceCompanyInfoService;
+    private final ServiceCompanyInfoService serviceCompanyInfoService;
 
-    @Autowired
-    private TOrgansService tOrgansService;
+    private final TOrgansService tOrgansService;
+
+    public SuccessController(ProjectInfoService projectInfoService, ServiceCompanyInfoService serviceCompanyInfoService, TOrgansService tOrgansService) {
+        this.projectInfoService = projectInfoService;
+        this.serviceCompanyInfoService = serviceCompanyInfoService;
+        this.tOrgansService = tOrgansService;
+    }
 
     /**
      * 进入成功案例首页
@@ -48,30 +54,68 @@ public class SuccessController {
     public String toIndex(Model model) {
         logger.info("开始进入成功案例首页");
 
+        logger.info("进入成功案例首页成功");
+        return "success/index";
+    }
+
+    /**
+     * 获取成功案例列表数据
+     *
+     * @return 成功案例列表数据
+     */
+    @RequestMapping(value = "list")
+    @ResponseBody
+    public Result<Map<String, Object>> getList(int page, int pageSize) {
+        logger.info("开始获取成功案例列表数据");
+        Result<Map<String, Object>> result = new Result<>();
+
         ProjectInfoExample example = new ProjectInfoExample();
         ProjectInfoExample.Criteria criteria = example.createCriteria();
         criteria.andStatusEqualTo("2");
 
-        List<ProjectInfo> projectInfoList = projectInfoService.selectByExample(example);
-
-        if (projectInfoList.isEmpty()) {
-            logger.info("融资需求数据为空");
-            return "success/index";
+        PageInfo<ProjectInfo> infoPage = projectInfoService.getProjectList(page, pageSize, example);
+        List<ProjectInfo> infoList = projectInfoService.selectByExample(example);
+        List<ProjectInfo> initInfoList = new ArrayList<>();
+        if (page > 1) {
+            page = (page - 1) * pageSize;
+        }else {
+            page = 0;
         }
 
-        List<Map<String, Object>> rtnMap = new ArrayList<>();
+        int forFLag = 0;
+        if (pageSize >= infoList.size()) {
+            forFLag = infoList.size();
+        }else if (pageSize <= infoList.size() - pageSize){
+            forFLag = pageSize;
+        }else {
+            forFLag = infoList.size() - pageSize;
+        }
+
+        for (int i = 0; i < forFLag; i++) {
+            initInfoList.add(infoList.get(page + i));
+        }
+        infoPage.setList(initInfoList);
+        if (infoPage == null || infoPage.getList() == null || infoPage.getList().isEmpty()) {
+            logger.info("融资需求数据为空");
+            return result.error("融资需求数据为空");
+        }
+
+        List<Map<String, Object>> rtnList = new ArrayList<>();
+        List<ProjectInfo> projectInfoList = infoPage.getList();
         for (ProjectInfo projectInfo : projectInfoList) {
             Map<String, Object> map = new HashMap<>();
             map.put("id", projectInfo.getId());
             map.put("projectName", projectInfo.getProjectname());
             map.put("createTime", DateUtil.formatDate(projectInfo.getCreatetime(), "yyyy-MM-dd"));
-            rtnMap.add(map);
+            rtnList.add(map);
         }
 
-        model.addAttribute("successList", JsonUtil.toJson(rtnMap));
+        Map<String, Object> rtnMap = new HashMap<>();
+        rtnMap.put("total", infoPage.getTotal());
+        rtnMap.put("rows", rtnList);
 
         logger.info("进入成功案例首页成功");
-        return "success/index";
+        return result.success(rtnMap);
     }
 
     /**

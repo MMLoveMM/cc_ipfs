@@ -4,8 +4,15 @@
 
 $(function () {
 
-    setTable($.parseJSON($("#newsList").val()));
-
+    $("#pager").zPager({
+        htmlBox: $('#wraper'),
+        btnShow: true,
+        pageData: 20,
+        url: Global.appCtx + '/public/news/list',
+        dataRender: function(data) {
+            setTable(data);
+        }
+    });
 });
 
 //加载表格数据

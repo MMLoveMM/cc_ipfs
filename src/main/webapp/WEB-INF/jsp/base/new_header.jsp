@@ -40,9 +40,9 @@
 								<div class="text-right" style="margin-top: -4px; height: 29px; width: 93px; background-image: url('${appCtx}/static/img/rz_btn.png');"></div>
 							</a>
 						</li>
-						<li>
-							<a href="#"><img src="${appCtx}/static/img/information.png"/></a>
-						</li>
+<%--						<li>--%>
+<%--							<a href="#"><img src="${appCtx}/static/img/information.png"/></a>--%>
+<%--						</li>--%>
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle" style="background-color: #00000"><img src="${appCtx}/static/img/user.png"/></a>
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close" style="min-width: 30px;">

@@ -1,5 +1,6 @@
 package cn.net.sinodata.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.github.pagehelper.PageInfo;
@@ -18,7 +19,7 @@ public interface ProjectInfoService extends ProjectInfoMapper {
 	 * 项目融资信息
 	 * @author licc 2017年9月18日15:43:37
 	 */
-	public PageInfo<?>  getProjectList(int page, int rows, ProjectInfoExample example);
+	public PageInfo<ProjectInfo>  getProjectList(int page, int rows, ProjectInfoExample example);
 	
 	/**
 	 * 保存项目信息,无流程

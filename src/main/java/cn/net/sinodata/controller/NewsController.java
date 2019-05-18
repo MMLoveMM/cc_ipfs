@@ -2,20 +2,18 @@ package cn.net.sinodata.controller;
 
 import cn.net.sinodata.model.News;
 import cn.net.sinodata.service.NewsService;
-import cn.net.sinodata.util.DateUtil;
-import cn.net.sinodata.util.JsonUtil;
-import cn.net.sinodata.util.StringUtil;
+import cn.net.sinodata.util.*;
+import com.github.pagehelper.PageInfo;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 新闻资讯Controller
@@ -42,26 +40,44 @@ public class NewsController {
     public String toIndex(Model model) {
         logger.info("开始进入新闻资讯首页");
 
-        List<News> newsList = newsService.selectAll();
+        logger.info("进入新闻资讯首页成功");
+        return "news/index";
+    }
 
-        if (newsList.isEmpty()) {
+    /**
+     * 获取资讯列表数据
+     *
+     * @return 获取资讯列表数据
+     */
+    @RequestMapping(value = "list")
+    @ResponseBody
+    public Result<Map<String, Object>> getList(int page, int pageSize) {
+        logger.info("开始获取新闻资讯列表数据");
+        Result<Map<String, Object>> result = new Result<>();
+
+        PageInfo<?> newsPage = newsService.getNewsPage(page, pageSize, new News());
+
+        if (newsPage == null || newsPage.getList() == null || newsPage.getList().isEmpty()) {
             logger.info("资讯数据为空");
-            return "news/index";
+            return result.error("资讯数据为空");
         }
 
-        List<Map<String, Object>> rtnMap = new ArrayList<>();
+        List<Map<String, Object>> rtnList = new ArrayList<>();
+        List<News> newsList = (List<News>) newsPage.getList();
         for (News news : newsList) {
             Map<String, Object> map = new HashMap<>();
             map.put("id", news.getId());
             map.put("title", news.getTitle());
             map.put("updateDate", DateUtil.formatDate(news.getUpdateDate(), "yyyy-MM-dd"));
-            rtnMap.add(map);
+            rtnList.add(map);
         }
 
-        model.addAttribute("newsList", JsonUtil.toJson(rtnMap));
+        Map<String, Object> rtnMap = new HashMap<>();
+        rtnMap.put("total", newsPage.getTotal());
+        rtnMap.put("rows", rtnList);
 
-        logger.info("进入新闻资讯首页成功");
-        return "news/index";
+        logger.info("获取资讯列表数据成功");
+        return result.success(rtnMap);
     }
 
     /**
@@ -86,4 +102,5 @@ public class NewsController {
         logger.info("进入资讯详情页成功");
         return "news/detail";
     }
+
 }

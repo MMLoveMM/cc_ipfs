@@ -32,19 +32,30 @@
 	<div class="row" style="margin-top: 15px;">
 		<label style="font-size: 18px;">&nbsp;&nbsp;&nbsp;| 融资需求</label>
 	</div>
+	<div class="row" style="position: absolute;">
+		<img src="${appCtx}/static/images/yzz.png" style="width: 200px; height: 200px; margin-left: 476%; margin-top: -13%;">
+	</div>
 	<table class="table table-bordered" style="margin-top: 20px; padding: 0px;">
 		<tbody>
 		<tr>
 			<td style="width: 20%;">本次融资金额</td>
-			<td style="width: 30%">${projectInfo.loanamt}</td>
+			<td style="width: 30%">${projectInfo.loanamt} 万元</td>
 			<td style="width: 20%">融资用途</td>
-			<td style="width: 30%">${projectInfo.loanuse}</td>
+			<td style="width: 30%">
+				<c:if test="${projectInfo.loanuse == '01'}">流动资金</c:if>
+				<c:if test="${projectInfo.loanuse == '02'}">项目投资建设</c:if>
+				<c:if test="${projectInfo.loanuse == '03'}">其他</c:if>
+			</td>
 		</tr>
 		<tr>
 			<td>费率</td>
-			<td>${projectInfo.rate}</td>
+			<td>${projectInfo.rate}%</td>
 			<td>融资类型</td>
-			<td>${projectInfo.loantype}</td>
+			<td>
+				<c:if test="${projectInfo.loantype == '01'}">股权</c:if>
+				<c:if test="${projectInfo.loantype == '02'}">债权</c:if>
+				<c:if test="${projectInfo.loantype == '03'}">股权+债权</c:if>
+			</td>
 		</tr>
 		<tr>
 			<td>融资期限</td>
@@ -54,27 +65,27 @@
 		</tr>
 		<tr>
 			<td>已融额度</td>
-			<td>${projectInfo.hasloanamt}</td>
+			<td>${projectInfo.hasloanamt} 万元</td>
 			<td>实际用款企业名称</td>
 			<td>${projectInfo.usemoneycompany}</td>
 		</tr>
 		<tr>
 			<td>总资产</td>
-			<td>${projectInfo.totalAssets}</td>
+			<td>${projectInfo.totalAssets} 万元</td>
 			<td>总负额</td>
-			<td>${projectInfo.totalLiability}</td>
+			<td>${projectInfo.totalLiability} 万元</td>
 		</tr>
 		<tr>
 			<td>上年度营业收入</td>
-			<td>${projectInfo.lastYearIncome}</td>
+			<td>${projectInfo.lastYearIncome} 万元</td>
 			<td>当贷款情况</td>
-			<td>${projectInfo.currentLoanSituation}</td>
+			<td>${projectInfo.currentLoanSituation} 万元</td>
 		</tr>
 		<tr>
 			<td>贷款额度</td>
-			<td>${projectInfo.loanAmount}</td>
+			<td>${projectInfo.loanAmount} 万元</td>
 			<td>股权融资额度</td>
-			<td>${projectInfo.equityFinancingAmount}</td>
+			<td>${projectInfo.equityFinancingAmount} 万元</td>
 		</tr>
 		<tr>
 			<td>拟上市融资时间</td>

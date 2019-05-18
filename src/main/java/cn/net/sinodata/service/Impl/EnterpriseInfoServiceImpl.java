@@ -72,6 +72,11 @@ public class EnterpriseInfoServiceImpl implements EnterpriseInfoService {
     }
 
     @Override
+    public String getCompanyCount() {
+        return enterpriseInfoMapper.getCompanyCount();
+    }
+
+    @Override
     public void saveEnterprise(EnterpriseInfoVo enterpriseInfoVo) {
         if (enterpriseInfoVo != null) {
             EnterpriseInfo enterpriseInfo = enterpriseInfoVo.getEnterpriseInfo();

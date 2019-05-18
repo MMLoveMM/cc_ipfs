@@ -71,4 +71,6 @@ public interface TOrgansMapper {
      * @mbggenerated 2017-09-15
      */
     int updateByPrimaryKey(TOrgans record);
+
+    String getOrgCount();
 }

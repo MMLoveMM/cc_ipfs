@@ -362,4 +362,8 @@
     <delete id="delete" parameterType="java.lang.String">
         DELETE FROM enterprise_info WHERE id = #{value};
     </delete>
+
+    <select id="getCompanyCount" resultType="java.lang.String">
+        SELECT COUNT(*) FROM enterprise_info;
+    </select>
 </mapper>

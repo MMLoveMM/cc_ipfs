@@ -1,4 +1,3 @@
-<jsp:useBean id="newsList" scope="request" type="java.lang.String"/>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ include file="../base/taglibs.jsp"%>
@@ -12,6 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 		<%-- 加载css模块  --%>
 		<jsp:include page="../base/new_css-base.jsp" flush="true" />
+		<link rel="stylesheet" type="text/css" href="${appCtx}/static/res/Page/css/page.css">
 	</head>
 
 	<body>
@@ -21,6 +21,11 @@
 		<div id="newsTable" class="container" style="padding-top: 102px;">
 
 		</div>
+
+		<div style="text-align: center;margin:0px auto;">
+			<div id="pager" class="pager clearfix">
+			</div>
+		</div>
 			
 		<%-- 加载底部模块  --%>
 		<jsp:include page="../base/new_footer.jsp" flush="true" />
@@ -29,8 +34,8 @@
 		<%-- 加载菜单脚本模块 --%>
 		<jsp:include page="../base/script-base.jsp" flush="true" />
 
-		<input id="newsList" value='${newsList}'>
 		<script src="${appCtx}/static/common/bootstrap_table_page.js"></script>
+		<script src="${appCtx}/static/res/Page/js/jquery.z-pager.js" type="text/javascript" charset="utf-8"></script>
 		<script src="${appCtx}/static/busi/news/index.js"></script>
 	</body>
 </html>

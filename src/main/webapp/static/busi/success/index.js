@@ -3,7 +3,15 @@
  */
 
 $(function () {
-    setTable($.parseJSON($("#successList").val()));
+    $("#pager").zPager({
+        htmlBox: $('#wraper'),
+        btnShow: true,
+        pageData: 20,
+        url: Global.appCtx + '/public/success/list',
+        dataRender: function(data) {
+            setTable(data);
+        }
+    });
 });
 
 //加载表格数据

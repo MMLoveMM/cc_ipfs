@@ -67,6 +67,11 @@ public class NewsServiceImpl implements NewsService {
      * @return  资讯分页数据
      */
     public PageInfo<?> getNewsPage(int page, int rows, News news) {
+        if (page > 1) {
+            page = (page - 1) * rows;
+        }else {
+            page = 0;
+        }
         PageHelper.offsetPage(page, rows);
 
         return new PageInfo<>(mapper.findNews(news));

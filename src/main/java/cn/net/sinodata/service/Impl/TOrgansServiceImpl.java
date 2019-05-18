@@ -71,4 +71,9 @@ public class TOrgansServiceImpl implements TOrgansService {
 		return tOrgansMapper.updateByPrimaryKey(record);
 	}
 
+	@Override
+	public String getOrgCount() {
+		return tOrgansMapper.getOrgCount();
+	}
+
 }

@@ -79,6 +79,5 @@ public interface ProjectInfoMapper {
      */
     String getMaxProjectNum();
   
-    
-   
+    String getAmtCont();
 }

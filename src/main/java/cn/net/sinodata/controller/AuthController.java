@@ -6,12 +6,16 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import cn.net.sinodata.service.*;
+import cn.net.sinodata.util.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
@@ -35,29 +39,33 @@ import cn.net.sinodata.model.TApplicationLog;
 import cn.net.sinodata.model.TUsers;
 import cn.net.sinodata.model.TUsersExample;
 import cn.net.sinodata.model.tUserRoleKey;
-import cn.net.sinodata.service.TApplicationLogService;
-import cn.net.sinodata.service.TUserRoleService;
-import cn.net.sinodata.service.TUsersService;
-import cn.net.sinodata.util.ImageUtil;
-import cn.net.sinodata.util.PwdUtil;
-import cn.net.sinodata.util.RequestUtil;
-import cn.net.sinodata.util.StringUtil;
-import cn.net.sinodata.util.UuidUtil;
 
 
 @Controller
 public class AuthController {
 	private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 	
-	  @Autowired
-	  private TApplicationLogService tApplicationLogService;
+	private final TApplicationLogService tApplicationLogService;
 
-	  @Autowired
-	  private TUsersService tUsersService;
+	private final TUsersService tUsersService;
 
-	  @Autowired
-	  private TUserRoleService tUserRoleService;
-	
+	private final TUserRoleService tUserRoleService;
+
+	private final TOrgansService tOrgansService;
+
+	private final EnterpriseInfoService enterpriseInfoService;
+
+	private final ProjectInfoService projectInfoService;
+
+	public AuthController(TApplicationLogService tApplicationLogService, TUsersService tUsersService, TUserRoleService tUserRoleService, TOrgansService tOrgansService, EnterpriseInfoService enterpriseInfoService, ProjectInfoService projectInfoService) {
+		this.tApplicationLogService = tApplicationLogService;
+		this.tUsersService = tUsersService;
+		this.tUserRoleService = tUserRoleService;
+		this.tOrgansService = tOrgansService;
+		this.enterpriseInfoService = enterpriseInfoService;
+		this.projectInfoService = projectInfoService;
+	}
+
 	@RequestMapping(value="/auth/login", method = RequestMethod.GET)
 	public String toLogin() {
 		logger.debug("用户登录失败");
@@ -265,4 +273,18 @@ public class AuthController {
 	    currentUser.logout();
 	    return "redirect:/public/toUserIndex";
 	  }
+
+	@RequestMapping(value = "public/getIndexNum")
+	@ResponseBody
+	public Result<Map<String, Object>> getIndexNum() {
+		logger.info("开始获取首页统计数字");
+		Result<Map<String, Object>> result = new Result<>();
+
+		Map<String, Object> rtnMap = new HashMap<>();
+		rtnMap.put("amt", projectInfoService.getAmtCont());
+		rtnMap.put("org", tOrgansService.getOrgCount());
+		rtnMap.put("company", enterpriseInfoService.getCompanyCount());
+
+		return result.success(rtnMap);
+	}
 }

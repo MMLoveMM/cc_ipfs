@@ -11,4 +11,5 @@ public interface EnterpriseInfoMapper {
     int update(EnterpriseInfo enterpriseInfo);
     int delete(String id);
     EnterpriseInfo selectById(String id);
+    String getCompanyCount();
 }

@@ -397,4 +397,8 @@
       ORG_LEVEL = #{orgLevel,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="getOrgCount" resultType="java.lang.String">
+    SELECT COUNT(*) FROM t_organs WHERE PID IN ('1', '2', '3', '4');
+  </select>
 </mapper>

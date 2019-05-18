@@ -1020,5 +1020,9 @@
    <select id="getMaxProjectNum" resultType="java.lang.String">
     select MAX(projectNum) FROM PROJECT_INFO
   </select>
+
+  <select id="getAmtCont" resultType="java.lang.String">
+    SELECT SUM(hasLoanAmt + 0) FROM project_info;
+  </select>
   
 </mapper>

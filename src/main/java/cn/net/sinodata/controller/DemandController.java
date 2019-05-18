@@ -5,8 +5,11 @@ import cn.net.sinodata.service.CustomerInfoService;
 import cn.net.sinodata.service.ProjectInfoService;
 import cn.net.sinodata.service.ServiceCompanyInfoService;
 import cn.net.sinodata.service.TOrgansService;
+import cn.net.sinodata.util.DateUtil;
 import cn.net.sinodata.util.JsonUtil;
+import cn.net.sinodata.util.Result;
 import cn.net.sinodata.util.StringUtil;
+import com.github.pagehelper.PageInfo;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,14 +34,17 @@ import java.util.Map;
 public class DemandController {
     private static final Logger logger = LoggerFactory.getLogger(DemandController.class);
 
-    @Autowired
-    private ProjectInfoService projectInfoService;
+    private final ProjectInfoService projectInfoService;
 
-    @Autowired
-    private ServiceCompanyInfoService serviceCompanyInfoService;
+    private final ServiceCompanyInfoService serviceCompanyInfoService;
 
-    @Autowired
-    private TOrgansService tOrgansService;
+    private final TOrgansService tOrgansService;
+
+    public DemandController(ProjectInfoService projectInfoService, ServiceCompanyInfoService serviceCompanyInfoService, TOrgansService tOrgansService) {
+        this.projectInfoService = projectInfoService;
+        this.serviceCompanyInfoService = serviceCompanyInfoService;
+        this.tOrgansService = tOrgansService;
+    }
 
     /**
      * 进入融资需求首页
@@ -48,28 +55,80 @@ public class DemandController {
     public String toIndex(Model model) {
         logger.info("开始进入融资需求首页");
 
-        List<ProjectInfo> projectInfoList = projectInfoService.selectByExample(new ProjectInfoExample());
+        logger.info("进入融资需求首页成功");
+        return "demand/index";
+    }
 
-        if (projectInfoList.isEmpty()) {
-            logger.info("融资需求数据为空");
-            return "demand/index";
+    /**
+     * 获取融资需求列表数据
+     *
+     * @return 融资需求列表数据
+     */
+    @RequestMapping(value = "list")
+    @ResponseBody
+    public Result<Map<String, Object>> getList(int page, int pageSize, String companyName, String type) {
+        logger.info("开始获取融资需求列表数据");
+        Result<Map<String, Object>> result = new Result<>();
+
+        ProjectInfoExample example = new ProjectInfoExample();
+        ProjectInfoExample.Criteria criteria = example.createCriteria();
+        if (StringUtil.isNotEmpty(companyName)) {
+            criteria.andProjectnameLike("%" + companyName + "%");
         }
 
-        List<Map<String, Object>> rtnMap = new ArrayList<>();
+        if (StringUtil.isNotEmpty(type)) {
+            criteria.andLoantypeEqualTo(type);
+        }
+
+        PageInfo<ProjectInfo> infoPage = projectInfoService.getProjectList(page, pageSize, example);
+        List<ProjectInfo> infoList = projectInfoService.selectByExample(example);
+        List<ProjectInfo> initInfoList = new ArrayList<>();
+        if (page > 1) {
+            page = (page - 1) * pageSize;
+        }else {
+            page = 0;
+        }
+
+        int forFLag = 0;
+        if (pageSize >= infoList.size()) {
+            forFLag = infoList.size();
+        }else if (pageSize <= infoList.size() - pageSize){
+            forFLag = pageSize;
+        }else {
+            forFLag = infoList.size() - pageSize;
+        }
+
+        for (int i = 0; i < forFLag; i++) {
+            initInfoList.add(infoList.get(page + i));
+        }
+        infoPage.setList(initInfoList);
+
+        if (infoPage == null || infoPage.getList() == null || infoPage.getList().isEmpty()) {
+            logger.info("融资需求数据为空");
+            return result.error("融资需求数据为空");
+        }
+
+        List<Map<String, Object>> rtnList = new ArrayList<>();
+        List<ProjectInfo> projectInfoList = (List<ProjectInfo>) infoPage.getList();
         for (ProjectInfo projectInfo : projectInfoList) {
             Map<String, Object> map = new HashMap<>();
             map.put("id", projectInfo.getId());
             map.put("projectname", projectInfo.getProjectname());
             map.put("loantype", projectInfo.getLoantype());
             map.put("loanamt", projectInfo.getLoanamt() + " 万元");
-            rtnMap.add(map);
+            map.put("date", DateUtil.formatDate(projectInfo.getCreatetime(), "yyyy-MM-dd"));
+            rtnList.add(map);
         }
 
-        model.addAttribute("projectInfoList", JsonUtil.toJson(rtnMap));
+        Map<String, Object> rtnMap = new HashMap<>();
+        rtnMap.put("total", infoPage.getTotal());
+        rtnMap.put("rows", rtnList);
 
-        logger.info("进入融资需求首页成功");
-        return "demand/index";
+        logger.info("获取融资需求列表数据成功");
+        return result.success(rtnMap);
     }
+
+
 
     /**
      * 进入融资需求详情页
@@ -92,14 +151,22 @@ public class DemandController {
         StringBuilder db = new StringBuilder(), bl = new StringBuilder(), pg = new StringBuilder(), jj = new StringBuilder();
 
         for (ServiceCompanyInfo info : serviceCompanyInfos) {
+            TOrgansExample tOrgansExample = new TOrgansExample();
+            TOrgansExample.Criteria tCriteria = tOrgansExample.createCriteria();
+            tCriteria.andOrgcodeEqualTo(info.getCompanyId());
+            List<TOrgans> organsList = tOrgansService.selectByExample(tOrgansExample);
+            TOrgans organs = new TOrgans();
+            if (organsList != null && !organsList.isEmpty()) {
+                organs = organsList.get(0);
+            }
             if ("10".equalsIgnoreCase(info.getType())) {
-                bl.append(tOrgansService.selectByPrimaryKey(info.getCompanyId()).getOrgname() + "，");
+                bl.append(organs.getOrgname() + "，");
             }else if ("11".equalsIgnoreCase(info.getType())) {
-                pg.append(tOrgansService.selectByPrimaryKey(info.getCompanyId()).getOrgname() + "，");
+                pg.append(organs.getOrgname() + "，");
             }else if ("12".equalsIgnoreCase(info.getType())) {
-                jj.append(tOrgansService.selectByPrimaryKey(info.getCompanyId()).getOrgname() + "，");
+                jj.append(organs.getOrgname() + "，");
             }else if ("13".equalsIgnoreCase(info.getType())) {
-                db.append(tOrgansService.selectByPrimaryKey(info.getCompanyId()).getOrgname() + "，");
+                db.append(organs.getOrgname() + "，");
             }
         }
 
