@@ -137,6 +137,7 @@
 								<li style="margin-left: 5px;"  class="btn btn-xs btn-info">保</li>
 								<li style="margin-left: 5px;"  class="btn btn-xs btn-info">贷</li>
 								<li style="margin-left: 5px;"  class="btn btn-xs btn-info">投</li>
+								<li style="margin-left: 5px;"  class="btn btn-xs btn-info">易</li>
 							</ul>
 							<div class="layui-tab-content">
 								<!--
@@ -166,6 +167,8 @@
                                 	描述：投模块
                                 -->
                                 <jsp:include page="tou.jsp" flush="true" />
+
+                                <jsp:include page="yi.jsp" flush="true" />
 							</div>
 						</div>
 					</div>

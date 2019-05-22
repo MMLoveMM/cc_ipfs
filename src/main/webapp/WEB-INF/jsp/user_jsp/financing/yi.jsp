@@ -32,6 +32,6 @@
 	</div>--%>
 
 	<div class="row" style="margin-top: 30px; margin-bottom: 40px;">
-		<label class="col-xs-10 col-xs-offset-1">投:即股权投资。搭建债股结合的投资联盟，为科技型企业引入全方位的投融资机会。帮助优质的科技型企业获得直接的股权投资，未来通过并购、重组、IPO等形式实现退出。</label>
+		<label class="col-xs-10 col-xs-offset-1">易:即多元化的交易模式和交易平台。包括技术交易所、产权交易所、股权交易所、投资机构、协会等，形成迅捷流动的交易通道。</label>
 	</div>
 </div>

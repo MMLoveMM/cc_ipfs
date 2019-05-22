@@ -43,6 +43,6 @@
 	</div>--%>
 
 	<div class="row" style="margin-top: 30px; margin-bottom: 40px;">
-		<label class="col-xs-10 col-xs-offset-1">贷:即贷款融资。以银行为核心，以小贷、保理、P2P、信托、融资租赁为补充，构建更快，更多，更便宜，更安全，更丰富的贷款通道，丰富企业融资选择。</label>
+		<label class="col-xs-10 col-xs-offset-1">贷:即贷款融资。以银行为核心，以小贷、保理、信托、融资租赁等金融机构为补充，构建更快、更多、更便宜、更安全、更丰富的贷款通道，丰富企业融资选择。</label>
 	</div>
 </div>

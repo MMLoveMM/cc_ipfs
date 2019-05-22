@@ -20,6 +20,6 @@
 	</div>--%>
 
 	<div class="row" style="margin-top: 30px; margin-bottom: 40px;">
-		<label class="col-xs-10 col-xs-offset-1">保:即投资担保。通过济南市政策性融资担保公司等本地担保机构为科技型企业融资提供强有力的担保增信。同时可以享受济南市相关的科技金融补贴政策。</label>
+		<label class="col-xs-10 col-xs-offset-1">保:即担保。通过本地担保机构为科技型企业融资提供强有力的担保增信，便捷解决企业发展急需的资金难题。</label>
 	</div>
 </div>
