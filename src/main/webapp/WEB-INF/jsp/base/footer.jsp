@@ -6,7 +6,7 @@
 		<!-- #section:basics/footer -->
 		<div class="footer-content text-center">
 			<span class="bigger-120">
-				<span class="blue bolder">ipfsin</span>
+<%--				<span class="blue bolder">ipfsin</span>--%>
 				<span style="color : gray;">长春市科技金融服务平台 &copy; 2017</span>
 			</span>
 		</div>
