@@ -81,27 +81,6 @@ public class DemandController {
         }
 
         PageInfo<ProjectInfo> infoPage = projectInfoService.getProjectList(page, pageSize, example);
-        List<ProjectInfo> infoList = projectInfoService.selectByExample(example);
-        List<ProjectInfo> initInfoList = new ArrayList<>();
-        if (page > 1) {
-            page = (page - 1) * pageSize;
-        }else {
-            page = 0;
-        }
-
-        int forFLag = 0;
-        if (pageSize >= infoList.size()) {
-            forFLag = infoList.size();
-        }else if (pageSize <= infoList.size() - pageSize){
-            forFLag = pageSize;
-        }else {
-            forFLag = infoList.size() - pageSize;
-        }
-
-        for (int i = 0; i < forFLag; i++) {
-            initInfoList.add(infoList.get(page + i));
-        }
-        infoPage.setList(initInfoList);
 
         if (infoPage == null || infoPage.getList() == null || infoPage.getList().isEmpty()) {
             logger.info("融资需求数据为空");
@@ -109,7 +88,7 @@ public class DemandController {
         }
 
         List<Map<String, Object>> rtnList = new ArrayList<>();
-        List<ProjectInfo> projectInfoList = (List<ProjectInfo>) infoPage.getList();
+        List<ProjectInfo> projectInfoList = infoPage.getList();
         for (ProjectInfo projectInfo : projectInfoList) {
             Map<String, Object> map = new HashMap<>();
             map.put("id", projectInfo.getId());

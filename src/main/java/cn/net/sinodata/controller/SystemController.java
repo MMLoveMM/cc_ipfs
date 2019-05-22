@@ -296,7 +296,7 @@ public class SystemController {
 		}
 		
 		example.setOrderByClause("OPEDATE DESC");
-		
+
 		return tApplicationLogService.getLoginReportList(page, rows, example);
 	}
 	
@@ -638,11 +638,11 @@ public class SystemController {
 
 	  @RequestMapping({"/user/list/get"})
 	  @ResponseBody
-	  public PageInfo<?> getUserList(@RequestParam(value="rows", required=true) int rows, @RequestParam(value="page", required=true) int page)
+	  public PageInfo<?> getUserList(@RequestParam(value="rows") int rows, @RequestParam(value="page") int page)
 	  {
 	    TUsers user = (TUsers)SecurityUtils.getSubject().getPrincipal();
 	    logger.info("用户[{}] - 进入获取用户信息管理列表数据", user.getUserid());
-	    logger.info("请求参数为:rows : [{}], page : [{}]", Integer.valueOf(rows), Integer.valueOf(page));
+	    logger.info("请求参数为:rows : [{}], page : [{}]", rows, page);
 
 	    PageInfo pageInfo = this.tUsersService.getAllUsers(page, rows, new TUsersExample());
 	    return pageInfo;
@@ -1423,10 +1423,8 @@ public class SystemController {
 		logger.info("用户 [{}] - 开始获取资讯列表分页数据", tUsers.getId());
 		page = PageUtil.getPage(page, rows);
 
-		PageInfo<?> pageInfo = newsService.getNewsPage(page, rows, news);
-
 		logger.info("获取资讯列表分页数据成功");
-		return pageInfo;
+		return newsService.getNewsPage(page, rows, news);
 	}
 
 	/**

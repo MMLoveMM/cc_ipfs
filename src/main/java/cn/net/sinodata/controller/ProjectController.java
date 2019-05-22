@@ -1,5 +1,6 @@
 package cn.net.sinodata.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -128,9 +129,7 @@ public class ProjectController {
 
 	    projectInfoExample.setOrderByClause("createTime DESC");
 
-	    PageInfo<?> pageInfo = this.projectInfoService.getProjectList(page, rows, projectInfoExample);
-
-	    return pageInfo;
+	    return this.projectInfoService.getProjectList(page, rows, projectInfoExample);
 	  }
 
 	  @RequestMapping({"/toMod"})

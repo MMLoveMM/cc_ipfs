@@ -103,14 +103,9 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
 	}
 
 	public PageInfo<ProjectInfo> getProjectList(int page, int rows, ProjectInfoExample example) {
-		if (page > 1) {
-			page = (page - 1) * rows;
-		}else {
-			page = 0;
-		}
 		PageHelper.startPage(page, rows);
 		
-		return new PageInfo<ProjectInfo>(projectInfoMapper.selectByExample(example));
+		return new PageInfo<>(projectInfoMapper.selectByExample(example));
 	}
 
 	/**

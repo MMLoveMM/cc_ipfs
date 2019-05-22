@@ -3,6 +3,7 @@ package cn.net.sinodata.controller;
 import cn.net.sinodata.model.News;
 import cn.net.sinodata.service.NewsService;
 import cn.net.sinodata.util.*;
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.slf4j.Logger;
@@ -55,7 +56,7 @@ public class NewsController {
         logger.info("开始获取新闻资讯列表数据");
         Result<Map<String, Object>> result = new Result<>();
 
-        PageInfo<?> newsPage = newsService.getNewsPage(page, pageSize, new News());
+        PageInfo<News> newsPage = newsService.getNewsPage(page, pageSize, new News());
 
         if (newsPage == null || newsPage.getList() == null || newsPage.getList().isEmpty()) {
             logger.info("资讯数据为空");
@@ -63,7 +64,7 @@ public class NewsController {
         }
 
         List<Map<String, Object>> rtnList = new ArrayList<>();
-        List<News> newsList = (List<News>) newsPage.getList();
+        List<News> newsList = newsPage.getList();
         for (News news : newsList) {
             Map<String, Object> map = new HashMap<>();
             map.put("id", news.getId());
@@ -102,5 +103,4 @@ public class NewsController {
         logger.info("进入资讯详情页成功");
         return "news/detail";
     }
-
 }

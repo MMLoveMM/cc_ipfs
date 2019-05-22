@@ -10,5 +10,5 @@ import java.util.Map;
  * 新闻资讯Service
  */
 public interface NewsService extends NewsMapper {
-    PageInfo<?> getNewsPage(int page, int rows, News news);
+    PageInfo<News> getNewsPage(int page, int rows, News news);
 }

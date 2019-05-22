@@ -74,35 +74,13 @@ public class SuccessController {
         criteria.andStatusEqualTo("2");
 
         PageInfo<ProjectInfo> infoPage = projectInfoService.getProjectList(page, pageSize, example);
-        List<ProjectInfo> infoList = projectInfoService.selectByExample(example);
-        List<ProjectInfo> initInfoList = new ArrayList<>();
-        if (page > 1) {
-            page = (page - 1) * pageSize;
-        }else {
-            page = 0;
-        }
-
-        int forFLag = 0;
-        if (pageSize >= infoList.size()) {
-            forFLag = infoList.size();
-        }else if (pageSize <= infoList.size() - pageSize){
-            forFLag = pageSize;
-        }else {
-            forFLag = infoList.size() - pageSize;
-        }
-
-        for (int i = 0; i < forFLag; i++) {
-            initInfoList.add(infoList.get(page + i));
-        }
-        infoPage.setList(initInfoList);
         if (infoPage == null || infoPage.getList() == null || infoPage.getList().isEmpty()) {
             logger.info("融资需求数据为空");
             return result.error("融资需求数据为空");
         }
 
         List<Map<String, Object>> rtnList = new ArrayList<>();
-        List<ProjectInfo> projectInfoList = infoPage.getList();
-        for (ProjectInfo projectInfo : projectInfoList) {
+        for (ProjectInfo projectInfo : infoPage.getList()) {
             Map<String, Object> map = new HashMap<>();
             map.put("id", projectInfo.getId());
             map.put("projectName", projectInfo.getProjectname());

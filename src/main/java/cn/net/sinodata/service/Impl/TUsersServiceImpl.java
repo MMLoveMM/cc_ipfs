@@ -80,7 +80,7 @@ public class TUsersServiceImpl implements TUsersService {
 	 */
 	public PageInfo<?> getAllUsers(int page, int rows, TUsersExample example){
 		//设置分页
-		PageHelper.offsetPage(page, rows);
+		PageHelper.startPage(page, rows);
 		
 		return new PageInfo<>(tUsersMapper.selectByExample(example));
 	}
