@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 
+import cn.net.sinodata.service.*;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,10 +27,6 @@ import cn.net.sinodata.model.TDataDictExample;
 import cn.net.sinodata.model.TOrgans;
 import cn.net.sinodata.model.TOrgansExample;
 import cn.net.sinodata.model.TUsers;
-import cn.net.sinodata.service.CustomerInfoService;
-import cn.net.sinodata.service.ProjectInfoService;
-import cn.net.sinodata.service.TDataDictService;
-import cn.net.sinodata.service.TOrgansService;
 import cn.net.sinodata.util.StringUtil;
 import cn.net.sinodata.util.UuidUtil;
 
@@ -38,17 +35,23 @@ import cn.net.sinodata.util.UuidUtil;
 public class ProjectController {
 	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 
-	@Autowired
-	private TDataDictService tDataDictService;
+	private final TDataDictService tDataDictService;
 
-	@Autowired
-	private CustomerInfoService customerInfoService;
+	private final CustomerInfoService customerInfoService;
 
-	@Autowired
-	private TOrgansService tOrgansService;
+	private final TOrgansService tOrgansService;
 	
-	@Autowired
-	private ProjectInfoService projectInfoService;
+	private final ProjectInfoService projectInfoService;
+
+	private final EnterpriseInfoService enterpriseInfoService;
+
+	public ProjectController(EnterpriseInfoService enterpriseInfoService, ProjectInfoService projectInfoService, TDataDictService tDataDictService, CustomerInfoService customerInfoService, TOrgansService tOrgansService) {
+		this.enterpriseInfoService = enterpriseInfoService;
+		this.projectInfoService = projectInfoService;
+		this.tDataDictService = tDataDictService;
+		this.customerInfoService = customerInfoService;
+		this.tOrgansService = tOrgansService;
+	}
 
 	@RequestMapping({"/toAdd"})
 	  public String toAdd(Model model) { TUsers user = (TUsers)SecurityUtils.getSubject().getPrincipal();
@@ -65,9 +68,10 @@ public class ProjectController {
 	    List<TOrgans> organs = this.tOrgansService.selectByExample(organsExample);
 	    model.addAttribute("organs", organs);
 	    model.addAttribute("tdataDicts", tdataDicts);
-	    model.addAttribute("projectName", (this.customerInfoService.selectByExample(cusExample).get(0)).getCompanyname());
-
-	    return "project/project_add";
+	    if (StringUtil.isNotEmpty(user.getCustomerInfoId())) {
+			model.addAttribute("projectName", (this.enterpriseInfoService.selectById(user.getCustomerInfoId()).getName()));
+		}
+	    return "user_jsp/project/project_add";
 	  }
 
 	  @RequestMapping({"/add"})
@@ -97,9 +101,10 @@ public class ProjectController {
 	    criteria.andUseridEqualTo(userId);
 
 	    pInfo.setId(UuidUtil.getUuid());
-	    pInfo.setCustomerid((this.customerInfoService.selectByExample(cusExample).get(0)).getId());
-	    pInfo.setProjectname((this.customerInfoService.selectByExample(cusExample).get(0)).getCompanyname());
-
+	    if (StringUtil.isNotEmpty(user.getCustomerInfoId())) {
+			pInfo.setCustomerid(this.enterpriseInfoService.selectById(user.getCustomerInfoId()).getId());
+			pInfo.setProjectname(this.enterpriseInfoService.selectById(user.getCustomerInfoId()).getName());
+		}
 	    int flag = this.projectInfoService.saveProjectInfo(pInfo, userId, sCIMap);
 	    if (flag != 1) {
 	      logger.info("保存项目信息失败");
@@ -111,10 +116,16 @@ public class ProjectController {
 	  }
 
 	  @RequestMapping({"/list"})
-	  public String toProjectList()
+	  public String toProjectList(String flag)
 	  {
 	    TUsers user = (TUsers)SecurityUtils.getSubject().getPrincipal();
 	    logger.info("用户[{}] - 进入项目列表页面", user.getUserid());
+
+		if (StringUtil.isNotEmpty(flag) && "1".equals(flag)) {
+			return "user_jsp/project/project_list";
+		} else if (StringUtil.isNotEmpty(flag) && "2".equals(flag)) {
+			return "user_jsp/project/project_list_view";
+		}
 
 	    return "project/project_list";
 	  }

@@ -12,7 +12,6 @@
 		<%-- 加载css模块  --%>
 		<jsp:include page="../base/css-table.jsp" flush="true" />
 		<jsp:include page="../base/css-base.jsp" flush="true" />
-		
 	</head>
 
 	<body class="no-skin">

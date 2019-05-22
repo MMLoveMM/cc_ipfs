@@ -494,7 +494,7 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   
-  <select id="getUserById" parameterType="java.lang.String" resultType="cn.net.sinodata.model.TUsers">
+  <select id="getUserById" parameterType="java.lang.String" resultMap="BaseResultMap">
 	select 
 		<include refid="Base_Column_List" />
 	from T_USERS where

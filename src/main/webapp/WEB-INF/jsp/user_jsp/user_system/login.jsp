@@ -29,7 +29,7 @@
 				<div class="form-group">
 					<label class="col-xs-1 col-xs-offset-4 control-label"><span style="color: red;">*</span>用户名</label>
 					<div class="col-xs-3">
-						<input type="text" class="form-control" id="userid" name="userid" placeholder="作为登录账号"/>
+						<input type="text" minlength="5" maxlength="64" class="form-control" id="userid" name="userid" placeholder="作为登录账号"/>
 					</div>
 					<label class="error-tips col-xs-3 control-label" style="color: red; text-align: left;"></label>
 				</div>

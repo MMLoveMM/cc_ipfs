@@ -587,7 +587,7 @@ public class CustomerController {
 		model.addAttribute("enterpriseIntellectualProperty", enterpriseIntellectualProperty);
 		model.addAttribute("enterpriseFilePdf", enterpriseFilePdf);
 
-		return "customer/enterprise_update";
+		return "user_jsp/enter/enterprise_update";
 	}
 
 	/**
@@ -1475,7 +1475,7 @@ public class CustomerController {
 		TUsers users = (TUsers) SecurityUtils.getSubject().getPrincipal();
 		logger.info("用户 [{}] - 开始前往添加企业信息页面", users.getId());
 
-		return "customer/enterprise_add";
+		return "user_jsp/enter/enterprise_add";
 	}
 
 

@@ -3,8 +3,6 @@
 <%@ include file="taglibs.jsp"%>
 
 <!-- page specific plugin scripts -->
-<script
-	src="${appCtx}/static/dist/js/date-time/bootstrap-datepicker.min.js"></script>
 <script src="${appCtx}/static/dist/js/jqGrid/jquery.jqGrid.min.js"></script>
 <script src="${appCtx}/static/dist/js/jqGrid/i18n/grid.locale-cn.js"></script>
 

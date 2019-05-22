@@ -33,6 +33,8 @@
 <!-- validform -->
 <script type="text/javascript" src="${appCtx}/static/res/validform/js/Validform_v5.3.2.js"></script>
 
+<script src="${appCtx}/static/dist/js/date-time/bootstrap-datepicker.min.js"></script>
+
 <script type="text/javascript">
 	// 重写ajax全局错误事件
 	$(document).ajaxError(function (event,xhr,options,exc) {

@@ -6,7 +6,7 @@ var Login = Login || {};
 Login.initModDictFormValidate = function () {
     $("#loginForm").validate({
         rules : {
-        	userid : {required : true},
+        	userid : {required : true, minlength: 5, maxlength: 64},
         	name : {required : true},
         	password : {required : true},
         	sure_password : {required : true, equalTo:"#password"},
@@ -14,7 +14,7 @@ Login.initModDictFormValidate = function () {
         	mail : {required : true, email : true}
         },
         messages : {
-        	userid : {required : "用户名不能为空"},
+        	userid : {required : "用户名不能为空", minlength: "用户名最短5位", maxlength: "用户名最长64位"},
         	name : {required : "名称不能为空"},
         	password : {required : "密码不能为空"},
         	sure_password : {required : "确认密码不能为空", equalTo:"与密码不一致"},
@@ -50,11 +50,12 @@ Login.beginLogin = function() {
 	        url: Global.appCtx + '/public/addLogin',
 	        type: 'post',
 	        data: $("#loginForm").serialize(),
-	        dataType: 'json',
+	        dataType: 'text',
 	        success: function (data) {
 	        	console.log(data);
 	            if (data != 0) {
 	                bootbox.alert(data);
+	                return false;
 	            }
 	            bootbox.alert("注册成功", function () {
 	            	window.location.href = Global.appCtx + "/public/toUserLogIn";

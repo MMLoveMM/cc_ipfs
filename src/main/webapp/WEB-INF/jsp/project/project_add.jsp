@@ -371,7 +371,6 @@
 								<button type="button" class="btn btn-sm btn-default" id="cancelAdd"
 									onClick="self.location=document.referrer;">返回</button>
 							</div>
-						</div>
 					</form>
 					<!-- PAGE CONTENT ENDS -->
 				</div>

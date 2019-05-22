@@ -82,7 +82,7 @@
 							
 						</div>
 						<div class="col-xs-4" style="margin-top: -40px;">
-							<a href="${appCtx}/project/list">
+							<a href="${appCtx}/project/list?flag=1">
 								<img src="${appCtx}/static/img/setp_03.png"/>
 							</a>
 						</div>
@@ -106,7 +106,7 @@
 							</c:if>
 						</div>
 						<div class="col-xs-4" style="margin-top: 5px;">
-							<a href="${appCtx}/project/list">查看融资进度</a>
+							<a href="${appCtx}/project/list?flag=1">查看融资进度</a>
 						</div>
 					</div>
 				</div>
