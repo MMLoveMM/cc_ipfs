@@ -3,7 +3,7 @@
 <%@ include file="../../base/taglibs.jsp"%>
 	
 <div class="layui-tab-item">
-	<div class="row text-center" style="margin-top: 30px;">
+	<%--<div class="row text-center" style="margin-top: 30px;">
 		<div class="col-xs-12">
 			<div class="row">
 				<div class="col-xs-4 text-center">
@@ -29,7 +29,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>--%>
 
 	<div class="row" style="margin-top: 30px; margin-bottom: 40px;">
 		<label class="col-xs-10 col-xs-offset-1">投:即股权投资。由中关村中技知识产权集团及济南本地基金管理有限公司作为联合GP，搭建债股结合的投资联盟，为科技型企业引入全方位的投融资机会。帮助优质高新技术企业获得直接的股权投资，未来通过并购、重组、IPO等形式实现退出。</label>

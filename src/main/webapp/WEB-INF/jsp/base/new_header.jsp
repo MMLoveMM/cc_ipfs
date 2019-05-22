@@ -30,7 +30,10 @@
 <%--						<a href="#">金融产品</a>--%>
 <%--					</li>--%>
 					<li>
-						<a href="${appCtx}/public/news/index">新闻资讯</a>
+						<a href="${appCtx}/public/news/index">通知公告</a>
+					</li>
+					<li>
+						<a target="_blank" href="${appCtx}/static/pdf/sysc.pdf">使用手册</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

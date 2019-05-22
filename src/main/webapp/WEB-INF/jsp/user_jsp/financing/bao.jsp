@@ -3,7 +3,7 @@
 <%@ include file="../../base/taglibs.jsp"%>
 
 <div class="layui-tab-item">
-	<div class="row text-center" style="margin-top: 30px;">
+	<%--<div class="row text-center" style="margin-top: 30px;">
 		<div class="col-xs-12">
 			<div class="row">
 				<div class="col-xs-4 text-center">
@@ -17,7 +17,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>--%>
 
 	<div class="row" style="margin-top: 30px; margin-bottom: 40px;">
 		<label class="col-xs-10 col-xs-offset-1">保:即投资担保。通过济南市政策性融资担保公司等本地担保机构为科技型企业融资提供强有力的担保增信。同时可以享受济南市相关的科技金融补贴政策。</label>

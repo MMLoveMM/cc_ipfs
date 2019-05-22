@@ -37,7 +37,7 @@
 			}
 			.scroll_div {
 				/*width: 60%;*/
-				height: 45px;
+				height: 75px;
 				/*margin: 0 auto;*/
 				margin-top: 34px;
 				overflow: hidden;
@@ -113,8 +113,8 @@
             	时间：2017-12-01
             	描述：五位一体模块
             -->
-			<div class="row" style="background-color: #E5EDF6;">
-				<div class="col-xs-12">
+			<div class="row">
+				<div class="col-xs-5 col-xs-offset-1" style="background-color: #E5EDF6;">
 					<div class="row" style="margin-top: 20px;">
 						<div class="col-xs-12 text-center">
 							<div class="col-xs-5 text-right">
@@ -135,7 +135,7 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<label class="rz-text-font">为科技型企业提供技术和知识产权价值评估以及企业投资价值判断。与本地银行、高新技术企业建立紧密合作关系。</label>
+									<label class="rz-text-font">即股权评估与知识产权评估。为科技型企业提供技术和知识产权价值评估以及企业投资价值判断。依托技术评估的专家团队、对所关注专利技术的法律状态、技术水平、经济价值进行科学评估和分析。</label>
 								</div>
 							</div>
 						</div>
@@ -148,7 +148,7 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<label class="rz-text-font">通过济南市政策性融资担保公司等本地担保机构为科技型企业融资提供强有力的担保增信。同时可以享受济南市相关的科技金融补贴政策。</label>
+									<label class="rz-text-font">即担保。通过本地担保机构为科技型企业融资提供强有力的担保增信，便捷解决企业发展急需的资金难题。</label>
 								</div>
 							</div>
 						</div>
@@ -161,7 +161,7 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<label class="rz-text-font">以银行为核心，以小贷、保理、P2P、信托、融资租赁为补充，构建更快，更多，更便宜，更安全，更丰富的贷款通道，丰富企业融资选择。</label>
+									<label class="rz-text-font">即贷款融资。以银行为核心，以小贷、保理、信托、融资租赁等金融机构为补充，构建更快、更多、更便宜、更安全、更丰富的贷款通道，丰富企业融资选择。</label>
 								</div>
 							</div>
 						</div>
@@ -174,7 +174,7 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<label class="rz-text-font">搭建债股结合的投资联盟，为科技型企业引入全方位的投融资机会。帮助优质的科技型企业获得直接的股权投资，未来通过并购、重组、IPO等形式实现退出。</label>
+									<label class="rz-text-font">即股权投资。搭建债股结合的投资联盟，为科技型企业引入全方位的投融资机会。帮助优质的科技型企业获得直接的股权投资，未来通过并购、重组、IPO等形式实现退出。</label>
 								</div>
 							</div>
 						</div>
@@ -187,7 +187,7 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<label class="rz-text-font">股权基金与联盟投资机构一方面可以承接债权基金转让的权益，另一方面可拥有对正常还贷企业的优先投资权，获得优先投资机会。</label>
+									<label class="rz-text-font">即多元化的交易模式和交易平台。包括技术交易所、产权交易所、股权交易所、投资机构、协会等，形成迅捷流动的交易通道。</label>
 								</div>
 							</div>
 						</div>
@@ -201,6 +201,27 @@
 							<shiro:guest>
 								<a href="${appCtx}/public/toUserLogIn"><div class="btn btn-info wyrz">我要融资</div></a>
 							</shiro:guest>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-5">
+					<div class="row">
+						<div class="col-xs-12" style="width: 99%; float: right;">
+							<div class="row">
+								<div class="col-xs-3 text-center" style="background-color: #4990E2; height: 2.13rem;">
+									<label style="font-size: 0.88rem; margin-top: 0.44rem; color: white;">通知公告</label>
+								</div>
+								<div class="col-xs-9 text-right" style="border-bottom: 1px solid #4990E2; height: 2.13rem;">
+									<a href="${appCtx}/public/news/index" style="font-size: 0.88rem; margin-top: 0.44rem;">更多</a>
+								</div>
+							</div>
+
+							<div class="row" style="margin-top: 8px;">
+								<div class="col-xs-9  text-center" id="newsTitle">
+								</div>
+								<div id="newsDate" class="col-xs-3  text-center">
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -332,8 +353,23 @@
 <%--								<li>--%>
 <%--									<a href="http://jinan.ctex.cn/article/yzfwjg/fwfw/201710/20171000046055.shtml" target="_blank"><img src="${appCtx}/static/img/fwgs/dai/dai_tayh.png"/></a>--%>
 <%--								</li>--%>
-								<li>
+								<%--<li>
 									<a href="http://jinan.ctex.cn/article/yzfwjg/fwfw/201710/20171000046054.shtml" target="_blank"><img src="${appCtx}/static/img/fwgs/dai/dai_zgnyyh.png"/></a>
+								</li>--%>
+								<li>
+									<a href="http://www.icbc.com.cn/icbc/" target="_blank"><img src="${appCtx}/static/img/fwgs/dai/dai_icbc.png"/></a>
+								</li>
+								<li>
+									<a href="http://www.ccb.com/cn/home/indexv3.html" target="_blank"><img src="${appCtx}/static/img/fwgs/dai/dai_jsyh.png"/></a>
+								</li>
+								<li>
+									<a href="http://www.bankcomm.com/BankCommSite/default.shtml" target="_blank"><img src="${appCtx}/static/img/fwgs/dai/dai_jtyh.png"/></a>
+								</li>
+								<li>
+									<a href="http://www.cmbchina.com/" target="_blank"><img src="${appCtx}/static/img/fwgs/dai/dai_zsyh.png"/></a>
+								</li>
+								<li>
+									<a href="https://www.cib.com.cn/cn/index.html" target="_blank"><img src="${appCtx}/static/img/fwgs/dai/dai_xyyh.png"/></a>
 								</li>
 							</ul>
 						</div>
@@ -344,30 +380,10 @@
             <!--
             	作者：pangpj
             	时间：2017-12-04
-            	描述：金融产品和新闻资讯模块
+            	描述：通知公告
             -->
             <div class="row" style="margin-top: 15px;">
-           		<div class="col-xs-5 col-xs-offset-1">
-           			<div class="row">
-           				<div class="col-xs-12" style="width: 99%; float: right;">
-           					<div class="row">
-	            				<div class="col-xs-3 text-center" style="background-color: #4990E2; height: 2.13rem;">
-	            					<label style="font-size: 0.88rem; margin-top: 0.44rem; color: white;">新闻资讯</label>
-	            				</div>
-	            				<div class="col-xs-9 text-right" style="border-bottom: 1px solid #4990E2; height: 2.13rem;">
-	            					<a href="${appCtx}/public/news/index" style="font-size: 0.88rem; margin-top: 0.44rem;">更多</a>
-	            				</div>
-	            			</div>
 
-	            			<div class="row" style="margin-top: 8px;">
-	            				<div class="col-xs-9  text-center" id="newsTitle">
-	            				</div>
-	            				<div id="newsDate" class="col-xs-3  text-center">
-	            				</div>
-	            			</div>
-           				</div>
-           			</div>
-           		</div>
             </div>
 		</div>
 			

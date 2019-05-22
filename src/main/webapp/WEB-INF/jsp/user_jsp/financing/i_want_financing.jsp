@@ -132,11 +132,11 @@
 					
 					<div class="row"  style="margin-top: 10px; margin-bottom: 40px; height: 350px;">
 						<div class="layui-tab layui-tab-card">
-							<ul class="layui-tab-title">
-								<li class="layui-this">评</li>
-								<li>保</li>
-								<li>贷</li>
-								<li>投</li>
+							<ul class="layui-tab-title" style="height: 45px;">
+								<li style="margin-left: 5px;" class="layui-this btn btn-xs btn-info">评</li>
+								<li style="margin-left: 5px;"  class="btn btn-xs btn-info">保</li>
+								<li style="margin-left: 5px;"  class="btn btn-xs btn-info">贷</li>
+								<li style="margin-left: 5px;"  class="btn btn-xs btn-info">投</li>
 							</ul>
 							<div class="layui-tab-content">
 								<!--

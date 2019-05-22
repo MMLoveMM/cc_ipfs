@@ -85,7 +85,7 @@ INDEX.news = function() {
 	$.ajax({
 		url: Global.appCtx + '/public/news/list',
 		type: 'GET',
-		data: params,
+		data: {page: 1, pageSize: 16},
 		dataType: 'json',
 		success: function (resultData) {
 			if (resultData.flagCode === "0") {
