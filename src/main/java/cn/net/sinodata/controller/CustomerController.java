@@ -7,12 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import javax.servlet.ServletException;
 
@@ -1516,7 +1511,7 @@ public class CustomerController {
 		}
 
 		logger.info("保存附件成功");
-		return result.success(uploadFileVo.getFilePath());
+		return result.success(uploadFileVo.getFilePath().substring(uploadFileVo.getFilePath().indexOf("static") - 1));
 	}
 
 	/**
@@ -1535,4 +1530,5 @@ public class CustomerController {
 		logger.info("更新企业信息成功");
 		return Constant.SUCCESS;
 	}
+
 }
