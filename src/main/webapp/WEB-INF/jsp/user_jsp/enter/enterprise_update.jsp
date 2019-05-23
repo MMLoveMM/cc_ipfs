@@ -206,11 +206,11 @@
 						<div class="form-group">
 							<label class="col-xs-2 control-label">联系人手机</label>
 							<div class="col-xs-4">
-								<input type="text" datatype="*" id="contactPhone" name="enterpriseInfo.contactPhone" value="${enterpriseInfo.contactPhone}" class="col-xs-8">
+								<input type="text" datatype="*" id="contactPhone" name="enterpriseInfo.contactPhone" value="${enterpriseInfo.contactPhone}" class="col-xs-7">
 							</div>
 							<label class="col-xs-2 control-label">联系人邮箱</label>
 							<div class="col-xs-4">
-								<input type="text" id="contactEmail" name="enterpriseInfo.contactEmail" value="${enterpriseInfo.contactEmail}" class="col-xs-8">
+								<input type="text" id="contactEmail" name="enterpriseInfo.contactEmail" value="${enterpriseInfo.contactEmail}" class="col-xs-7">
 							</div>
 						</div>
 					</div>
