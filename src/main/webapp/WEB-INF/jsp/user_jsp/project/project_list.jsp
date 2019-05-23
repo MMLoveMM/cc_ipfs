@@ -11,6 +11,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 		<%-- 加载css模块  --%>
 		<jsp:include page="../../base/new_css-base.jsp" flush="true" />
+
+		<link rel="stylesheet" type="text/css" href="${appCtx}/static/res/Page/css/page.css">
 		
 		<style type="text/css">
 			.layui-tab-card>.layui-tab-title {
@@ -45,10 +47,19 @@
 			</div>
 		</div>
 
-		<div class="container" style="padding-top: 50px;">
-			<div class="col-xs-offset-2">
-				<iframe src="${appCtx}/project/list?flag=2" height="507px" width="753px"></iframe>
+		<div id="projectTable" class="container" style="padding-top: 102px;">
+
+		</div>
+
+		<div style="text-align: center;margin:0px auto;">
+			<div id="pager" class="pager clearfix">
 			</div>
+		</div>
+
+		<div class="container" style="padding-top: 50px;">
+<%--			<div class="col-xs-offset-2">--%>
+<%--				<iframe src="${appCtx}/project/list?flag=2" height="507px" width="753px"></iframe>--%>
+<%--			</div>--%>
 
 			<div class="col-xs-12 text-center">
 				<button type="button" class="btn btn-sm btn-default" id="cancelAdd"
@@ -62,6 +73,8 @@
 		<!-- basic scripts -->
 		<%-- 加载菜单脚本模块 --%>
 		<jsp:include page="../../base/script-base.jsp" flush="true" />
+		<script src="${appCtx}/static/common/bootstrap_table_page.js"></script>
+		<script src="${appCtx}/static/res/Page/js/jquery.z-pager.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="${appCtx}/static/busi/user_jsp/project/project_list.js"></script>
 	</body>
 </html>

@@ -27,7 +27,7 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,13 +57,16 @@ public class AuthController {
 
 	private final ProjectInfoService projectInfoService;
 
-	public AuthController(TApplicationLogService tApplicationLogService, TUsersService tUsersService, TUserRoleService tUserRoleService, TOrgansService tOrgansService, EnterpriseInfoService enterpriseInfoService, ProjectInfoService projectInfoService) {
+	private final Environment env;
+
+	public AuthController(TApplicationLogService tApplicationLogService, TUsersService tUsersService, TUserRoleService tUserRoleService, TOrgansService tOrgansService, EnterpriseInfoService enterpriseInfoService, ProjectInfoService projectInfoService, Environment env) {
 		this.tApplicationLogService = tApplicationLogService;
 		this.tUsersService = tUsersService;
 		this.tUserRoleService = tUserRoleService;
 		this.tOrgansService = tOrgansService;
 		this.enterpriseInfoService = enterpriseInfoService;
 		this.projectInfoService = projectInfoService;
+		this.env = env;
 	}
 
 	@RequestMapping(value="/auth/login", method = RequestMethod.GET)
@@ -101,18 +104,16 @@ public class AuthController {
 	 */
 	@RequestMapping(value = "/public/login", method = RequestMethod.POST)
 	public String login(HttpServletRequest request, HttpServletResponse response, String username, 
-			String password, String verificationCode, Model model, RedirectAttributes redirectAttributes) {
+			String password, String luotest_response, Model model, RedirectAttributes redirectAttributes) {
 		logger.info("用户[{}] - 开始登录", username);
 
-	    if (StringUtil.isNotEmpty(verificationCode))
-	    {
-	      Session session = SecurityUtils.getSubject().getSession();
-	      String imgcode = (String)session.getAttribute("imgCode");
-	      if (!verificationCode.equalsIgnoreCase(imgcode)) {
-	        redirectAttributes.addFlashAttribute("message", "验证码错误");
+	    if (StringUtil.isNotEmpty(luotest_response)) {
+	    	;
+			if (!isLsmValidate(luotest_response)) {
+			redirectAttributes.addFlashAttribute("message", "验证码错误");
 
-	        return "redirect:/public/toUserLogIn";
-	      }
+			return "redirect:/public/toUserLogIn";
+			}
 
 	    }
 
@@ -142,7 +143,7 @@ public class AuthController {
 	        }
 
 	        logger.info("添加登录日志成功,添加账号为 - [{}]", username);
-	        if (StringUtil.isEmpty(verificationCode)) {
+	        if (StringUtil.isEmpty(luotest_response)) {
 	          return "redirect:/index";
 	        }
 	        return "redirect:/auth/toUserIndex";
@@ -166,7 +167,7 @@ public class AuthController {
 	      redirectAttributes.addFlashAttribute("message", "用户名或密码不正确");
 	    }
 	    token.clear();
-	    if (StringUtil.isEmpty(verificationCode)) {
+	    if (StringUtil.isEmpty(luotest_response)) {
 	      return "redirect:/auth/login";
 	    }
 	    return "redirect:/public/toUserLogIn";
@@ -286,5 +287,38 @@ public class AuthController {
 		rtnMap.put("company", enterpriseInfoService.getCompanyCount());
 
 		return result.success(rtnMap);
+	}
+
+	/**
+	 * 门户登录验证码校验
+	 *
+	 *
+	 * @return
+	 */
+	public boolean isLsmValidate(String lsmResponse) {
+		if (StringUtil.isEmpty(lsmResponse)) {
+			logger.info("没有正确操作验证");
+			return false;
+		}
+
+		Map<String, String> params = new HashMap<>();
+		params.put("response", lsmResponse);
+		params.put("api_key", env.getProperty("apiKey"));
+
+		String jsonStr = HttpUtil.sendPost(env.getProperty("lsmValidateAddr"), params);
+
+		logger.info("lsm验证回调结果: {}", jsonStr);
+
+		if (StringUtil.isEmpty(jsonStr)) {
+			logger.info("获取验证码校验情况错误");
+			return false;
+		}
+
+		if (!jsonStr.contains("success")) {
+			logger.info("校验出错");
+			return false;
+		}
+
+		return true;
 	}
 }

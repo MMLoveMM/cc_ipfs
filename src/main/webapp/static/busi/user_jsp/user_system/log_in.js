@@ -35,8 +35,20 @@ LogIn.beginLogIn = function() {
 	    if (!result) {
 	       return;
 	    }
+
+    $("#login_error_msg").hide();
+    if (!$("#lc-captcha-response").val()) {
+        $("#captcha2").parent().find(".error-tips").html("请先完成校验").show().end()
+            .find(".error-icon").addClass("fa fa-times-circle").css("color", "red").show();
+        e.preventDefault();
+        sure_login(false);
+        return;
+    }else{
+        $("#captcha2").parent().find(".error-tips").html("").show().end()
+            .find(".error-icon").removeClass("fa fa-times-circle").addClass("fa fa-check-circle").css("color", "green");
+    }
 	    	
-	    $("#logInForm").submit();
+    $("#logInForm").submit();
 }
 
 /**

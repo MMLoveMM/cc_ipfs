@@ -11,6 +11,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 		<%-- 加载css模块  --%>
 		<jsp:include page="../../base/new_css-base.jsp" flush="true" />
+
+		<script src="//captcha.luosimao.com/static/js/api.js"></script>
 	</head>
 
 	<body>
@@ -41,13 +43,12 @@
 				</div>
 				
 				<div class="form-group">
-					<div class="col-xs-3 col-xs-offset-4">
-						<input type="text" class="form-control" id="verificationCode" name="verificationCode" placeholder="验证码"/>
+					<div class="col-xs-4 col-xs-offset-4">
+						<div id="captcha2"></div>
+						<div class="l-captcha" data-site-key="3f02522487a366e2dd7556653c4a464f" data-width="100%"></div>
+						<span class="error-icon"></span>
+						<span class="error-tips"></span>
 					</div>
-					<div class="col-xs-1 text-center">
-						<img id="verifyCode" src="${appCtx}/public/createImg" title="点击更换"  >
-					</div>
-					<label class="error-tips col-xs-3 control-label" style="color: red;"></label>
 				</div>
 				
 				<div class="form-group">
