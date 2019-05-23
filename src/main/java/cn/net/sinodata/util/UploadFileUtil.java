@@ -56,7 +56,7 @@ public class UploadFileUtil {
 	private static Map<String, Object> saveFile(MultipartFile file, HttpServletRequest request) {
 		String[] format = file.getOriginalFilename().split("[.]");
 		// 文件保存路径
-		String filePath = request.getSession().getServletContext().getRealPath("/") + "WEB-INF/template/upload_file"
+		String filePath = request.getSession().getServletContext().getRealPath("/") + "static/template/upload_file"
 				+ File.separator
 				+ UUID.randomUUID().toString().replaceAll("-", "")
 				+ "." + format[1];

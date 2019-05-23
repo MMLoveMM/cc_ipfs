@@ -215,15 +215,15 @@
 	    		<table id="lxrTable"  border="1" style="width:99%; margin: auto;" class="table table-bordered">
 	    			<tr>
 						<td align="right" class="td1" width="24%">营业执照副本</td>
-						<td id="businessLicenseCopy" width="25%"><a class="btn btn-info" href="${enterpriseFilePdf.businessLicenseCopy}">下载</a></td>
+						<td id="businessLicenseCopy" width="25%"><a class="btn btn-info" href="${enterpriseFilePdf.businessLicenseCopy}" download>下载</a></td>
 						<td align="right" class="td1" width="25%">知识产权相关证明材料</td>
-						<td id="intellectualProperty" width="25%"><a class="btn btn-info" href="${enterpriseFilePdf.intellectualProperty}">下载</a></td>
+						<td id="intellectualProperty" width="25%"><a class="btn btn-info" href="${enterpriseFilePdf.intellectualProperty}" download>下载</a></td>
 					</tr>
 					<tr>
 						<td align="right" class="td1">财务审计报告</td>
-						<td id="financialAuditReport"><a class="btn btn-info" href="${enterpriseFilePdf.financialAuditReport}">下载</a></td>
+						<td id="financialAuditReport"><a class="btn btn-info" href="${enterpriseFilePdf.financialAuditReport}" download>下载</a></td>
 						<td align="right" class="td1">说明书</td>
-						<td id="instructionManual"><a class="btn btn-info" href="${enterpriseFilePdf.instructionManual}">下载</a></td>
+						<td id="instructionManual"><a class="btn btn-info" href="${enterpriseFilePdf.instructionManual}" download>下载</a></td>
 					</tr>
 	    		</table>
 	    	</div>
