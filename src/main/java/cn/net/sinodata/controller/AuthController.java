@@ -188,7 +188,7 @@ public class AuthController {
 	  @RequestMapping({"/public/createImg"})
 	  public void createImg(HttpServletResponse response)
 	  {
-	    Object[] objs = ImageUtil.createImage(Integer.valueOf(74), Integer.valueOf(28), new Color(121, 136, 178));
+	    Object[] objs = ImageUtil.createImage(74, 28, new Color(121, 136, 178));
 
 	    Session session = SecurityUtils.getSubject().getSession();
 	    session.setAttribute("imgCode", objs[0]);
@@ -294,9 +294,9 @@ public class AuthController {
 	 * 门户登录验证码校验
 	 *
 	 *
-	 * @return
+	 * @return	是否验证成功
 	 */
-	public boolean isLsmValidate(String lsmResponse) {
+	private boolean isLsmValidate(String lsmResponse) {
 		if (StringUtil.isEmpty(lsmResponse)) {
 			logger.info("没有正确操作验证");
 			return false;
