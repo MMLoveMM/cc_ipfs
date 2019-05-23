@@ -6,7 +6,7 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta charset="utf-8" />
-	<title>长春市科技金融服务平台 - 资讯管理</title>
+	<title>长春市科技金融服务平台 - 通知管理</title>
 	<meta name="description" content="overview &amp; stats" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 	<%-- 加载css模块  --%>
@@ -37,7 +37,7 @@
 						<i class="ace-icon fa fa-home home-icon"></i>
 						<a href="#">首页</a>
 					</li>
-					<li class="active">资讯管理</li>
+					<li class="active">通知管理</li>
 				</ul>
 			</div>
 			<!-- 面包屑导航结束 -->
@@ -50,7 +50,7 @@
 						系统管理
 						<small>
 							<i class="ace-icon fa fa-angle-double-right"></i>
-							资讯管理
+							通知管理
 						</small>
 					</h1>
 				</div><!-- /.page-header -->
@@ -81,7 +81,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">添加资讯信息</h4>
+						<h4 class="modal-title" id="myModalLabel">添加通知信息</h4>
 					</div>
 					<div class="modal-body">
 						<div class="container-fluid">
@@ -135,7 +135,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">修改资讯信息</h4>
+						<h4 class="modal-title" id="myModalLabel">修改通知信息</h4>
 					</div>
 					<div class="modal-body">
 						<div class="container-fluid">

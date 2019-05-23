@@ -21,10 +21,10 @@ News.jqgrid.init = function () {
     var grid_selector = "#grid-table";
     var pager_selector = "#grid-pager";
     var colModel = [
-        {label : '资讯编号', name : 'id',index : 'id',align : 'center'},
-        {label : '资讯标题', name : 'title',index : 'title',align : 'left'},
-        {label : '资讯内容', name : 'context',index : 'context',align : 'left'},
-        {label : '资讯来源', name : 'source',index : 'source',align : 'left'},
+        {label : '通知编号', name : 'id',index : 'id',align : 'center'},
+        {label : '通知标题', name : 'title',index : 'title',align : 'left'},
+        {label : '通知内容', name : 'context',index : 'context',align : 'left'},
+        {label : '通知来源', name : 'source',index : 'source',align : 'left'},
         {label : '创建时间', name : 'createDate',index : 'createDate',align : 'center'},
         {label : '更新时间', name : 'updateDate',index : 'updateDate',align : 'center'},
         {label : '操作', name : 'myac',index : 'myac',align : 'center',width : '100',
@@ -41,7 +41,7 @@ News.jqgrid.init = function () {
         p_grid_selector : grid_selector,
         p_pager_selector : pager_selector,
         p_url : Global.appCtx + "/system/news/list/get",
-        p_tableName : "资讯信息管理",
+        p_tableName : "通知信息管理",
         p_height : "auto",
         p_colModel : colModel
     }).navButtonAdd(pager_selector,{
@@ -82,7 +82,7 @@ News.jqgrid.clearSearch = function () {
 };
 
 /**
- * 添加资讯jquery validate
+ * 添加通知jquery validate
  */
 News.initAddNewsFormValidate = function () {
     $("#addNewsForm").validate({
@@ -109,7 +109,7 @@ News.initAddNewsFormValidate = function () {
 };
 
 /**
- * 开始添加资讯 action
+ * 开始添加通知 action
  */
 News.addNews = function () {
     var result = $("#addNewsForm").valid();
@@ -153,7 +153,7 @@ News.modNews = function(id, title, context, source) {
 };
 
 /**
- * 修改资讯信息表单绑定jquery validate
+ * 修改通知信息表单绑定jquery validate
  */
 News.initModNewsFormValidate = function () {
     $("#modNewsForm").validate({
@@ -180,7 +180,7 @@ News.initModNewsFormValidate = function () {
 };
 
 /**
- * 开始修改资讯信息 action
+ * 开始修改通知信息 action
  */
 News.modNewsAction = function () {
     var result = $("#modNewsForm").valid();
@@ -212,7 +212,7 @@ News.modNewsAction = function () {
     });
 };
 
-//删除资讯数据
+//删除通知数据
 News.delNews = function(id) {
     if (!!id) {
         bootbox.confirm("确认删除?",function(result){
