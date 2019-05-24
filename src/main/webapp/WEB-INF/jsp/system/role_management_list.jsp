@@ -69,17 +69,17 @@
 								</div>
 							</div>
 							<div class="col-xs-5">
-								<div class="form-group">
-									<label for="sysid" class="col-xs-3 control-label">接入系统名称</label>
-									<div class="col-sm-9">
-										<select class="col-sm-12" name="sysName" id="sysName">
-												<option value="">请选择</option>
-												<c:forEach var="tsystem" items="${tsystems}">
-													<option value="${tsystem.id}">${tsystem.sysname}</option>
-												</c:forEach>
-										</select>
-									</div>
-								</div>
+<%--								<div class="form-group">--%>
+<%--									<label for="sysid" class="col-xs-3 control-label">接入系统名称</label>--%>
+<%--									<div class="col-sm-9">--%>
+<%--										<select class="col-sm-12" name="sysName" id="sysName">--%>
+<%--												<option value="">请选择</option>--%>
+<%--												<c:forEach var="tsystem" items="${tsystems}">--%>
+<%--													<option value="${tsystem.id}">${tsystem.sysname}</option>--%>
+<%--												</c:forEach>--%>
+<%--										</select>--%>
+<%--									</div>--%>
+<%--								</div>--%>
 								<button class="btn btn-default btn-sm pull-right" id="search_reset_Btn" style="margin-left:10px">重置</button>
 								<button class="btn btn-info btn-sm pull-right" id="search_submit_Btn">搜索</button>
 							</div>

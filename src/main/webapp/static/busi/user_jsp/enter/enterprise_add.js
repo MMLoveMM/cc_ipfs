@@ -136,7 +136,7 @@ $(function () {
                         bootbox.alert(data);
                     }else{
                         bootbox.alert("企业客户录入成功", function () {
-                            window.history.back(-1);
+                            $(location).attr('href', Global.appCtx + '/financing/toIWantFinancing')
                         });
                     }
                 },

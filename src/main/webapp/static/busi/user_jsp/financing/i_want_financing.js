@@ -12,5 +12,5 @@ layui.use('element', function() {
 });
 
 $(function() {
-	
+	// window.location.reload();
 });

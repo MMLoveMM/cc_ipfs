@@ -163,6 +163,12 @@ public class ProjectController {
 		ProjectInfoExample projectInfoExample = new ProjectInfoExample();
 		projectInfoExample.setOrderByClause("createTime DESC");
 
+		ProjectInfoExample.Criteria criteria = projectInfoExample.createCriteria();
+
+		if (!"admin".equals(user.getUserid())) {
+			criteria.andInputeridEqualTo(user.getUserid());
+		}
+
 		PageInfo<ProjectInfo> projectInfoPage = this.projectInfoService.getProjectList(page, pageSize, projectInfoExample);
 		List<ProjectInfo> projectInfoList = projectInfoPage.getList();
 		if (projectInfoList == null || projectInfoList.isEmpty()) {

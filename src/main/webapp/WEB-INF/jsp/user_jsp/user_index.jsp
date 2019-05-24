@@ -114,7 +114,7 @@
             	描述：五位一体模块
             -->
 			<div class="row">
-				<div class="col-xs-5 col-xs-offset-1" style="background-color: #E5EDF6;">
+				<div class="col-xs-12" style="background-color: #E5EDF6;">
 					<div class="row" style="margin-top: 20px;">
 						<div class="col-xs-12 text-center">
 							<div class="col-xs-5 text-right">
@@ -204,7 +204,10 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-5">
+			</div>
+
+			<div class="row" style="margin-top: 50px; height: 160px;">
+				<div class="col-xs-10 col-xs-offset-1">
 					<div class="row">
 						<div class="col-xs-12" style="width: 99%; float: right;">
 							<div class="row">

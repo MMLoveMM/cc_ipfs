@@ -174,6 +174,9 @@
 									<select id="carType" name="enterpriseInfo.carType" class="col-xs-7">
 										<option value="">请选择</option>
 										<option value="身份证">身份证</option>
+										<option value="护照">护照</option>
+										<option value="军人证">军人证</option>
+										<option value="其他">其他</option>
 									</select>
 								</div>
 								<label class="col-xs-2 control-label">证件号码</label>

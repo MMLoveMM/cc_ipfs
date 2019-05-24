@@ -27,7 +27,7 @@
 					<input id="companyName" type="text" style="height: 50px; width: 350px;" class="col-xs-6" name="companyName">
 				</div>
 
-				<label class="col-xs-1 control-label" style="line-height: 40px;">行业分类</label>
+				<label class="col-xs-1 control-label" style="line-height: 40px;">融资方式</label>
 				<div class="col-xs-2">
 					<select id="type" name="type"  style="height: 50px; width: 350px;" class="col-xs-6">
 						<option value=""></option>

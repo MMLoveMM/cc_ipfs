@@ -2,7 +2,7 @@
  * 融资需求首页js
  */
 
-var tableHeader = ['企业名称', '行业分类', '拟融资额'];
+var tableHeader = ['企业名称', '融资方式', '拟融资额'];
 
 $(function () {
 

@@ -104,19 +104,21 @@ public class AuthController {
 	 */
 	@RequestMapping(value = "/public/login", method = RequestMethod.POST)
 	public String login(HttpServletRequest request, HttpServletResponse response, String username, 
-			String password, String luotest_response, Model model, RedirectAttributes redirectAttributes) {
+			String password, String luotest_response, String loginFlag, Model model, RedirectAttributes redirectAttributes) {
 		logger.info("用户[{}] 参数:[luotest_response: {}] - 开始登录", username, luotest_response);
 
-	    if (StringUtil.isNotEmpty(luotest_response)) {
-			if (!isLsmValidate(luotest_response)) {
-                redirectAttributes.addFlashAttribute("message", "验证失败");
-                return "redirect:/public/toUserLogIn";
-			}
+		if(StringUtil.isEmpty(loginFlag)) {
+			if (StringUtil.isNotEmpty(luotest_response)) {
+				if (!isLsmValidate(luotest_response)) {
+					redirectAttributes.addFlashAttribute("message", "验证失败");
+					return "redirect:/public/toUserLogIn";
+				}
 
-	    }else {
-            redirectAttributes.addFlashAttribute("message", "请正确使用验证程序");
-            return "redirect:/public/toUserLogIn";
-        }
+			} else {
+				redirectAttributes.addFlashAttribute("message", "请正确使用验证程序");
+				return "redirect:/public/toUserLogIn";
+			}
+		}
 
 	    Subject currentUser = SecurityUtils.getSubject();
 	    UsernamePasswordToken token = new UsernamePasswordToken(username, password);
