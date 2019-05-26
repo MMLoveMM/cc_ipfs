@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<jsp:useBean id="projectInfo" scope="request" type="cn.net.sinodata.model.ProjectInfo"/>
+<jsp:useBean id="tdata" scope="request" type="java.util.List"/>
+<jsp:useBean id="tUsers" scope="request" type="cn.net.sinodata.model.TUsers"/>
+<jsp:useBean id="sCIs" scope="request" type="java.util.List"/>
+<%@ page contentType="text/html; charset=utf-8"
+		 pageEncoding="utf-8"%>
 <%@ include file="../base/taglibs.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,12 +72,12 @@
 							<ul class="layui-tab-title" style="background-color: #428bca">
 								<li class="layui-this">项目概况</li>
 								<li>融资需求</li>
-								<li>公开权限</li>
-								<li>项目附件</li>
+<%--								<li>公开权限</li>--%>
+<%--								<li>项目附件</li>--%>
 								<li>客户信息</li>
-								<li>项目评价详情</li>
+<%--								<li>项目评价详情</li>--%>
 								<li>审批意见</li>
-								<li>还款计划</li>
+<%--								<li>还款计划</li>--%>
 								<li>项目评价</li>
 							</ul>
 							<div class="layui-tab-content">
@@ -87,8 +91,8 @@
 											
 											<label class="col-xs-2 control-label">是否有基金托底等安全要素</label>
 											<label class="col-xs-4 control-label control-align">
-												<c:if test="${issureness == 0}">是</c:if>
-												<c:if test="${issureness == 1}">否</c:if>
+												<c:if test="${projectInfo.issureness == 0}">是</c:if>
+												<c:if test="${projectInfo.issureness == 1}">否</c:if>
 											</label>
 										</div>
 									</div>
@@ -99,8 +103,8 @@
 											<label class="col-xs-4 control-label control-align">${projectInfo.underpinorgname}</label>
 										</div>
 									</div>
-									
-									<c:if test="${userId == 'admin'}">
+
+									<c:if test="${tUsers.userid == 'admin'}">
 										<c:forEach var="sCI" items="${sCIs}">
 											<div class="form-group">
 												<div class="col-xs-12">
@@ -231,35 +235,35 @@
 								</div><!-- layui-tab-item end -->
 								
 								<!-- 公开权限 -->
-								<div class="layui-tab-item">
+								<%--<div class="layui-tab-item">
 									<div class="form-group">
 										<div class="col-xs-12">
 											<label class="col-xs-2 control-label">人员公开</label>
 											<label class="col-xs-10 control-label control-align">
-												<c:forEach var="user" items="${tUsers}">
-													${user.name}
-												</c:forEach>
+&lt;%&ndash;												<c:forEach var="user" items="${tUsers}">&ndash;%&gt;
+													${tUsers.name}
+&lt;%&ndash;												</c:forEach>&ndash;%&gt;
 											</label>
 										</div>
 									</div>
-								</div><!-- layui-tab-item end -->
+								</div>--%><!-- layui-tab-item end -->
 								
 								<!-- 项目附件 -->
-								<div class="layui-tab-item">
+								<%--<div class="layui-tab-item">
 									
 									
-								</div><!-- layui-tab-item end -->
+								</div>--%><!-- layui-tab-item end -->
 								
 								<!-- 客户信息 -->
 								<div class="layui-tab-item">
-									<jsp:include page="../customer/customer_view.jsp" flush="true" />
+									<jsp:include page="../customer/enterprise_view.jsp" flush="true" />
 								</div><!-- layui-tab-item end -->
 								
 								<!-- 项目评价详情 -->
-								<div class="layui-tab-item">
+								<%--<div class="layui-tab-item">
 									
 									
-								</div><!-- layui-tab-item end -->
+								</div>--%><!-- layui-tab-item end -->
 								
 								<!-- 审批意见 -->
 								<div class="layui-tab-item">
@@ -301,10 +305,10 @@
 								</div><!-- layui-tab-item end -->
 								
 								<!-- 还款计划 -->
-								<div class="layui-tab-item">
-									
-									
-								</div><!-- layui-tab-item end -->
+								<%--<div class="layui-tab-item">
+
+
+								</div>--%><!-- layui-tab-item end -->
 								
 								<!-- 项目评价 -->
 								<div class="layui-tab-item">

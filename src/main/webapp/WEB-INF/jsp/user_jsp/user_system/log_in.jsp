@@ -21,6 +21,7 @@
 
 		<div class="container" style="background-color: white; height: 500px; margin-top: 130px;">
 			<form id="logInForm" method="post" class="form-horizontal" action="${appCtx}/public/login">
+<%--				<input type="hidden" name="loginFlag" value="000">--%>
 				<div class="form-group">
 					<div class="col-xs-12 text-center">
 						<h2 style="color: #273568;">登录</h2>

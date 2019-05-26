@@ -57,7 +57,7 @@
 						<li>
 							<a href="${appCtx}/auth/toUserIndex">
 								<i class="ace-icon fa fa-cog"></i>
-								返回用户
+								返回本站首页
 							</a>
 						</li>
 
