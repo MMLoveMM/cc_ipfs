@@ -257,7 +257,7 @@ public class ProjectController {
 	}
 
 	@RequestMapping({"/toMod"})
-	public String toMod(String id, Model model) {
+	public String toMod(String id, Model model, String flag) {
 		TUsers user = (TUsers)SecurityUtils.getSubject().getPrincipal();
 		logger.info("用户[{}] - 进入修改项目信息页面", user.getUserid());
 
@@ -279,6 +279,10 @@ public class ProjectController {
 		EnterpriseInfo enterpriseInfo = enterpriseInfoService.selectById(projectInfo.getCustomerid());
 		if (StringUtil.isNotEmpty(enterpriseInfo.getName())) {
 			model.addAttribute("customerName", enterpriseInfo.getName());
+		}
+
+		if (StringUtil.isNotEmpty(flag) && "2".equals(flag)) {
+			return "user_jsp/project/project_mod";
 		}
 
 		return "project/project_mod";

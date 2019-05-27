@@ -1,134 +1,122 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<%@ include file="../base/taglibs.jsp"%>
+    pageEncoding="utf-8"%>
+<%@ include file="../../base/taglibs.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta charset="utf-8" />
-<title>长春市科技金融服务平台 - 项目管理</title>
-<meta name="description" content="overview &amp; stats" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-<%-- 加载css模块  --%>
-<jsp:include page="../base/css-table.jsp" flush="true" />
-<jsp:include page="../base/css-base.jsp" flush="true" />
-</head>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>长春市科技金融服务平台 - 填写融资信息</title>
+		<meta name="description" content="overview &amp; stats" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<%-- 加载css模块  --%>
+		<jsp:include page="../../base/new_css-base.jsp" flush="true" />
+		
+		<style type="text/css">
+			.layui-tab-card>.layui-tab-title {
+				background-color: #4990E2;
+			}
+			
+			.layui-tab-card{
+				box-shadow: 0 0px 0px 0 rgba(0,0,0,.1);
+				border: 0px;
+			}
 
-<body class="no-skin">
-	<%-- 加载头部模块  --%>
-	<jsp:include page="../base/header.jsp" flush="true" />
+			input[type="text"] {
+				height: 30px;
+			}
 
-	<!-- /section:basics/navbar.layout -->
-	<div class="main-container" id="main-container">
-		<%-- 加载左侧菜单模块 --%>
-		<jsp:include page="../base/left.jsp" flush="true" />
+			select {
+				height: 30px;
+			}
 
-		<!-- /.main-content  -->
-		<div class="main-content">
-			<div class="main-content-inner">
-				<!-- 面包屑导航 -->
-				<div class="breadcrumbs" id="breadcrumbs">
-					<script type="text/javascript">
-						try {
-							ace.settings.check('breadcrumbs', 'fixed')
-						} catch (e) {
-						}
-					</script>
+		</style>
+	</head>
 
-					<ul class="breadcrumb">
-						<li><i class="ace-icon fa fa-home home-icon"></i> <a href="#">首页</a>
-						</li>
-						<li class="active">项目管理</li>
+	<body>
+		<%-- 加载头部模块  --%>
+		<jsp:include page="../../base/new_header.jsp" flush="true" />
+
+
+		
+		<div class="container" style="margin-top: 15px;">
+			<div class="row">
+				<label style="color: #4A4A4A;">当前位置: 首页 > 我要融资 > 修改融资信息 </label>
+			</div>
+		</div>
+
+		<div class="container" style="padding-top: 50px;">
+			<form id="saveProjectForm" class="saveProjectForm form-horizontal">
+				<div class="layui-tab layui-tab-card">
+					<ul class="layui-tab-title" style="background-color: #428bca">
+						<li class="layui-this">项目信息</li>
+						<%--<li>融资需求</li>--%>
 					</ul>
-				</div>
-				<!-- 面包屑导航结束 -->
-
-				<!-- 页面内容 -->
-				<div class="page-content" style="position: relative;">
-					<!-- /.page-header -->
-					<div class="page-header">
-						<h1>
-							项目管理 <small> <i class="ace-icon fa fa-angle-double-right"></i>
-								项目修改
-							</small>
-						</h1>
-					</div>
-					<!-- /.page-header -->
-					<!-- PAGE CONTENT BEGINS -->
-					<!-- form-horizontal -->
-					<form id="saveProjectForm" class="saveProjectForm form-horizontal">
-						<div class="layui-tab layui-tab-card">
-							<ul class="layui-tab-title" style="background-color: #428bca">
-								<li class="layui-this">项目信息</li>
-								<li>融资需求</li>
-							</ul>
-							<div class="layui-tab-content">
-								<div class="layui-tab-item layui-show">
-									<!-- 项目信息表单 -->
-									<div id="proInfoDiv">
-										<div class="container-fluid">
-											<div class="form-group">
-												<div class="col-xs-12">
-													<label class="col-md-3 col-sm-3 control-label">企业名称</label>
-													<input type="text" readonly="readonly" class="col-xs-4"
-														name="customerName" value='${customerName}'>
-												</div>
-											</div>
-
-
-											<div class="form-group">
-												<div class="col-xs-12">
-													<label class="col-md-3 col-sm-3 control-label"><span
-														style="color: red;">*</span>项目名称</label> <input type="text"
-														autocomplete="off" id="projectname" name="projectname"
-														datatype="*" value="${project.projectname}" class="col-xs-4"> <label
-														class="Validform_checktip" style="color: red;"></label>
-												</div>
-											</div>
-
-											<div class="form-group">
-												<div class="col-xs-12">
-													<label class="col-md-3 col-sm-3 control-label">托底机构名称</label>
-													<input type="text" name="underpinorgname" value="${project.underpinorgname}" class="col-xs-4">
-												</div>
-											</div>
-
-											<div class="form-group">
-												<div class="col-xs-12">
-													<label class="col-md-3 col-sm-3 control-label"><span
-														style="color: red;">*</span>是否有基金托底等安全要素</label> <select
-														class="col-xs-4" name="issureness" datatype="*">
-														<option value="">请选择</option>
-														<option value="0" <c:if test="${project.issureness == 0}">selected="selected"</c:if>>是</option>
-														<option value="1" <c:if test="${project.issureness == 1}">selected="selected"</c:if>>否</option>
-													</select> <label class="Validform_checktip" style="color: red;"></label>
-												</div>
-											</div>
-											<!-- container-fluid end -->
+					<div class="layui-tab-content">
+						<div class="layui-tab-item layui-show">
+							<!-- 项目信息表单 -->
+							<div id="proInfoDiv">
+								<div class="container-fluid">
+									<div class="form-group">
+										<div class="col-xs-12">
+											<label class="col-md-3 col-sm-3 control-label">企业名称</label>
+											<input type="text" readonly="readonly" class="col-xs-4"
+												   name="customerName" value='${customerName}'>
 										</div>
-										<!-- proInfoDiv end -->
 									</div>
-									<!-- layui-tab-item layui-show end -->
+
+
+									<div class="form-group">
+										<div class="col-xs-12">
+											<label class="col-md-3 col-sm-3 control-label"><span
+													style="color: red;">*</span>项目名称</label> <input type="text"
+																									autocomplete="off" id="projectname" name="projectname"
+																									datatype="*" value="${project.projectname}" class="col-xs-4"> <label
+												class="Validform_checktip" style="color: red;"></label>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-xs-12">
+											<label class="col-md-3 col-sm-3 control-label">托底机构名称</label>
+											<input type="text" name="underpinorgname" value="${project.underpinorgname}" class="col-xs-4">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-xs-12">
+											<label class="col-md-3 col-sm-3 control-label"><span
+													style="color: red;">*</span>是否有基金托底等安全要素</label> <select
+												class="col-xs-4" name="issureness" datatype="*">
+											<option value="">请选择</option>
+											<option value="0" <c:if test="${project.issureness == 0}">selected="selected"</c:if>>是</option>
+											<option value="1" <c:if test="${project.issureness == 1}">selected="selected"</c:if>>否</option>
+										</select> <label class="Validform_checktip" style="color: red;"></label>
+										</div>
+									</div>
+									<!-- container-fluid end -->
 								</div>
+								<!-- proInfoDiv end -->
+							</div>
 
 
-								<div class="layui-tab-item">
-									<!-- 融资需求表单 -->
 									<div id="financingDiv">
 										<!-- <input type="hidden" id="dcode"> -->
+										<br>
+										融资需求
+										<hr>
 										<div class="col-xs-12">
 											<div class="form-group">
 												<label class="col-xs-2 control-label">本次申请融资金额</label>
 												<div class="col-xs-4">
 													<input type="text" id="loanAmt" name="loanamt" value="${project.loanamt}"
-														class="col-xs-6"
-														onkeyup="clearNoNum(this),changeAmt(),convertCurrency()"
-														onblur="convertCurrency()" /> <label
+														   class="col-xs-6"
+														   onkeyup="clearNoNum(this),changeAmt(),convertCurrency()"
+														   onblur="convertCurrency()" /> <label
 														class="col-xs-2 text-center control-label">元</label>
 													<div class="col-xs-4 text-center">
 														<input id="but" type="button" value="快速录入"
-															class="btn btn-xs btn-primary">
+															   class="btn btn-xs btn-primary">
 													</div>
 												</div>
 
@@ -138,8 +126,8 @@
 												<label class="col-xs-2 control-label">快速录入金额</label>
 												<div class="col-xs-4">
 													<input type="text" id="loanAmtM" name="loanAmtM"
-														class="col-xs-6" onblur="convertCurrency()"
-														onkeyup="clearNoNum(this),changeAmt2(),convertCurrency()" />
+														   class="col-xs-6" onblur="convertCurrency()"
+														   onkeyup="clearNoNum(this),changeAmt2(),convertCurrency()" />
 													<label class="col-xs-2 text-center control-label">万元</label>
 												</div>
 
@@ -155,7 +143,7 @@
 														<option value="">请选择</option>
 														<c:forEach var="loanUse" items="${loanUses}">
 															<option value='${loanUse.dcode}' <c:if test="${loanUse.flag}">selected="selected"</c:if>>
-																${loanUse.dname}
+																	${loanUse.dname}
 															</option>
 														</c:forEach>
 													</select>
@@ -175,7 +163,7 @@
 														<option value="">请选择</option>
 														<c:forEach var="loantype" items="${loantypes}">
 															<option value='${loantype.dcode}' <c:if test="${loantype.flag}">selected="selected"</c:if>>
-																${loantype.dname}
+																	${loantype.dname}
 															</option>
 														</c:forEach>
 													</select>
@@ -183,7 +171,7 @@
 
 												<label class="col-xs-2 control-label">融资期限</label>
 												<div class="col-xs-4">
-													<input type="text" class="col-xs-6" name="loandeadline" value="${project.loandeadline}" maxlength="2" max="99"> 
+													<input type="text" class="col-xs-6" name="loandeadline" value="${project.loandeadline}" maxlength="2" max="99">
 													<label class="col-xs-2 text-center control-label">月</label>
 												</div>
 											</div>
@@ -203,7 +191,7 @@
 
 												<label class="col-xs-2 control-label">已融资额度</label>
 												<div class="col-xs-4">
-													<input type="text" class="col-xs-6" onkeyup="clearNoNum(this)" name="hasloanamt" value="${project.hasloanamt}"> 
+													<input type="text" class="col-xs-6" onkeyup="clearNoNum(this)" name="hasloanamt" value="${project.hasloanamt}">
 													<label class="col-xs-2 text-center control-label">元</label>
 												</div>
 											</div>
@@ -225,15 +213,15 @@
 											<div class="form-group">
 												<label class="col-xs-2 control-label"><span style="color: red;">*</span>总负债</label>
 												<div class="col-xs-4">
-													<input type="text" class="col-xs-6" autocomplete="off" onkeyup="clearNoNum(this)" datatype="*" name="totalLiability" value="${project.totalLiability}"> 
-													<label class="col-xs-2 text-center control-label">元</label> 
+													<input type="text" class="col-xs-6" autocomplete="off" onkeyup="clearNoNum(this)" datatype="*" name="totalLiability" value="${project.totalLiability}">
+													<label class="col-xs-2 text-center control-label">元</label>
 													<label class="Validform_checktip" style="color: red;"></label>
 												</div>
 
 												<label class="col-xs-2 control-label"><span style="color: red;">*</span>上年度营业收入</label>
 												<div class="col-xs-4">
-													<input type="text" class="col-xs-6" datatype="*" autocomplete="off" onkeyup="clearNoNum(this)" name="lastYearIncome" value="${project.lastYearIncome}"> 
-													<label class="col-xs-2 text-center control-label">元</label> 
+													<input type="text" class="col-xs-6" datatype="*" autocomplete="off" onkeyup="clearNoNum(this)" name="lastYearIncome" value="${project.lastYearIncome}">
+													<label class="col-xs-2 text-center control-label">元</label>
 													<label class="Validform_checktip" style="color: red;"></label>
 												</div>
 											</div>
@@ -241,8 +229,8 @@
 											<div class="form-group">
 												<label class="col-xs-2 control-label"><span style="color: red;">*</span>当前贷款情况</label>
 												<div class="col-xs-4">
-													<input type="text" class="col-xs-6" autocomplete="off" onkeyup="clearNoNum(this)" datatype="*" name="currentLoanSituation" value="${project.currentLoanSituation}"> 
-													<label class="col-xs-2 text-center control-label">元</label> 
+													<input type="text" class="col-xs-6" autocomplete="off" onkeyup="clearNoNum(this)" datatype="*" name="currentLoanSituation" value="${project.currentLoanSituation}">
+													<label class="col-xs-2 text-center control-label">元</label>
 													<label class="Validform_checktip" style="color: red;"></label>
 												</div>
 
@@ -257,8 +245,8 @@
 											<div class="form-group">
 												<label class="col-xs-2 control-label"><span style="color: red;">*</span>股权融资额度</label>
 												<div class="col-xs-4">
-													<input type="text" class="col-xs-6" autocomplete="off" onkeyup="clearNoNum(this)" datatype="*" name="equityFinancingAmount" value="${project.equityFinancingAmount}"> 
-													<label class="col-xs-2 text-center control-label">元</label> 
+													<input type="text" class="col-xs-6" autocomplete="off" onkeyup="clearNoNum(this)" datatype="*" name="equityFinancingAmount" value="${project.equityFinancingAmount}">
+													<label class="col-xs-2 text-center control-label">元</label>
 													<label class="Validform_checktip" style="color: red;"></label>
 												</div>
 
@@ -277,11 +265,11 @@
 														</div>
 														<div class="col-xs-5">
 															<select id="factoringGS" name="factoringGS"
-																class="col-xs-5" disabled="disabled">
+																	class="col-xs-5" disabled="disabled">
 																<option value="">请选择</option>
 																<c:forEach var="bank" items="${bank}">
 																	<option value='${bank.orgcode}' <c:if test="${bank.flag}">selected="selected"</c:if>>
-																		${bank.orgname}
+																			${bank.orgname}
 																	</option>
 																</c:forEach>
 															</select>
@@ -293,11 +281,11 @@
 														</div>
 														<div class="col-xs-5">
 															<select id="evaluationGs" name="evaluationGs"
-																class="col-xs-5" disabled="disabled">
+																	class="col-xs-5" disabled="disabled">
 																<option value="">请选择</option>
 																<c:forEach var="evaluation" items="${evaluation}">
 																	<option value='${evaluation.orgcode}' <c:if test="${evaluation.flag}">selected="selected"</c:if>>
-																		${evaluation.orgname}
+																			${evaluation.orgname}
 																	</option>
 																</c:forEach>
 															</select>
@@ -309,11 +297,11 @@
 														</div>
 														<div class="col-xs-5">
 															<select id="guaranteeGs" name="guaranteeGs"
-																class="col-xs-5" disabled="disabled">
+																	class="col-xs-5" disabled="disabled">
 																<option value="">请选择</option>
 																<c:forEach var="guarantee" items="${guarantee}">
 																	<option value='${guarantee.orgcode}' <c:if test="${guarantee.flag}">selected="selected"</c:if>>
-																		${guarantee.orgname}
+																			${guarantee.orgname}
 																	</option>
 																</c:forEach>
 															</select>
@@ -341,45 +329,38 @@
 										</div>
 										<!--financingDiv end -->
 									</div>
-    										<!-- layui-tab-item  end -->
+
+									<!-- container-fluid end -->
 								</div>
-									<!-- layui-tab-content end -->
+								<!-- proInfoDiv end -->
 							</div>
-								<!-- layui-tab layui-tab-card end  -->
+							<!-- layui-tab-item layui-show end -->
 						</div>
-							<!-- form-group -->
-						<div class="col-xs-12 text-center">
-							<button type="button" id="sureSave" class="btn btn-sm btn-primary">提交</button>
-							<button type="button" class="btn btn-sm btn-default" id="cancelAdd"
-								onClick="self.location=document.referrer;">返回</button>
-						</div>
-					</form>
-					<!-- PAGE CONTENT ENDS -->
+
+
+<%--						<div class="layui-tab-item">--%>
+<%--							<!-- 融资需求表单 -->--%>
+<%--							<!-- layui-tab-item  end -->--%>
+<%--						</div>--%>
+						<!-- layui-tab-content end -->
+					</div>
+					<!-- layui-tab layui-tab-card end  -->
 				</div>
-				<!-- /.page-content -->
-			</div>
-			<%-- 加载底部模块  --%>
-			<jsp:include page="../base/footer.jsp" flush="true" />
-
-			<!-- 回到顶部  -->
-			<a href="#" id="btn-scroll-up"
-				class="btn-scroll-up btn btn-sm btn-inverse"> <i
-				class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-			</a>
+				<!-- form-group -->
+				<div class="col-xs-12 text-center">
+					<button type="button" id="sureSave" class="btn btn-sm btn-primary">提交</button>
+					<button type="button" class="btn btn-sm btn-default" id="cancelAdd"
+							onClick="self.location=document.referrer;">返回</button>
+				</div>
+		</form>
 		</div>
-	</div>
-		<!-- /.main-content -->
-
-
+			
+		<%-- 加载底部模块  --%>
+		<jsp:include page="../../base/new_footer.jsp" flush="true" />
+		
 		<!-- basic scripts -->
-
 		<%-- 加载菜单脚本模块 --%>
-		<jsp:include page="../base/script-base.jsp" flush="true" />
-		<%-- 加载table脚本模块，最后加载  --%>
-		<jsp:include page="../base/script-table.jsp" flush="true" />
-		<script type="text/javascript"
-			src="${appCtx}/static/busi/project/project_add.js"></script>
-		<script type="text/javascript"
-			src="${appCtx}/static/res/validform/js/Validform_v5.3.2.js"></script>
-</body>
+		<jsp:include page="../../base/script-base.jsp" flush="true" />
+		<script type="text/javascript" src="${appCtx}/static/busi/project/project_add.js"></script>
+	</body>
 </html>
