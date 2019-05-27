@@ -25,19 +25,19 @@
 						<label style="color: #273568;">${not empty message ? message : "请输入注册信息"}</label>
 					</div>
 				</div>
-				
+
 				<div class="form-group">
-					<label class="col-xs-1 col-xs-offset-4 control-label"><span style="color: red;">*</span>用户名</label>
+					<label class="col-xs-1 col-xs-offset-4 control-label"><span style="color: red;">*</span>昵称</label>
 					<div class="col-xs-3">
-						<input type="text" minlength="5" maxlength="64" class="form-control" id="userid" name="userid" placeholder="作为登录账号"/>
+						<input type="text" class="form-control" id="name" name="name" placeholder="用户昵称"/>
 					</div>
 					<label class="error-tips col-xs-3 control-label" style="color: red; text-align: left;"></label>
 				</div>
 				
 				<div class="form-group">
-					<label class="col-xs-1 col-xs-offset-4 control-label"><span style="color: red;">*</span>名称</label>
+					<label class="col-xs-1 col-xs-offset-4 control-label"><span style="color: red;">*</span>账号</label>
 					<div class="col-xs-3">
-						<input type="text" class="form-control" id="name" name="name" placeholder="用户昵称"/>
+						<input type="text" minlength="5" maxlength="64" class="form-control" id="userid" name="userid" placeholder="作为登录账号"/>
 					</div>
 					<label class="error-tips col-xs-3 control-label" style="color: red; text-align: left;"></label>
 				</div>

@@ -203,7 +203,7 @@ $(function(){
 		                bootbox.alert(data);
 		            }else{
 		            	bootbox.alert("提交成功", function () {
-		            		location.reload();
+							$(location).attr('href', Global.appCtx + '/financing/toIWantFinancing')
 		            	});
 		            }
 		        },
