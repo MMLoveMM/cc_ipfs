@@ -138,6 +138,7 @@
 		
 		<!-- basic scripts -->
 		<%-- 加载菜单脚本模块 --%>
+		<jsp:include page="../base/script-base.jsp" flush="true" />
 		<script src="${appCtx}/static/busi/demand/detail.js"></script>
 	</body>
 </html>
