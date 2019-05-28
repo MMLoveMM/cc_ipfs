@@ -1,29 +1,25 @@
 package cn.net.sinodata.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-
 import cn.net.sinodata.model.*;
 import cn.net.sinodata.service.*;
 import cn.net.sinodata.util.DateUtil;
 import cn.net.sinodata.util.Result;
+import cn.net.sinodata.util.StringUtil;
+import cn.net.sinodata.util.UuidUtil;
+import com.github.pagehelper.PageInfo;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.github.pagehelper.PageInfo;
-
-import cn.net.sinodata.util.StringUtil;
-import cn.net.sinodata.util.UuidUtil;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/project")
@@ -85,43 +81,42 @@ public class ProjectController {
 
 	@RequestMapping({"/add"})
 	@ResponseBody
-	public String addProjectInfo(ProjectInfo pInfo, String[] factoringGS, String evaluationGs, String guaranteeGs, String[] fundGS, String[] business)
-	{
-	TUsers user = (TUsers)SecurityUtils.getSubject().getPrincipal();
-	logger.info("用户[{}] - 开始项目信息录入", user.getUserid());
+	public String addProjectInfo(ProjectInfo pInfo, String[] factoringGS, String evaluationGs, String guaranteeGs, String[] fundGS, String[] business) {
+		TUsers user = (TUsers) SecurityUtils.getSubject().getPrincipal();
+		logger.info("用户[{}] - 开始项目信息录入", user.getUserid());
 
-	Map<String, Object> sCIMap = new HashMap<String, Object>();
-	sCIMap.put("type", business);
-	sCIMap.put("factoringGS", factoringGS);
-	sCIMap.put("fundGS", fundGS);
+		Map<String, Object> sCIMap = new HashMap<String, Object>();
+		sCIMap.put("type", business);
+		sCIMap.put("factoringGS", factoringGS);
+		sCIMap.put("fundGS", fundGS);
 
-	if (StringUtil.isNotEmpty(evaluationGs)) {
-	  sCIMap.put("evaluationGs", evaluationGs);
-	}
+		if (StringUtil.isNotEmpty(evaluationGs)) {
+			sCIMap.put("evaluationGs", evaluationGs);
+		}
 
-	if (StringUtil.isNotEmpty(guaranteeGs)) {
-	  sCIMap.put("guaranteeGs", guaranteeGs);
-	}
+		if (StringUtil.isNotEmpty(guaranteeGs)) {
+			sCIMap.put("guaranteeGs", guaranteeGs);
+		}
 
-	String userId = user.getUserid();
+		String userId = user.getUserid();
 
-	CustomerInfoExample cusExample = new CustomerInfoExample();
-	CustomerInfoExample.Criteria criteria = cusExample.createCriteria();
-	criteria.andUseridEqualTo(userId);
+		CustomerInfoExample cusExample = new CustomerInfoExample();
+		CustomerInfoExample.Criteria criteria = cusExample.createCriteria();
+		criteria.andUseridEqualTo(userId);
 
-	pInfo.setId(UuidUtil.getUuid());
-	if (StringUtil.isNotEmpty(user.getCustomerInfoId())) {
-		pInfo.setCustomerid(this.enterpriseInfoService.selectById(user.getCustomerInfoId()).getId());
-		pInfo.setProjectname(this.enterpriseInfoService.selectById(user.getCustomerInfoId()).getName());
-	}
-	int flag = this.projectInfoService.saveProjectInfo(pInfo, userId, sCIMap);
-	if (flag != 1) {
-	  logger.info("保存项目信息失败");
-	  return "保存项目信息失败";
-	}
+		pInfo.setId(UuidUtil.getUuid());
+		if (StringUtil.isNotEmpty(user.getCustomerInfoId())) {
+			pInfo.setCustomerid(this.enterpriseInfoService.selectById(user.getCustomerInfoId()).getId());
+			pInfo.setProjectname(this.enterpriseInfoService.selectById(user.getCustomerInfoId()).getName());
+		}
+		int flag = this.projectInfoService.saveProjectInfo(pInfo, userId, sCIMap);
+		if (flag != 1) {
+			logger.info("保存项目信息失败");
+			return "保存项目信息失败";
+		}
 
-	logger.info("保存项目信息成功");
-	return "0";
+		logger.info("保存项目信息成功");
+		return "0";
 	}
 
 	@RequestMapping({"/list"})
@@ -286,5 +281,34 @@ public class ProjectController {
 		}
 
 		return "project/project_mod";
+	}
+
+	@RequestMapping({"/mod"})
+	@ResponseBody
+	public String modProjectInfo(ProjectInfo pInfo, String[] factoringGS, String evaluationGs, String guaranteeGs, String[] fundGS, String[] business) {
+		TUsers user = (TUsers) SecurityUtils.getSubject().getPrincipal();
+		logger.info("用户[{}] - 开始修改项目信息", user.getUserid());
+
+		Map<String, Object> sCIMap = new HashMap<String, Object>();
+		sCIMap.put("type", business);
+		sCIMap.put("factoringGS", factoringGS);
+		sCIMap.put("fundGS", fundGS);
+
+		if (StringUtil.isNotEmpty(evaluationGs)) {
+			sCIMap.put("evaluationGs", evaluationGs);
+		}
+
+		if (StringUtil.isNotEmpty(guaranteeGs)) {
+			sCIMap.put("guaranteeGs", guaranteeGs);
+		}
+
+		int flag = this.projectInfoService.modProjectInfo(pInfo, sCIMap);
+		if (flag != 1) {
+			logger.info("修改项目信息失败");
+			return "修改项目信息失败";
+		}
+
+		logger.info("修改项目信息成功");
+		return "0";
 	}
 }

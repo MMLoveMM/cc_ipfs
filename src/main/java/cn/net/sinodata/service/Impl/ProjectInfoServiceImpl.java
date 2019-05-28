@@ -1,32 +1,25 @@
 package cn.net.sinodata.service.Impl;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.shiro.SecurityUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-
 import cn.net.sinodata.controller.ProjectController;
 import cn.net.sinodata.mapper.ProjectInfoMapper;
-import cn.net.sinodata.model.ProjectInfo;
-import cn.net.sinodata.model.ProjectInfoExample;
-import cn.net.sinodata.model.ServiceCompanyInfo;
-import cn.net.sinodata.model.TUsers;
-import cn.net.sinodata.model.TUsersExample;
-import cn.net.sinodata.model.TUsersRoles;
+import cn.net.sinodata.model.*;
 import cn.net.sinodata.service.ProjectInfoService;
 import cn.net.sinodata.service.ServiceCompanyInfoService;
 import cn.net.sinodata.service.TUsersRolesService;
 import cn.net.sinodata.service.TUsersService;
 import cn.net.sinodata.util.StringUtil;
 import cn.net.sinodata.util.UuidUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.apache.shiro.SecurityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProjectInfoServiceImpl implements ProjectInfoService {
@@ -268,5 +261,76 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
 		return projectInfoMapper.getAmtCont();
 	}
 
+	/**
+	 * 修改项目信息，不提交流程
+	 *
+	 * @param projectInfo 修改后的项目信息
+	 * @param sCIMap      机构名
+	 * @author xuj  2017年9月28日16:15:14
+	 */
+	public int modProjectInfo(ProjectInfo projectInfo, Map<String, Object> sCIMap) {
 
+		int flag = 1;
+		int projectInfoFlag = projectInfoMapper.updateByPrimaryKeySelective(projectInfo);
+		if (projectInfoFlag < 1) {
+			flag = 0;
+		}
+
+		String projectId = projectInfo.getId();
+
+		//清空企业服务信息
+		ServiceCompanyInfoExample sCIExample = new ServiceCompanyInfoExample();
+		ServiceCompanyInfoExample.Criteria sCICriteria = sCIExample.createCriteria();
+		sCICriteria.andProjectInfoIdEqualTo(projectId);
+		this.servicecompanyinfoservice.deleteByExample(sCIExample);
+
+		//存入企业服务信息
+		ServiceCompanyInfo sCI = new ServiceCompanyInfo();
+		sCI.setProjectInfoId(projectId);
+		sCI.setCreateTime(new Date());
+		sCI.setStatus("0");
+
+
+		String[] factoringGS = (String[]) sCIMap.get("factoringGS");//保理公司
+		String[] fundGS = (String[]) sCIMap.get("fundGS");//基金公司
+		String[] type = (String[]) sCIMap.get("type");//评估+担保公司
+
+		if (factoringGS != null) {
+			for (int i = 0; i < factoringGS.length; i++) {
+				sCI.setType("10");
+				sCI.setCompanyId(factoringGS[i]);
+				sCI.setId(UuidUtil.getUuid());
+				this.addUsersRoles(projectId, factoringGS[i]);
+				this.servicecompanyinfoservice.insertSelective(sCI);
+			}
+		}
+		if (fundGS != null) {
+			for (int i = 0; i < fundGS.length; i++) {
+				sCI.setType("12");
+				sCI.setCompanyId(fundGS[i]);
+				sCI.setId(UuidUtil.getUuid());
+				this.addUsersRoles(projectId, fundGS[i]);
+				this.servicecompanyinfoservice.insertSelective(sCI);
+			}
+		}
+		if (type != null) {
+			for (int i = 0; i < type.length; i++) {
+				if ("11".equals(type[i])) {
+					sCI.setType(type[i]);
+					sCI.setCompanyId(sCIMap.get("evaluationGs").toString());
+					sCI.setId(UuidUtil.getUuid());
+					this.addUsersRoles(projectId, sCIMap.get("evaluationGs").toString());
+					this.servicecompanyinfoservice.insertSelective(sCI);
+				} else {
+					sCI.setType(type[i]);
+					sCI.setCompanyId(sCIMap.get("guaranteeGs").toString());
+					sCI.setId(UuidUtil.getUuid());
+					this.addUsersRoles(projectId, sCIMap.get("guaranteeGs").toString());
+					this.servicecompanyinfoservice.insertSelective(sCI);
+				}
+			}
+		}
+
+		return flag;
+	}
 }

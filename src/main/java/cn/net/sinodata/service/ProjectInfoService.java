@@ -1,13 +1,11 @@
 package cn.net.sinodata.service;
 
-import java.util.List;
-import java.util.Map;
-
-import com.github.pagehelper.PageInfo;
-
 import cn.net.sinodata.mapper.ProjectInfoMapper;
 import cn.net.sinodata.model.ProjectInfo;
 import cn.net.sinodata.model.ProjectInfoExample;
+import com.github.pagehelper.PageInfo;
+
+import java.util.Map;
 
 /**
  * 项目信息
@@ -36,6 +34,6 @@ public interface ProjectInfoService extends ProjectInfoMapper {
      */
     public String getMaxProjectNum();
 
-	
-	
+
+	public int modProjectInfo(ProjectInfo projectInfo, Map<String, Object> sCIMap);
 }
